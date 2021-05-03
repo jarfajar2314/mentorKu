@@ -1,0 +1,4 @@
+1. Database?
+2. Database -> Model
+3. View Template
+4.
