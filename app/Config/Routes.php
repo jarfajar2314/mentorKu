@@ -32,6 +32,14 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 
+// Pengajar
+$routes->get('/pengajar/login', 'TeacherController::index');
+$routes->get('/pengajar/register', 'TeacherController::index');
+
+// Pelajar
+$routes->get('/pelajar/login', 'StudentController::login');
+$routes->get('/pelajar/register', 'StudentController::index');
+
 /**
  * --------------------------------------------------------------------
  * Additional Routing
