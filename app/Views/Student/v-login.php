@@ -1,15 +1,14 @@
 <!-----ini halaman login------>
-<div class="container-fluid">
+<div class="container-fluid cont-logbox">
     <form>
-    <div class="form-group">
-        <label for="exampleInputEmail1">Email address</label>
-        <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-        <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-    </div>
-    <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-    </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+        <label for="exampleInputEmail1">Login pelajar</label>
+        <div class="fg form-group">
+            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+        </div>
+        <div class="fg form-group">
+            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+        </div>
+        <button type="submit" class="bot-log btn btn-primary">Masuk</button>
+        <button type="submit" class="bot-log btn btn-primary">Daftar</button>
     </form>
 </div><!-- /.container-fluid -->

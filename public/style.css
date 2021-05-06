@@ -1,5 +1,6 @@
 body{
     font-family: 'Ubuntu', sans-serif;
+    background-color: #f6f6f6;
 }
 
 .bg-none{
@@ -29,3 +30,34 @@ body{
     color: #22B573;
     border-color: #22B573;
 }
+
+
+/*styling laman login guys*/
+.cont-logbox{
+    max-width: 400px;
+    margin-top: 100px;
+    margin-bottom: 100px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 40px;
+    padding-right: 40px;
+    border-radius: 10px;
+    font-family: 'Ubuntu', sans-serif;
+    background-color: white;
+}
+
+.fg{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.bot-log{
+    background-color: #22B573;
+    border: none;
+}
+
+.bot-log:hover{
+    background-color: white;
+    color: #22B573;
+}
+/*=======================*/

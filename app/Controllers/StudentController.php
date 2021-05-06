@@ -14,6 +14,6 @@ class StudentController extends BaseController
         $data = [
             
         ];
-        return view('layout/v-wrapper', $data);
+        return view('Student/v-wrapper', $data);
     }
 }
