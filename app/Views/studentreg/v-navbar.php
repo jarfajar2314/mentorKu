@@ -11,7 +11,6 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon green"></span>
     </button>
-    <!-- Button -->
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <!-- Dropdown -->
@@ -33,7 +32,10 @@
       <a href="#" class="btn px-3 me-2 fw-light">Cari Mentor</a>
       <a href="#" class="btn btn-green px-3 me-2 rounded-pill fw-light">Masuk</a>
       <a href="#" class="btn btn-outline-green px-3 rounded-pill fw-light">Daftar</a>
-      
+      <!-- <form class="d-flex"> -->
+        <!-- <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search"> -->
+        <!-- <button class="btn btn-outline-success" type="submit">Search</button> -->
+      <!-- </form> -->
     </div>
     <!-- /.navbar-collapse -->
   </div>

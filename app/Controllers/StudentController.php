@@ -14,6 +14,14 @@ class StudentController extends BaseController
         $data = [
             
         ];
-        return view('layout/v-wrapper', $data);
+        return view('Student/v-wrapper', $data);
+    }
+
+    public function register()
+    {
+        $data = [
+            
+        ];
+        return view('studentreg/v-wrapper', $data);
     }
 }
