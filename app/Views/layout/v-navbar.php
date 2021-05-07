@@ -30,7 +30,9 @@
       </ul>
       <!-- Right button -->
       <a href="#" class="btn px-3 me-2 fw-light">Berikan Kursus</a>
-      <a href="#" class="btn px-3 me-2 fw-light">Cari Mentor</a>
+      <br>
+      <a href="#" class="btn px-3 me-2 fw-light mb-3 mb-sm-0">Cari Mentor</a>
+      <br>
       <a href="#" class="btn btn-green px-3 me-2 rounded-pill fw-light">Masuk</a>
       <a href="#" class="btn btn-outline-green px-3 rounded-pill fw-light">Daftar</a>
       
