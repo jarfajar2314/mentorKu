@@ -33,8 +33,8 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Home::index');
 
 // Pengajar
-$routes->get('/pengajar/login', 'TeacherController::index');
-$routes->get('/pengajar/register', 'TeacherController::index');
+$routes->get('/pengajar/login', 'TeacherController::login');
+$routes->get('/pengajar/register', 'TeacherController::register');
 
 // Pelajar
 $routes->get('/pelajar/login', 'StudentController::login');

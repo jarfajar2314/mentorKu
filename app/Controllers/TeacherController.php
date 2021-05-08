@@ -8,4 +8,24 @@ class TeacherController extends BaseController
     {
         echo 'Hello World! - Teacher';
     }
+
+    public function login()
+    {
+        $data = [
+            'title' => 'Login Pengajar',
+            'content' => 'Teacher/v-login',
+            'page' => 'login',
+        ];
+        return view('layout/v-wrapper', $data);
+    }
+
+    public function register()
+    {
+        $data = [
+            'title' => 'Register Pengajar',
+            'content' => 'Teacher/v-register',
+            'page' => 'register',
+        ];
+        return view('layout/v-wrapper', $data);
+    }
 }
