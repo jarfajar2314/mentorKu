@@ -39,6 +39,7 @@ $routes->get('/pengajar/register', 'TeacherController::register');
 // Pelajar
 $routes->get('/pelajar/login', 'StudentController::login');
 $routes->get('/pelajar/register', 'StudentController::register');
+$routes->get('/pelajar/dashboard', 'StudentController::dashboard');
 
 /**
  * --------------------------------------------------------------------

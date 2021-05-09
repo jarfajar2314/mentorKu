@@ -43,4 +43,14 @@ class StudentController extends BaseController
         ];
         return view('layout/v-wrapper', $data);
     }
+
+    public function dashboard()
+    {
+        $data = [
+            'title' => 'Dashboard',
+            'content' => 'Student/v-dashboard',
+            'page' => 'dashboard',
+        ];
+        return view('layout/v-wrapper', $data);
+    }
 }

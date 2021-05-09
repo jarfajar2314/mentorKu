@@ -13,15 +13,15 @@
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Kalau login sama register page gapake header -->
-    <?php if($page != "login" && $page != "register"){?>
+    <!-- <php if($page != "login" && $page != "register"){?> -->
     <!-- Content Header (Page header) -->
-    <section class="content-header">
+    <!-- <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
             <h1>Ini Title</h1>
           </div>
         </div>
-      </div><!-- /.container-fluid -->
-    </section>
-    <?php }?> 
+      </div>
+    </section> -->
+    <!-- <php }?>  -->
