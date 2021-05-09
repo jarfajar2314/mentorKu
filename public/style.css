@@ -7,24 +7,29 @@ body{
     background: none;
 }
 
+/* Untuk elemen hijau */
 .green{
     color:#22B573;
 }
 
+/* Untuk background hijau */
 .bg-green{
     background-color: #22B573;
 }
 
+/* Button outline hijau */
 .btn-outline-green {
     color: #22B573;
     border-color: #22B573;
 }
 
+/* Button hijau & hover button outline hijau */
 .btn-outline-green:hover, .btn-green {
     background-color: #22B573;
     color: white;
 }
 
+/* Hover button hijau */
 .btn-green:hover{
     background-color: white;
     color: #22B573;
@@ -71,3 +76,18 @@ body{
     list-style-type: none;
 }
 /*=======================*/
+
+/* Buat di dashboard */
+/* Force square image */
+.squareImg{
+    position:relative;
+    overflow:hidden;
+    padding-bottom:100%;
+}
+.squareImg img{
+    position:absolute;
+    width: 18em;
+    height: 18em;
+    object-fit: cover;
+    transform: translateX(-50%);
+}
