@@ -40,7 +40,7 @@
       <!-- Else -->
       <?php } else {?>
       <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+        <button class="btn card-green dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
           Halo Margareth
         </button>
         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">

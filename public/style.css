@@ -103,9 +103,223 @@ body{
         transform: translateX(-50%);
     } */
 }
+.profile-user-img {
+    border:3px solid #adb5bd;
+    margin:0 auto;
+    padding:3px;
+    width:200px;
+}
+.img-fluid {
+    max-width:100%;
+    height:auto;
+}
+.img-circle {
+    border-radius:50%;
+}
 /* Card Konfirmasi Pembayaran */
 .card-green{
     background-color: white;
     color: #22B573;
     border-color: #22B573;
+}
+.project-tab {
+    padding: 10%;
+    margin-top: -8%;
+}
+.project-tab #tabs{
+    background: #007b5e;
+    color: #eee;
+}
+.project-tab #tabs h6.section-title{
+    color: #eee;
+}
+.project-tab #tabs .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: #22B573 !important;
+    background-color: transparent;
+    border-color: transparent transparent #f3f3f3;
+    border-bottom: 3px solid !important;
+    font-size: 16px;
+    font-weight: bold;
+}
+.project-tab .nav-link {
+    border: 1px solid transparent;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+    color: #22B573 !important;
+    font-size: 16px;
+    font-weight: 600;
+}
+.project-tab .nav-link:hover {
+    border: none;
+}
+.project-tab thead{
+    background: #f3f3f3;
+    color: #333;
+}
+.project-tab a{
+    text-decoration: none;
+    color: #333;
+    font-weight: 600;
+}
+.link-green{
+    color:#22B573;
+}
+.link-green:hover{
+    color:#22B573;
+    font-weight: bold;
+
+}
+
+/* Tabel Dashboard */
+.table-t {
+    width: 100%;
+    display: table;
+    margin: 0;
+}
+  
+@media screen and (max-width: 768px) {
+    .table-t {
+      display: block;
+    }
+}
+  
+.row-t {
+    display: table-row;
+    background: #fff;
+    /* border: #333 1px solid; */
+}
+  
+.row-t.header-t {
+    color: #ffffff;
+    background: #22B573;
+}
+  
+@media screen and (max-width: 768px) {
+    .row-t {
+        display: block;
+    }
+    
+    .row-t.header-t {
+        padding: 0;
+        height: 0px;
+    }
+    
+    .row-t.header-t .cell-t {
+        display: none;
+    }
+    
+    .row-t .cell-t:before {
+        font-weight: bold;
+        font-size: 12px;
+        color: #808080;
+        line-height: 1.2;
+        text-transform: uppercase;
+        font-weight: unset !important;
+
+        margin-bottom: 13px;
+        content: attr(data-title);
+        min-width: 98px;
+        display: block;
+    }
+}
+  
+.cell-t {
+    display: table-cell;
+    text-align: center;
+}
+  
+@media screen and (max-width: 768px) {
+    .cell-t {
+      display: block;
+    }
+}
+  
+.row-t .cell-t {
+    font-weight: normal;
+    font-size: 15px;
+    color: #666666;
+    line-height: 1.2;
+    font-weight: unset !important;
+  
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #f2f2f2;
+}
+  
+.row-t.header-t .cell-t {
+    font-weight: normal;
+    font-size: 18px;
+    color: #fff;
+    line-height: 1.2;
+    font-weight: unset !important;
+  
+    padding-top: 19px;
+    padding-bottom: 19px;
+}
+  
+.row-t .cell-t:nth-child(1) {
+    width: 20%;
+    /* padding-left: 40px; */
+}
+  
+.row-t .cell-t:nth-child(2) {
+    width: 20%;
+}
+  
+.row-t .cell-t:nth-child(3) {
+    width: 20%;
+}
+  
+.row-t .cell-t:nth-child(4) {
+    width: 20%;
+}
+
+.row-t .cell-t:nth-child(4) {
+    width: 20%;
+}
+  
+  
+.table-t, .row-t {
+    width: 100% !important;
+}
+  
+.row-t:hover {
+    background-color: #ececff;
+    cursor: pointer;
+}
+
+.row-t.header-t:hover{
+    background-color: #22B573;
+}
+  
+@media (max-width: 768px) {
+    .row-t {
+      border-bottom: 1px solid #f2f2f2;
+      padding-bottom: 18px;
+      padding-top: 30px;
+      padding-right: 15px;
+      margin: 0;
+    }
+    
+    .row-t .cell-t {
+      border: none;
+      padding-left: 30px;
+      padding-top: 16px;
+      padding-bottom: 16px;
+    }
+    .row-t .cell-t:nth-child(1) {
+      padding-left: 30px;
+    }
+    
+    .row-t .cell-t {
+      font-weight: normal;
+      font-size: 18px;
+      color: #555555;
+      line-height: 1.2;
+      font-weight: unset !important;
+    }
+  
+    .table-t, .row-t, .cell-t {
+      width: 100% !important;
+    }
 }
