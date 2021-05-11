@@ -171,6 +171,7 @@ body{
 }
 
 /* Tabel Dashboard */
+/* =========================================================================== */
 .table-t {
     width: 100%;
     display: table;
@@ -322,4 +323,15 @@ body{
     .table-t, .row-t, .cell-t {
       width: 100% !important;
     }
+}
+/* ====================================================== */
+
+/* Footer */
+.main-footer{
+    background-color: #1A2B3D;
+}
+
+.link, .link:hover{
+    color:white;
+    text-decoration: none;
 }

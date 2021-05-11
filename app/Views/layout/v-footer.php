@@ -1,11 +1,34 @@
 </div>
 <!-- /.content-wrapper -->
 
-<footer class="main-footer">
-    <div class="float-right d-none d-sm-block">
+<footer class="main-footer mt-5 text-white">
+    <!-- <div class="float-right d-none d-sm-block">
       <b>Version</b> 0.0.1
     </div>
-    <strong>&copy; 2021 Mentorku.io .</strong>
+    <strong>&copy; 2021 Mentorku.io .</strong> -->
+    <div class="container-fluid p-5">
+      <div class="row">
+        <div class="col">
+          <h4>Tentang Kami</h4>
+          <br>
+          <a href="#" class="link">Siapa kami</a>
+          <br>
+          <a href="#" class="link">Bantuan</a>
+          <br>
+          <a href="#" class="link">Syarat dan Ketentuan</a>
+        </div>
+        <div class="col">
+          <h4>Resource</h4>
+          <br>
+          <p class="mb-0">Photo from :</p>
+          <p>Unsplash.com</p>
+        </div>
+        <div class="col">
+          <h4>Ikuti Kami</h4>
+          
+        </div>
+      </div>
+    </div>
 </footer>
 
  
