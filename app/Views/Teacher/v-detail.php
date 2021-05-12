@@ -15,8 +15,10 @@
 					<p class="me-2 text-warning"><i class="fas fa-star"></i></p>
 				</div>
 				<p class="text-gray">Rp 100.000/Sesi</p>
-				<!-- <br> -->
-				<a href="#" class="btn btn-green">Atur Pertemuan</a>
+				<!-- Button trigger modal -->
+				<button type="button" class="btn btn-green" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+					Atur Pertemuan
+				</button>
 			</div>
 		</div>
 		<!-- /.col -->
@@ -116,6 +118,56 @@
 						</div>
 					</div>
 				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="staticBackdropLabel">Atur Jadwal Pertemuan</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<form action="">
+					<div class="row mb-3">
+						<div class="col">
+							<label for="timeStart" class="form-label">Mulai</label>
+							<input type="time" class="form-control" name="timeStart" id="">
+						</div>
+						<div class="col">
+							<label for="timeFinish" class="form-label">Selesai</label>
+							<input type="time" class="form-control" name="timeFinish" id="">
+						</div>
+					</div>
+					<div class="row mb-3">
+						<div class="col">
+							<label for="date" class="form-label">Tanggal</label>
+							<input type="date" class="form-control" name="date" id="">
+						</div>
+						<div class="col">
+							<label for="session" class="form-label">Sesi</label>
+							<input type="number" class="form-control" name="session" id="">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+							<select class="form-select" aria-label="place" name="place">
+								<option selected>Tempat</option>
+								<option value="1">Online</option>
+								<option value="2">Offline</option>
+								<!-- <option value="3">Three</option> -->
+							</select>
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+				<button type="button" class="btn btn-green">Ajukan</button>
 			</div>
 		</div>
 	</div>
