@@ -29,11 +29,8 @@
                     </div>
                 </div>
                 <div class="d-flex ms-lg-0 ms-5">
-                    <div class="me-3">
-                        <a class="btn btn-green btn-sm" href="#" role="button">Ubah Foto Profil</a>
-                    </div>
                     <div class="">
-                        <a class="btn btn-green btn-sm" href="#" role="button">Ubah Profil</a>
+                        <a class="btn btn-green btn-sm" href="#" role="button"><i class="fas fa-edit"></i>Ubah Profil</a>
                     </div>
                 </div>
             </div>

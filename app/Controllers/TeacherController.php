@@ -28,4 +28,14 @@ class TeacherController extends BaseController
         ];
         return view('layout/v-wrapper', $data);
     }
+
+    public function dashboard()
+    {
+        $data = [
+            'title' => 'Dashboard',
+            'content' => 'Teacher/v-dashboard',
+            'page' => 'dashboard',
+        ];
+        return view('layout/v-wrapper', $data);
+    }
 }
