@@ -10,7 +10,6 @@
       <div class="row">
         <div class="col">
           <h4>Tentang Kami</h4>
-          <br>
           <a href="#" class="link">Siapa kami</a>
           <br>
           <a href="#" class="link">Bantuan</a>
@@ -19,13 +18,28 @@
         </div>
         <div class="col">
           <h4>Resource</h4>
-          <br>
           <p class="mb-0">Photo from :</p>
           <p>Unsplash.com</p>
         </div>
-        <div class="col">
+        <div class="col mt-3 mt-lg-0">
           <h4>Ikuti Kami</h4>
-          
+          <div class="d-flex">
+            <div class="me-3">
+              <a href="#" class="link">
+                <h4><i class="fab fa-instagram"></i></h4>
+              </a>
+            </div>
+            <div class="me-3">
+              <a href="#" class="link">
+                <h4><i class="fab fa-facebook"></i></h4>
+              </a>
+            </div>
+            <div class="me-3">
+              <a href="#" class="link">
+                <h4><i class="fab fa-twitter"></i></h4>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
