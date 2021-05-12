@@ -352,3 +352,18 @@ body{
     color:white;
     text-decoration: none;
 }
+
+/* Detail Pengajar */
+.text-gray{
+    color : #6e6e6e;
+}
+
+a.text-gray:hover{
+    color : #414141;
+}
+.profile-user-img-small {
+    border:3px solid #adb5bd;
+    margin:0 auto;
+    padding:3px;
+    width:75px;
+}

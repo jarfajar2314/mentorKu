@@ -38,4 +38,14 @@ class TeacherController extends BaseController
         ];
         return view('layout/v-wrapper', $data);
     }
+    
+    public function detail()
+    {
+        $data = [
+            'title' => 'Detail Pengajar',
+            'content' => 'Teacher/v-detail',
+            'page' => 'detail',
+        ];
+        return view('layout/v-wrapper', $data);
+    }
 }
