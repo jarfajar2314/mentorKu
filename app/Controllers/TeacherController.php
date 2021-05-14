@@ -48,4 +48,14 @@ class TeacherController extends BaseController
         ];
         return view('layout/v-wrapper', $data);
     }
+
+    public function edit()
+    {
+        $data = [
+            'title' => 'Ubah Profil Pengajar',
+            'content' => 'Teacher/v-edit',
+            'page' => 'edit',
+        ];
+        return view('layout/v-wrapper', $data);
+    }
 }

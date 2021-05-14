@@ -38,6 +38,8 @@ $routes->get('/pengajar/register', 'TeacherController::register');
 $routes->get('/pengajar/dashboard', 'TeacherController::dashboard');
 $routes->get('/pengajar/detail', 'TeacherController::detail'); // untuk test
 $routes->get('/pengajar/detail/(:any)', 'TeacherController::detail/$1'); // untuk dipake nanti
+$routes->get('/pengajar/edit', 'TeacherController::edit'); // untuk test
+$routes->get('/pengajar/edit/(:any)', 'TeacherController::edit/$1'); // untuk dipake nanti
 
 // Pelajar
 $routes->get('/pelajar/login', 'StudentController::login');
