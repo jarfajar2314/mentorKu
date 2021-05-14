@@ -367,3 +367,33 @@ a.text-gray:hover{
     padding:3px;
     width:75px;
 }
+
+
+/*buat search bar bos*/
+.cont-searchbox{
+    max-width: 40vw;
+    min-width: 300px;
+    margin: auto;
+    padding: 15px 30px;
+    border-radius: 10px;
+    font-family: 'Ubuntu', sans-serif;
+    background-color: white;
+}
+
+.header-cont{
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    background-image: url(/imageSource/home-bg.png);
+    background-position: center;
+    display: flex;
+}
+
+.cont-header{
+    margin: auto;
+}
+
+.header-text{
+    color: white;
+}
+/*===================*/
