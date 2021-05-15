@@ -381,10 +381,9 @@ a.text-gray:hover{
 }
 
 .header-cont{
-    width: 100vw;
     height: 100vh;
-    background-size: cover;
     background-image: url(/imageSource/home-bg.png);
+    background-size: cover;
     background-position: center;
     display: flex;
 }
@@ -395,5 +394,26 @@ a.text-gray:hover{
 
 .header-text{
     color: white;
+}
+/*===================*/
+
+/*buat home container*/
+.home-cont{
+    height: fit-content;
+    padding: 20px 10vw;
+}
+
+.cont-homecontent{
+    width: 100%;
+    height: 45vh;
+    padding: 15px 30px;
+    border-radius: 10px;
+    font-family: 'Ubuntu', sans-serif;
+    background-color: white;
+}
+
+.homecontext{
+    margin: 20px 0px;
+    color: #6e6e6e;
 }
 /*===================*/
