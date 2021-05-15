@@ -45,6 +45,8 @@ $routes->get('/pengajar/edit/(:any)', 'TeacherController::edit/$1'); // untuk di
 $routes->get('/pelajar/login', 'StudentController::login');
 $routes->get('/pelajar/register', 'StudentController::register');
 $routes->get('/pelajar/dashboard', 'StudentController::dashboard');
+$routes->get('/pelajar/edit', 'StudentController::edit'); // untuk test
+$routes->get('/pelajar/edit/(:any)', 'StudentController::edit/$1'); // untuk dipake nanti
 
 /**
  * --------------------------------------------------------------------

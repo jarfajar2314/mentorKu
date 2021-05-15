@@ -53,4 +53,14 @@ class StudentController extends BaseController
         ];
         return view('layout/v-wrapper', $data);
     }
+
+    public function edit()
+    {
+        $data = [
+            'title' => 'Ubah Profil Pelajar',
+            'content' => 'Student/v-edit',
+            'page' => 'edit',
+        ];
+        return view('layout/v-wrapper', $data);
+    }
 }
