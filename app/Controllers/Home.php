@@ -12,6 +12,16 @@ class Home extends BaseController
         return view('layout/v-wrapper', $data);
 	}
 
+	public function invoice()
+	{
+		$data = [
+            'title' => 'Invoice',
+            'content' => 'v-invoice',
+            'page' => 'invoice',
+        ];
+        return view('layout/v-wrapper', $data);
+	}
+
 	//--------------------------------------------------------------------
 
 }

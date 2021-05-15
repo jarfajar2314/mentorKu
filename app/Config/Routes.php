@@ -48,6 +48,10 @@ $routes->get('/pelajar/dashboard', 'StudentController::dashboard');
 $routes->get('/pelajar/edit', 'StudentController::edit'); // untuk test
 $routes->get('/pelajar/edit/(:any)', 'StudentController::edit/$1'); // untuk dipake nanti
 
+// Invoice
+$routes->get('/invoice', 'Home::invoice');
+$routes->get('/invoice/(:any)', 'Home::invoice/$1');
+
 /**
  * --------------------------------------------------------------------
  * Additional Routing

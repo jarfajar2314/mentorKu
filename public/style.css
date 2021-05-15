@@ -417,3 +417,10 @@ a.text-gray:hover{
     color: #6e6e6e;
 }
 /*===================*/
+
+/* Buat invoice */
+.inv-box{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}

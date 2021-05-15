@@ -2,7 +2,7 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white shadow">
   <div class="container-fluid">
     <!-- Mentorku logo -->
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="/">
       <h4 class="m-0 p-0">
         <mark class="green bg-none px-0">Mentorku.</mark>io
       </h4>
