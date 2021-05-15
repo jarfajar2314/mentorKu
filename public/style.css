@@ -367,3 +367,53 @@ a.text-gray:hover{
     padding:3px;
     width:75px;
 }
+
+
+/*buat search bar bos*/
+.cont-searchbox{
+    max-width: 40vw;
+    min-width: 300px;
+    margin: auto;
+    padding: 15px 30px;
+    border-radius: 10px;
+    font-family: 'Ubuntu', sans-serif;
+    background-color: white;
+}
+
+.header-cont{
+    height: 100vh;
+    background-image: url(/imageSource/home-bg.png);
+    background-size: cover;
+    background-position: center;
+    display: flex;
+}
+
+.cont-header{
+    margin: auto;
+}
+
+.header-text{
+    color: white;
+}
+/*===================*/
+
+/*buat home container*/
+.home-cont{
+    height: fit-content;
+    padding: 20px 10vw;
+}
+
+.cont-homecontent{
+    width: 100%;
+    height: 45vh;
+    padding: 15px 30px;
+    border-radius: 10px;
+    font-family: 'Ubuntu', sans-serif;
+    background-color: white;
+}
+
+.homecontext{
+    margin: 20px 0px;
+    color: #6e6e6e;
+}
+/*===================*/
