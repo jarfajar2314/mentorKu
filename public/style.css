@@ -405,18 +405,59 @@ a.text-gray:hover{
 
 .cont-homecontent{
     width: 100%;
-    height: 45vh;
+    height: 40vh;
     padding: 15px 30px;
     border-radius: 10px;
     font-family: 'Ubuntu', sans-serif;
     background-color: white;
 }
 
+.cont-homecontent2{
+    width: 100%;
+    height: fit-content;
+    padding: 10% 30px;
+    border-radius: 10px;
+    font-family: 'Ubuntu', sans-serif;
+    background-color: white;
+    text-align: center;
+}
+
 .homecontext{
     margin: 20px 0px;
     color: #6e6e6e;
 }
+
+.subjecttext{
+    list-style-type: none;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1.2rem;
+    color: #6e6e6e;
+    margin-top: 10px;
+}
 /*===================*/
+
+/*buat about di home*/
+.about-cont{
+    height: fit-content;
+    padding: 0px 10vw;
+}
+
+.about-text-box{
+    text-align: justify;
+    padding: 20vh 0px;
+}
+
+.about-head{
+    color: #22B573;
+    margin-bottom: 20px;
+}
+
+.about-text{
+    color: #6e6e6e;
+    font-weight: 400;
+}
+/*==================*/
 
 /* Buat invoice */
 .inv-box{
