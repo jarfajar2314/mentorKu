@@ -13,6 +13,6 @@
                 <button type="submit" class="bot-log btn btn-primary">Masuk</button>
                 <button type="submit" class="bot-log btn btn-primary">Daftar</button>
             </form>
-            <a class="bot-log-pen navbar-brand" href="#">Login pengajar</a>
+            <a class="bot-log-pen navbar-brand" href="/pengajar/login">Login pengajar</a>
         </div><!-- /.container-fluid -->
     </div>

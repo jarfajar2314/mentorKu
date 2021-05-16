@@ -4,6 +4,7 @@ class Home extends BaseController
 {
 	public function index()
 	{
+        $session = \Config\Services::session();
 		$data = [
             'title' => 'Home',
             'content' => 'Home/v-home',
