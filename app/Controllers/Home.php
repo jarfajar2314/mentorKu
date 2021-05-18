@@ -23,6 +23,16 @@ class Home extends BaseController
         return view('layout/v-wrapper', $data);
 	}
 
+    public function explore()
+    {
+        $data = [
+            'title' => 'Explore',
+            'content' => 'v-explore',
+            'page' => 'Explore',
+        ];
+        return view('layout/v-wrapper', $data);
+    }
+
 	//--------------------------------------------------------------------
 
 }

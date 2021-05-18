@@ -465,3 +465,52 @@ a.text-gray:hover{
     align-items: center;
     justify-content: center;
 }
+/**/
+
+/*buat explore*/
+.dropdown-cont{
+    height: fit-content;
+    padding: 20px 10vw;
+}
+
+.exp-cont{
+    height: fit-content;
+    padding: 20px 10vw;
+}
+
+.exp-drop-bot-cont{
+    width: 12vmax;
+    min-width: 100px;
+}
+
+.exp-drop-bot{
+    background-color: #ffffff;
+    border: none;
+    color: #6e6e6e;
+    font-weight: 500;
+}
+
+.exp-drop-bot:hover{
+    background-color: #22B573;
+    color: #ffffff;
+}
+
+.expcontext{
+    list-style-type: none;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 2rem;
+    color: #6e6e6e;
+    margin-bottom: 20px;
+}
+
+.badge{
+    background-color: #22B573;
+}
+
+.exp-ment-desc{
+    text-align: justify;
+    font-size: 1rem;
+    color: #6e6e6e;
+}
+/*============*/
