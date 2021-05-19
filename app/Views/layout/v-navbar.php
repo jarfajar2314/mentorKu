@@ -29,11 +29,13 @@
         <!-- /.Dropdown -->
       </ul>
       <!-- Right button -->
-      <a href="/pengajar/login" class="btn px-3 me-2 fw-light">Berikan Kursus</a>
-      <br>
+      <!-- Berikan kursus hanya muncul ketika belum login dan user bukan pengajar -->
+      <?php if(!isset($_SESSION['id_user']) || (isset($_SESSION['user']) && $_SESSION['user'] != 'pengajar' )) {?>
+        <a href="/pengajar/login" class="btn px-3 me-2 fw-light">Berikan Kursus</a>
+        <br>
+      <?php } ?>
       <a href="/pelajar/login" class="btn px-3 me-2 fw-light mb-3 mb-sm-0">Cari Mentor</a>
       <br>
-      <!--  -->
       <!-- If -->
       <?php if($page == "login" || $page == "register" || !isset($_SESSION['nama'])){?>
       <?php $uri = current_url(true)->getSegment(1);

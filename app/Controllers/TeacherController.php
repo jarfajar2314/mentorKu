@@ -16,6 +16,7 @@ class TeacherController extends BaseController
 
     public function __construct()
     {
+        helper('form');
         $this->UserModel = new UserModel();
         $this->PengajarModel = new PengajarModel();
         $this->PelajarModel = new PelajarModel();
@@ -24,6 +25,7 @@ class TeacherController extends BaseController
 
     public function login()
     {
+        $session = session();
         $data = [
             'title' => 'Login Pengajar',
             'content' => 'Teacher/v-login',
@@ -73,7 +75,7 @@ class TeacherController extends BaseController
         }
         else{
             // if not, return to home
-            return redirect()->to('/');
+            return redirect()->to('/pengajar/login');
         }
         $data['data'] = $pengajarData;
         $data['riwayat_pembelajaran'] = $pembelajaranData;
@@ -179,6 +181,35 @@ class TeacherController extends BaseController
         else
         {
             $session->setFlashdata('msg', 'failed');
+            return redirect()->to(base_url('pengajar/edit'));
+        }
+    }
+
+    public function updatePP()
+    {
+        $session = session();
+
+        $imgFile = $this->request->getFile('profile_pic');
+        $ext_img = $imgFile->getClientExtension();
+        
+        $data['profil_pic'] = $session->get('id_user') . "_" . $session->get('user') . "." . $ext_img;
+
+        
+        $res = $this->PengajarModel->updateData($session->get('id_user'), $data);
+        
+        if($res)
+        {
+            if(file_exists(ROOTPATH . 'public/ProfileImage/' . $data['profil_pic']))
+            {
+                unlink(ROOTPATH . 'public/ProfileImage/' . $data['profil_pic']);
+            }
+            $imgFile->move(ROOTPATH . 'public/ProfileImage', $data['profil_pic']);
+            $session->setFlashdata('msg', 'successPP');
+            return redirect()->to(base_url('pengajar/edit'));
+        }
+        else
+        {
+            $session->setFlashdata('msg', 'failedPP');
             return redirect()->to(base_url('pengajar/edit'));
         }
     }

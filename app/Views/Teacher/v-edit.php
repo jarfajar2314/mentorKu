@@ -9,6 +9,14 @@
                 <div class="alert alert-danger" role="alert">
                     Data gagal diperbarui.
                 </div>
+            <?php } else if($_SESSION['msg'] == 'successPP'){ ?>
+                <div class="alert alert-success" role="alert">
+                    Foto Profil berhasil diperbarui.
+                </div>
+            <?php } else if($_SESSION['msg'] == 'failedPP'){ ?>
+                <div class="alert alert-danger" role="alert">
+                    Foto Profil gagal diperbarui.
+                </div>
             <?php } ?>
         </div>
     <?php } ?>
@@ -73,7 +81,7 @@
                     <label class="form-label">Tentang</label>
                     <textarea class="form-control" id="about" rows="3" name="tentang"><?php echo($data['tentang']); ?></textarea>
                 </div>
-                <a href="#" class="btn btn-outline-green">Kembali</a>
+                <a href="/pengajar/dashboard" class="btn btn-outline-green">Kembali</a>
                 <button class="btn btn-green ms-2" type="submit">Simpan</button>
             </form>
         </div>
@@ -89,16 +97,18 @@
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
-				<form action="">
+				<!-- <form action=""> -->
+                <?php echo form_open_multipart('TeacherController/updatePP');?>
+                <!-- <form action="TeacherController/updatePP" method="post" enctype="multipart/form-data"> -->
 					<div class="mb-3">
                         <label for="formFile" class="form-label">Upload Foto Profil</label>
-                        <input class="form-control" type="file" id="formFile">
+                        <input class="form-control" type="file" id="formFile" name="profile_pic">
                     </div>
-				</form>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-				<button type="button" class="btn btn-green">Simpan</button>
+				<button type="Submit" class="btn btn-green">Simpan</button>
+                </form>
 			</div>
 		</div>
 	</div>
