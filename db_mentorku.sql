@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 16, 2021 at 12:39 PM
+-- Generation Time: May 19, 2021 at 08:40 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.4.18
 
@@ -31,9 +31,16 @@ CREATE TABLE `tbl_pelajar` (
   `id` int(11) NOT NULL,
   `nama_lengkap` varchar(255) NOT NULL,
   `kota` varchar(255) NOT NULL,
-  `tanggal_lahir` date NOT NULL,
-  `profil_pic` varchar(255) NOT NULL
+  `tanggal_lahir` date DEFAULT NULL,
+  `profil_pic` varchar(255) NOT NULL DEFAULT 'user-default.png'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_pelajar`
+--
+
+INSERT INTO `tbl_pelajar` (`id`, `nama_lengkap`, `kota`, `tanggal_lahir`, `profil_pic`) VALUES
+(31, 'May Parker', 'Lamongan', NULL, 'user-default.png');
 
 -- --------------------------------------------------------
 
@@ -47,15 +54,24 @@ CREATE TABLE `tbl_pembelajaran` (
   `id_pengajar` int(11) NOT NULL,
   `subjek` varchar(255) NOT NULL,
   `tanggal` date NOT NULL,
-  `waktu` time NOT NULL,
+  `waktu_mulai` time NOT NULL,
+  `waktu_selesai` time NOT NULL,
   `sesi` int(11) NOT NULL,
   `tempat` varchar(255) NOT NULL,
   `biaya` bigint(20) NOT NULL,
   `bukti_pembayaran` varchar(255) NOT NULL,
-  `status` int(11) NOT NULL,
+  `status` int(11) NOT NULL DEFAULT 0,
   `waktu_permintaan` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `waktu_diterima` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_pembelajaran`
+--
+
+INSERT INTO `tbl_pembelajaran` (`id`, `id_pelajar`, `id_pengajar`, `subjek`, `tanggal`, `waktu_mulai`, `waktu_selesai`, `sesi`, `tempat`, `biaya`, `bukti_pembayaran`, `status`, `waktu_permintaan`, `waktu_diterima`) VALUES
+(1, 31, 32, 'Matematika', '2021-04-19', '12:30:00', '15:00:00', 2, '', 0, '', 0, '2021-05-19 15:18:34', '2021-04-18 16:11:34'),
+(4, 31, 32, 'Matematika', '2021-05-01', '09:00:00', '11:00:00', 2, '', 100000, '', 0, '2021-04-30 15:18:50', '2021-04-30 16:18:50');
 
 -- --------------------------------------------------------
 
@@ -67,21 +83,23 @@ CREATE TABLE `tbl_pengajar` (
   `id` int(11) NOT NULL,
   `nama_lengkap` varchar(255) NOT NULL,
   `kota` varchar(255) NOT NULL,
+  `tarif` bigint(20) NOT NULL,
   `keahlian` varchar(255) NOT NULL,
   `tingkatan` varchar(255) NOT NULL,
   `tanggal_lahir` date DEFAULT NULL,
   `tentang` text NOT NULL,
   `rating` double DEFAULT NULL,
   `ijazah` varchar(255) NOT NULL,
-  `profil_pic` varchar(255) NOT NULL
+  `profil_pic` varchar(255) NOT NULL DEFAULT 'user-default.png'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_pengajar`
 --
 
-INSERT INTO `tbl_pengajar` (`id`, `nama_lengkap`, `kota`, `keahlian`, `tingkatan`, `tanggal_lahir`, `tentang`, `rating`, `ijazah`, `profil_pic`) VALUES
-(32, 'Albert', 'Bandung', 'Matematika', 'Perguruan Tinggi', NULL, '', NULL, '', '');
+INSERT INTO `tbl_pengajar` (`id`, `nama_lengkap`, `kota`, `tarif`, `keahlian`, `tingkatan`, `tanggal_lahir`, `tentang`, `rating`, `ijazah`, `profil_pic`) VALUES
+(32, 'Albert Wicked', 'Bandung', 100000, 'Matematika', 'Perguruan Tinggi', '1999-02-02', 'Ini adalah kolom tentang.', NULL, '', '32_pengajar.jpg'),
+(33, 'Carl Johnson', 'Los Santos', 0, 'Kimia', 'Perguruan Tinggi', '0000-00-00', '', NULL, '', '33_pengajar.png');
 
 -- --------------------------------------------------------
 
@@ -108,7 +126,7 @@ CREATE TABLE `tbl_user` (
   `id` int(11) NOT NULL,
   `email` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `status_verifikasi` int(11) NOT NULL
+  `status_verifikasi` int(11) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -116,7 +134,9 @@ CREATE TABLE `tbl_user` (
 --
 
 INSERT INTO `tbl_user` (`id`, `email`, `password`, `status_verifikasi`) VALUES
-(32, 'albert@gmail.com', '123', 0);
+(31, 'parker@gmail.com', '123', 0),
+(32, 'albert@gmail.com', '1234', 0),
+(33, 'cj@gmail.com', 'carl', 0);
 
 --
 -- Indexes for dumped tables
@@ -164,13 +184,13 @@ ALTER TABLE `tbl_user`
 -- AUTO_INCREMENT for table `tbl_pembelajaran`
 --
 ALTER TABLE `tbl_pembelajaran`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tbl_user`
 --
 ALTER TABLE `tbl_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- Constraints for dumped tables
