@@ -97,6 +97,18 @@ class TeacherController extends BaseController
             'content' => 'Teacher/v-edit',
             'page' => 'edit',
         ];
+        // check if session is active
+        $session = session();
+        if($session->has('id_user')){
+            // if active, retrieve data
+            $pengajarData = $this->PengajarModel->getPengajar($session->get('id_user'))[0];
+            $pengajarData['password'] = $this->UserModel->getUserById($session->get('id_user'))[0]['password'];
+        }
+        else{
+            // if not, return to home
+            return redirect()->to('/');
+        }
+        $data['data'] = $pengajarData;
         return view('layout/v-wrapper', $data);
     }
 
@@ -135,6 +147,39 @@ class TeacherController extends BaseController
         }
         else{
             return redirect()->to(base_url('pengajar/register/fail'));
+        }
+    }
+
+    public function update()
+    {
+        $dataP = [
+            'nama_lengkap' => $this->request->getPost('nama_lengkap'),
+            'kota' => $this->request->getPost('kota'),
+            'tarif' => $this->request->getPost('tarif'),
+            'keahlian' => $this->request->getPost('keahlian'),
+            'tingkatan' => $this->request->getPost('tingkatan'),
+            'tanggal_lahir' => $this->request->getPost('tanggal_lahir'),
+            'tentang' => htmlspecialchars($_POST['tentang']),
+        ];
+
+        $dataU = [
+            'email' => $this->request->getPost('email'),
+            'password' => $this->request->getPost('password'),
+        ];
+
+        $session = session();
+        $resP = $this->PengajarModel->updateData($session->get('id_user'), $dataP);
+        $resU = $this->UserModel->updateData($session->get('id_user'), $dataU);
+
+        if($resP && $resU)
+        {
+            $session->setFlashdata('msg', 'success');
+            return redirect()->to(base_url('pengajar/edit'));
+        }
+        else
+        {
+            $session->setFlashdata('msg', 'failed');
+            return redirect()->to(base_url('pengajar/edit'));
         }
     }
     

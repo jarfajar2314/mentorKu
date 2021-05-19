@@ -27,10 +27,11 @@ class UserModel extends Model
             ->get()
             ->getResultArray();
     }
-
-    public function getUser()
+        
+    public function getUserById($id)
     {
-        return $this->db->table('user')
+        return $this->db->table('tbl_user')
+            ->where('id', $id)
             ->get()
             ->getResultArray();
     }
@@ -44,27 +45,9 @@ class UserModel extends Model
             ->getResultArray();
     }
 
-    public function cek_user($id)
+    public function updateData($id, $data)
     {
-        return $this->db->table('user')
-            ->join('pasien', 'pasien.id_user=user.id_user')
-            ->where('pasien.id_user', $id)
-            ->get()
-            ->getRow();
-    }
-
-    public function user_add2()
-    {
-        return $this->db->table('user')
-            ->orderBy('id_user', 'DESC')
-            ->limit(1)
-            ->get()
-            ->getRow();
-    }
-
-    public function getUpdate_User($keyword)
-    {
-        return $this->where(['id_user' => $keyword])
-            ->first();
+        // return $this->db->table('tbl_user')->insert($data);
+        return $this->db->table('tbl_user')->where('id', $id)->update($data);
     }
 }

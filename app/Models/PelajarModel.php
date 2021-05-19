@@ -19,4 +19,9 @@ class PelajarModel extends Model
             ->getResultArray();
     }
 
+    public function updateData($id, $data)
+    {
+        return $this->db->table('tbl_pelajar')->where('id', $id)->update($data);
+    }
+
 }
