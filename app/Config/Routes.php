@@ -49,6 +49,8 @@ $routes->get('/pelajar/edit', 'StudentController::edit');
 $routes->get('/invoice', 'Home::invoice');
 $routes->get('/invoice/(:any)', 'Home::invoice/$1');
 
+// Admin
+$routes->get('admin/login', 'AdminController::login');
 
 // Explore
 $routes->get('/Explore', 'Home::Explore');
