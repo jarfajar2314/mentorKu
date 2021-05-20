@@ -51,6 +51,7 @@ $routes->get('/invoice/(:any)', 'Home::invoice/$1');
 
 // Admin
 $routes->get('admin/login', 'AdminController::login');
+$routes->get('admin/dashboard', 'AdminController::dashboard');
 
 // Explore
 $routes->get('/Explore', 'Home::Explore');

@@ -514,3 +514,10 @@ a.text-gray:hover{
     color: #6e6e6e;
 }
 /*============*/
+
+/*buat dashboard admin*/
+.admin-dash{
+    height: fit-content;
+    padding: 20px 10vw;
+}
+/*====================*/
