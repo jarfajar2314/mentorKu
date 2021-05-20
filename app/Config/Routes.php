@@ -53,6 +53,8 @@ $routes->get('/pelajar/edit/(:any)', 'StudentController::edit/$1'); // untuk dip
 $routes->get('/invoice', 'Home::invoice');
 $routes->get('/invoice/(:any)', 'Home::invoice/$1');
 
+// Admin
+$routes->get('admin/login', 'AdminController::login');
 
 // Explore
 $routes->get('/Explore', 'Home::Explore');
