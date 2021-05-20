@@ -33,9 +33,10 @@ class TeacherController extends BaseController
         ];
         return view('layout/v-wrapper', $data);
     }
-
+    
     public function register($msg = "")
     {
+        $session = session();
         $data = [
             'title' => 'Register Pengajar',
             'content' => 'Teacher/v-register',
@@ -116,14 +117,32 @@ class TeacherController extends BaseController
 
     public function save()
     {
+        $session = session();
         $data = [
             'id' => NULL,
             'email' => $this->request->getPost('email'),
             'password' => $this->request->getPost('password'),
             'status_verifikasi' => 0,
         ];
-        // $UserModel = new UserModel();
-        $res = $this->UserModel->insertTo($data);
+
+        // Check for duplicate email
+        $duplicateEmail = false;
+        $checkEmail = $this->UserModel->getId($data['email']);
+        if(count($checkEmail) > 0)
+        {
+            $checkId = $this->PengajarModel->getPengajar($checkEmail[0]['id']);
+            if(count($checkId) > 0)
+                $duplicateEmail = true; 
+        }
+
+        if($duplicateEmail == false){
+            $res = $this->UserModel->insertTo($data);
+        }
+        // If email already exist, return to register
+        else{
+            $session->setFlashdata('msg', 'duplicate');
+            return redirect()->to(base_url('pengajar/register'));
+        }
 
         if($res){
             $res = $this->UserModel->getId($data['email']);
@@ -138,18 +157,17 @@ class TeacherController extends BaseController
             ];
             // $PengajarModel = new PengajarModel();
             $res2 = $this->PengajarModel->insertTo($data2);
-            if($res2){
-                echo("Success");
-                return redirect()->to(base_url('pengajar/register/success'));
+             if($res2){
+                $session->setFlashData('msg', 'success');
             }
             else{
-                echo("Failed");
-                return redirect()->to(base_url('pengajar/register/fail'));
+                $session->setFlashData('msg', 'fail');
             }
         }
         else{
-            return redirect()->to(base_url('pengajar/register/fail'));
+            $session->setFlashData('msg', 'fail');
         }
+        return redirect()->to(base_url('pengajar/register'));
     }
 
     public function update()

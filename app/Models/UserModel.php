@@ -6,9 +6,6 @@ use CodeIgniter\Model;
 
 class UserModel extends Model
 {
-    protected $table = 'tbl_user';
-    protected $primaryKey = 'id';
-    protected $allowedFields = ['email', 'password', 'status_verifikasi'];
     
     public function insertTo($data)
     {
@@ -16,7 +13,9 @@ class UserModel extends Model
     }
 
     public function getId($email){
-        return $this->db->table('tbl_user')->getWhere(['email' => $email])->getResultArray();
+        return $this->db->table('tbl_user')
+            ->getWhere(['email' => $email])
+            ->getResultArray();
     }
 
     public function authLogin($email, $password)
@@ -36,18 +35,4 @@ class UserModel extends Model
             ->getResultArray();
     }
 
-    public function login($username, $password)
-    {
-        return $this->db->table('user')
-            ->where('username', $username)
-            ->where('password', $password)
-            ->get()
-            ->getResultArray();
-    }
-
-    public function updateData($id, $data)
-    {
-        // return $this->db->table('tbl_user')->insert($data);
-        return $this->db->table('tbl_user')->where('id', $id)->update($data);
-    }
 }

@@ -27,9 +27,11 @@ class AuthController extends BaseController
         
         // Authentication
         $res = $this->user->authLogin($email, $password);
-        
-        if($user == 'pengajar') $check = $this->pengajar->getPengajar($res[0]['id']);
-        else if($user == 'pelajar')$check = $this->pelajar->getPelajar($res[0]['id']);
+
+        if($res){
+            if($user == 'pengajar') $check = $this->pengajar->getPengajar($res[0]['id']);
+            else if($user == 'pelajar')$check = $this->pelajar->getPelajar($res[0]['id']);
+        }
 
         if ($res && $check) {
             // If authenticated

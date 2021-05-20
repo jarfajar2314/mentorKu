@@ -1,14 +1,20 @@
 <div class="content-wrapper">
-    <?php if($msg == 'success'){?>
+    <?php if(isset($_SESSION['msg']) && $_SESSION['msg'] == 'success' ){?>
         <div class="container px-lg-5 mt-5">
             <div class="alert alert-success" role="alert">
-                Akun berhasil dibuat! Silahkan kunjungi halaman login.
+                Akun berhasil dibuat! Silahkan kunjungi halaman <a href="/pengajar/login" class="text-success">login</a>.
             </div>
         </div>
-    <?php } else if($msg == 'fail'){?>
+    <?php } else if(isset($_SESSION['msg']) && $_SESSION['msg'] == 'fail' ){?>
         <div class="container px-lg-5 mt-5">
             <div class="alert alert-danger" role="alert">
                 Akun gagal dibuat. Silahkan coba kembali.
+            </div>
+        </div>
+    <?php } else if(isset($_SESSION['msg']) && $_SESSION['msg'] == 'duplicate' ){?>
+        <div class="container px-lg-5 mt-5">
+            <div class="alert alert-danger" role="alert">
+                Email sudah terdaftar.
             </div>
         </div>
     <?php }?>
