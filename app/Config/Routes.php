@@ -35,19 +35,15 @@ $routes->get('/', 'Home::index');
 // Pengajar
 $routes->get('/pengajar/login', 'TeacherController::login');
 $routes->get('/pengajar/register', 'TeacherController::register');
-$routes->get('/pengajar/register/(:any)', 'TeacherController::register/$1');
 $routes->get('/pengajar/dashboard', 'TeacherController::dashboard');
-$routes->get('/pengajar/detail', 'TeacherController::detail'); // untuk test
-$routes->get('/pengajar/detail/(:any)', 'TeacherController::detail/$1'); // untuk dipake nanti
-$routes->get('/pengajar/edit', 'TeacherController::edit'); // untuk test
-$routes->get('/pengajar/edit/(:any)', 'TeacherController::edit/$1'); // untuk dipake nanti
+$routes->get('/pengajar/detail', 'TeacherController::detail');
+$routes->get('/pengajar/edit', 'TeacherController::edit');
 
 // Pelajar
 $routes->get('/pelajar/login', 'StudentController::login');
 $routes->get('/pelajar/register', 'StudentController::register');
 $routes->get('/pelajar/dashboard', 'StudentController::dashboard');
-$routes->get('/pelajar/edit', 'StudentController::edit'); // untuk test
-$routes->get('/pelajar/edit/(:any)', 'StudentController::edit/$1'); // untuk dipake nanti
+$routes->get('/pelajar/edit', 'StudentController::edit');
 
 // Invoice
 $routes->get('/invoice', 'Home::invoice');
@@ -56,6 +52,9 @@ $routes->get('/invoice/(:any)', 'Home::invoice/$1');
 
 // Explore
 $routes->get('/Explore', 'Home::Explore');
+
+// Logout
+$routes->get('/logout', 'AuthController::logout');
 
 
 /**

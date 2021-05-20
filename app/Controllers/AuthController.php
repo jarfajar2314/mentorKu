@@ -17,24 +17,30 @@ class AuthController extends BaseController
 
     public function login()
     {
+        $session = \Config\Services::session();
+
         // Get email and password
         $email = $this->request->getVar('email');
         $password = $this->request->getVar('password');
+        $user = $this->request->getVar('user');
 
+        
         // Authentication
         $res = $this->user->authLogin($email, $password);
+        
+        if($user == 'pengajar') $check = $this->pengajar->getPengajar($res[0]['id']);
+        else if($user == 'pelajar')$check = $this->pelajar->getPelajar($res[0]['id']);
 
-        if ($res) {
+        if ($res && $check) {
             // If authenticated
             foreach ($res as $row) {
-                $session = \Config\Services::session();
                 // Set session id and email
                 $session->set('id_user', $row['id']);
                 $session->set('email', $row['email']);
                 
                 // Set session user name
                 // Check on pengajar table
-                $resNama = $this->pengajar->getNama($row['id']);
+                $resNama = $this->pengajar->getPengajar($row['id']);
                 if($resNama){
                     foreach ($resNama as $row2) {
                         echo($row2['nama_lengkap']);
@@ -45,7 +51,7 @@ class AuthController extends BaseController
                 }
                 else{
                     // If not exist on pengajar, then check on pelajar
-                    $resNama = $this->pelajar->getNama($row['id']);
+                    $resNama = $this->pelajar->getPelajar($row['id']);
                     foreach ($resNama as $row2) {
                         echo($row2['nama_lengkap']);
                         $first_name = explode(' ',trim($row2['nama_lengkap']))[0];
@@ -53,18 +59,12 @@ class AuthController extends BaseController
                         $session->set('user', 'pelajar');
                     }
                 }
-
                 return redirect()->to(base_url('/'));
             }
         } else {
             // If not, redirect back with auth=fail
-            if(strpos($_SERVER['HTTP_REFERER'], '?auth=fail')){
-                return redirect()->to($_SERVER['HTTP_REFERER']);
-            }
-            else{
-                $url = $_SERVER['HTTP_REFERER'] . "?auth=fail";
-                return redirect()->to($url);
-            }
+            $session->setFlashData('auth', 'fail');
+            return redirect()->to($_SERVER['HTTP_REFERER']);
         }
     }
 

@@ -26,6 +26,7 @@ class StudentController extends BaseController
 
     public function login()
     {
+        $session = session();
         $data = [
             'title' => 'Login Pelajar',
             'content' => 'Student/v-login',

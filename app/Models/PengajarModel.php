@@ -11,11 +11,6 @@ class PengajarModel extends Model
         return $this->db->table('tbl_pengajar')->insert($data);
     }
 
-    public function getNama($id)
-    {
-        return $this->db->table('tbl_pengajar')->getWhere(['id' => $id])->getResultArray();
-    }
-
     public function getPengajar($id)
     {
         return $this->db->table('tbl_pengajar')
