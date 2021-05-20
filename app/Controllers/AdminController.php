@@ -18,6 +18,16 @@ class AdminController extends BaseController
         ];
         return view('layout/v-wrapper', $data);
     }
+
+    public function dashboard()
+    {
+        $data = [
+            'title' => 'Login Admin',
+            'content' => 'Admin/v-dashboard',
+            'page' => 'login',
+        ];
+        return view('layout/v-wrapper', $data);
+    }
 }
 
 ?>
