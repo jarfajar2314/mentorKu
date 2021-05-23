@@ -1,0 +1,83 @@
+>tbl_user
+ -id
+ -email
+ -password
+ -status_verifikasi > 0=belum 1=sudah terverifikasi
+
+>tbl_pengajar
+ -id
+ -nama_lengkap
+ -kota
+ -keahlian
+ -tingkatan
+ -tanggal_lahir
+ -tentang
+ -rating
+ -ijazah
+ -profil_pic
+ +no_rekening
+ +jenis_rekening
+ +modul
+ +kontak
+ +waktu_respon
+
+>tbl_pelajar
+ -id
+ -nama_lengkap
+ -kota
+ -tanggal_lahir
+ -profil_pic
+
+>tbl_pembelajaran
+ -id
+ -id_pelajar
+ -id_pengajar
+ -subjek
+ -tanggal
+ -waktu
+ -sesi
+ -tempat
+ -biaya
+ -bukti_pembayaran 
+ -status 0=belum dibayar 1=sudah dibayar 2=tidak diterima 3=diterima 4=selesai
+ -waktu_permintaan
+
+>tbl_ulasan
+ -id
+ -id_pelajar
+ -id_pengajar
+ -rating
+ -ulasan
+ -tanggal
+
+dashboard
+-upload modul
+-hilangin subjek
+
+detail
+-berikan ulasan
+
+explore
+-subjek ilangin
+-
+
+class
+-UserModel
+-PengajarModel
+-PelajarModel
+-PembelajaranModel
+-AdminController
+-AuthController
+-StudentController
+-TeacherController
+-Home
+-v-home
+-v-dashboard
+-v-edit
+-v-login
+-v-register
+-v-detail
+-v-explore
+-v-invoice
+
+ngasih rating

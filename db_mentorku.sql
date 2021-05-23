@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 19, 2021 at 08:40 PM
+-- Generation Time: May 23, 2021 at 05:44 AM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.4.18
 
@@ -40,7 +40,9 @@ CREATE TABLE `tbl_pelajar` (
 --
 
 INSERT INTO `tbl_pelajar` (`id`, `nama_lengkap`, `kota`, `tanggal_lahir`, `profil_pic`) VALUES
-(31, 'May Parker', 'Lamongan', NULL, 'user-default.png');
+(31, 'May Parker', 'Lamongan', NULL, 'user-default.png'),
+(34, 'Karel Marx', '', NULL, 'user-default.png'),
+(36, 'Katyusha', '', NULL, 'user-default.png');
 
 -- --------------------------------------------------------
 
@@ -54,8 +56,8 @@ CREATE TABLE `tbl_pembelajaran` (
   `id_pengajar` int(11) NOT NULL,
   `subjek` varchar(255) NOT NULL,
   `tanggal` date NOT NULL,
-  `waktu_mulai` time NOT NULL,
-  `waktu_selesai` time NOT NULL,
+  `waktu_mulai` time DEFAULT NULL,
+  `waktu_selesai` time DEFAULT NULL,
   `sesi` int(11) NOT NULL,
   `tempat` varchar(255) NOT NULL,
   `biaya` bigint(20) NOT NULL,
@@ -90,16 +92,24 @@ CREATE TABLE `tbl_pengajar` (
   `tentang` text NOT NULL,
   `rating` double DEFAULT NULL,
   `ijazah` varchar(255) NOT NULL,
-  `profil_pic` varchar(255) NOT NULL DEFAULT 'user-default.png'
+  `profil_pic` varchar(255) NOT NULL DEFAULT 'user-default.png',
+  `no_rekening` bigint(20) DEFAULT NULL,
+  `jenis_rekening` varchar(255) NOT NULL,
+  `modul` varchar(255) NOT NULL,
+  `kontak` varchar(255) NOT NULL,
+  `waktu_respon` int(11) DEFAULT NULL,
+  `jadwal` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_pengajar`
 --
 
-INSERT INTO `tbl_pengajar` (`id`, `nama_lengkap`, `kota`, `tarif`, `keahlian`, `tingkatan`, `tanggal_lahir`, `tentang`, `rating`, `ijazah`, `profil_pic`) VALUES
-(32, 'Albert Wicked', 'Bandung', 100000, 'Matematika', 'Perguruan Tinggi', '1999-02-02', 'Ini adalah kolom tentang.', NULL, '', '32_pengajar.jpg'),
-(33, 'Carl Johnson', 'Los Santos', 0, 'Kimia', 'Perguruan Tinggi', '0000-00-00', '', NULL, '', '33_pengajar.png');
+INSERT INTO `tbl_pengajar` (`id`, `nama_lengkap`, `kota`, `tarif`, `keahlian`, `tingkatan`, `tanggal_lahir`, `tentang`, `rating`, `ijazah`, `profil_pic`, `no_rekening`, `jenis_rekening`, `modul`, `kontak`, `waktu_respon`, `jadwal`) VALUES
+(32, 'Albert Wicked', 'Bandung', 100000, 'Matematika', 'Perguruan Tinggi', '1999-02-02', 'Ini adalah kolom tentang.', NULL, '', '32_pengajar.jpg', NULL, '', '', '', 0, ''),
+(33, 'Carl Johnson', 'Los Santos', 0, 'Kimia', 'Perguruan Tinggi', '0000-00-00', '', NULL, '', '33_pengajar.png', NULL, '', '', '', 0, ''),
+(37, 'Lenin', 'Gulag', 0, 'Sejarah', 'SD', NULL, '', NULL, '', 'user-default.png', NULL, '', '', '', 0, ''),
+(39, 'Telon Must', 'California', 0, 'Ekonomi', 'SD', NULL, '', NULL, '', 'user-default.png', NULL, '', '', '', 0, '');
 
 -- --------------------------------------------------------
 
@@ -136,7 +146,12 @@ CREATE TABLE `tbl_user` (
 INSERT INTO `tbl_user` (`id`, `email`, `password`, `status_verifikasi`) VALUES
 (31, 'parker@gmail.com', '123', 0),
 (32, 'albert@gmail.com', '1234', 0),
-(33, 'cj@gmail.com', 'carl', 0);
+(33, 'cj@gmail.com', 'carl', 0),
+(34, 'marx@gmail.com', '123', 1),
+(35, 'marx@gmail.com', '123', 1),
+(36, 'katyusha@gmail.com', '123', 1),
+(37, 'lenin@gmail.com', '123', 0),
+(39, 'tmust@gmail.com', '123', 0);
 
 --
 -- Indexes for dumped tables
@@ -190,7 +205,7 @@ ALTER TABLE `tbl_pembelajaran`
 -- AUTO_INCREMENT for table `tbl_user`
 --
 ALTER TABLE `tbl_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- Constraints for dumped tables
