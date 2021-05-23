@@ -126,6 +126,7 @@
       $("#nav-pengajar").attr("class", "tab-pane fade");
       $("#nav-pembayaran").removeClass("fadeIn");
       $("#nav-pembayaran").addClass("fadeIn");
+      return false;
     });
   });
 </script>
