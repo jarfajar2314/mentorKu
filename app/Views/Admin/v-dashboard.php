@@ -70,7 +70,6 @@
                         <div class="tab-pane" id="nav-pembayaran" role="tabpanel" aria-labelledby="nav-pembayaran-tab">
                             <!-- Table -->
                             <div class="table-t">
-        
                                 <div class="row-t">
                                     <div class="cell-t" data-title="Waktu">
                                         12.30 - 15.00
