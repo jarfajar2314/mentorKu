@@ -1,14 +1,7 @@
 <div class="container-fluid">
     <div class="admin-dash">
         <div class="admin-profile">
-            <div class="row row-cols-1 row-cols-sm-1 row-cols-md-1 g-3">
-                <div class="col">
-                    <h1>Halo Admin</h1>
-                    <br>
-                    <p>Admin 01</p>
-                    <p>Admin01@gmail.com</p>
-                </div>
-            </div>
+            <h1>Halo Admin</h1>
         </div>
         <div class="row">
             <div class="col">
@@ -26,17 +19,14 @@
                             <div class="table-t">
 
                                 <div class="row-t">
-                                    <div class="cell-t" data-title="Waktu">
-                                        12.30 - 15.00
+                                    <div class="cell-t" data-title="Nama">
+                                        Margareth
                                     </div>
-                                    <div class="cell-t" data-title="Pengajar">
-                                        Alfred Roger
+                                    <div class="cell-t" data-title="Email">
+                                        margareth@gmail.com
                                     </div>
-                                    <div class="cell-t" data-title="Subjek">
-                                        Matematika
-                                    </div>
-                                    <div class="cell-t" data-title="Tanggal">
-                                        19/04/2021
+                                    <div class="cell-t" data-title="Pasword">
+                                        *********
                                     </div>
                                     <div class="cell-t" data-title="">
                                         <a class="btn btn-sm btn-green" href="#" role="button">Edit</a>
@@ -48,20 +38,28 @@
                         </div>
                         <div class="tab-pane" id="nav-pengajar" role="tabpanel" aria-labelledby="nav-pengajar-tab">
                             <!-- Table -->
-                            <div class="table-t">
-        
-                                <div class="row-t">
-                                    <div class="cell-t" data-title="Waktu">
-                                        12.30 - 15.00
-                                    </div>
-                                    <div class="cell-t" data-title="Pengajar">
-                                        Alfred Roger
-                                    </div>
-                                    <div class="cell-t" data-title="Subjek">
-                                        Matematika
-                                    </div>
-                                    <div class="cell-t" data-title="Tanggal">
-                                        19/04/2021
+                            <div class="table-reponsive">
+                                <div class="table-t">
+                                    <div class="row-t">
+                                        <div class="cell-t" data-title="Nama">
+                                            Alfred Roger
+                                        </div>
+                                        <div class="cell-t" data-title="Email">
+                                            Alfred@gmail.com
+                                        </div>
+                                        <div class="cell-t" data-title="Kota">
+                                            Bandung
+                                        </div>
+                                        <div class="cell-t" data-title="Keahlian">
+                                            Matematika
+                                        </div>
+                                        <div class="cell-t" data-title="Ijazah">
+                                            Ijazah.png
+                                        </div>
+                                        <div class="cell-t" data-title="">
+                                            <a class="btn btn-sm btn-green" href="#" role="button">Edit</a>
+                                            <a class="btn btn-sm btn-danger" href="#" role="button">Delete</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -71,17 +69,14 @@
                             <!-- Table -->
                             <div class="table-t">
                                 <div class="row-t">
-                                    <div class="cell-t" data-title="Waktu">
-                                        12.30 - 15.00
+                                    <div class="cell-t" data-title="Bukti Pembayaran">
+                                        struk.png
                                     </div>
-                                    <div class="cell-t" data-title="Pengajar">
+                                    <div class="cell-t" data-title="Nama">
                                         Alfred Roger
                                     </div>
-                                    <div class="cell-t" data-title="Subjek">
-                                        Matematika
-                                    </div>
-                                    <div class="cell-t" data-title="Tanggal">
-                                        19/04/2021
+                                    <div class="cell-t" data-title="Action">
+                                        <a class="btn btn-sm btn-green" href="#" role="button">Validasi</a>
                                     </div>
                                 </div>
                             </div>
