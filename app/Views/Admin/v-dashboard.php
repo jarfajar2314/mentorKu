@@ -14,6 +14,7 @@
                         </div>
                     </nav>
                     <div class="card-body tab-content" id="nav-tabContent">
+                        <!-- Tab Pelajar -->
                         <div class="tab-pane show active" id="nav-pelajar" role="tabpanel" aria-labelledby="nav-pelajar-tab">
                             <!-- Table -->
                             <div class="table-t">
@@ -36,6 +37,9 @@
                             </div>
                             <!-- /.table -->
                         </div>
+                        <!-- / Tab Pelajar -->
+
+                        <!-- Tab Pengajar -->
                         <div class="tab-pane" id="nav-pengajar" role="tabpanel" aria-labelledby="nav-pengajar-tab">
                             <!-- Table -->
                             <div class="table-reponsive">
@@ -65,6 +69,9 @@
                             </div>
                             <!-- /.table -->
                         </div>
+                        <!-- / Tab Pengajar -->
+
+                        <!-- Tab Pembayaran -->
                         <div class="tab-pane" id="nav-pembayaran" role="tabpanel" aria-labelledby="nav-pembayaran-tab">
                             <!-- Table -->
                             <div class="table-t">
@@ -79,9 +86,11 @@
                                         <a class="btn btn-sm btn-green" href="#" role="button">Validasi</a>
                                     </div>
                                 </div>
+                                <!-- /.row-t -->
                             </div>
                             <!-- /.table -->
                         </div>
+                        <!-- / Tab Pembayaran -->
                     </div>
                     <!-- /.card-body -->
                 </div>
@@ -98,8 +107,10 @@
     $("#nav-pengajar-tab").click(function(){
       $("#nav-pengajar-tab").attr("class", "nav-item nav-link link-green active");
       $("#nav-pelajar-tab").attr("class", "nav-item nav-link link-green");
+      $("#nav-pembayaran-tab").attr("class", "nav-item nav-link link-green");
       $("#nav-pengajar").attr("class", "tab-pane fade show active");
       $("#nav-pelajar").attr("class", "tab-pane fade");
+      $("#nav-pembayaran").attr("class", "tab-pane fade");
       $("#nav-pengajar").removeClass("fadeIn");
       $("#nav-pengajar").addClass("fadeIn");
       return false;
@@ -107,8 +118,10 @@
     $("#nav-pelajar-tab").click(function(){
       $("#nav-pelajar-tab").attr("class", "nav-item nav-link link-green active");
       $("#nav-pengajar-tab").attr("class", "nav-item nav-link link-green");
+      $("#nav-pembayaran-tab").attr("class", "nav-item nav-link link-green");
       $("#nav-pelajar").attr("class", "tab-pane fade show active");
       $("#nav-pengajar").attr("class", "tab-pane fade");
+      $("#nav-pembayaran").attr("class", "tab-pane fade");
       $("#nav-pelajar").removeClass("fadeIn");
       $("#nav-pelajar").addClass("fadeIn");
       return false;
@@ -116,8 +129,10 @@
     $("#nav-pembayaran-tab").click(function(){
       $("#nav-pembayaran-tab").attr("class", "nav-item nav-link link-green active");
       $("#nav-pengajar-tab").attr("class", "nav-item nav-link link-green");
+      $("#nav-pelajar-tab").attr("class", "nav-item nav-link link-green");
       $("#nav-pembayaran").attr("class", "tab-pane fade show active");
       $("#nav-pengajar").attr("class", "tab-pane fade");
+      $("#nav-pelajar").attr("class", "tab-pane fade");
       $("#nav-pembayaran").removeClass("fadeIn");
       $("#nav-pembayaran").addClass("fadeIn");
       return false;

@@ -54,7 +54,7 @@ $routes->get('admin/login', 'AdminController::login');
 $routes->get('admin/dashboard', 'AdminController::dashboard');
 
 // Explore
-$routes->get('/Explore', 'Home::Explore');
+$routes->get('/explore', 'Home::Explore');
 
 // Logout
 $routes->get('/logout', 'AuthController::logout');
