@@ -2,6 +2,11 @@
 
 namespace App\Controllers;
 
+use App\Models\UserModel;
+use App\Models\PengajarModel;
+use App\Models\PelajarModel;
+use App\Models\PembelajaranModel;
+
 class AdminController extends BaseController
 {
     public function index()
@@ -9,8 +14,18 @@ class AdminController extends BaseController
         echo 'Hello World! - Admin';
     }
 
+    public function __construct()
+    {
+        helper('form');
+        $this->UserModel = new UserModel();
+        $this->PengajarModel = new PengajarModel();
+        $this->PelajarModel = new PelajarModel();
+        $this->PembelajaranModel = new PembelajaranModel();
+    }
+
     public function login()
     {
+        $session = session();
         $data = [
             'title' => 'Login Admin',
             'content' => 'Admin/v-login',
@@ -21,12 +36,35 @@ class AdminController extends BaseController
 
     public function dashboard()
     {
-        $data = [
-            'title' => 'Dashboard Admin',
-            'content' => 'Admin/v-dashboard',
-            'page' => 'dashboard',
-        ];
-        return view('layout/v-wrapper', $data);
+        $session = session();
+        if($session->has('id_admin'))
+        {
+            $resS = $this->PelajarModel->getAllPelajarData();
+            $resT = $this->PengajarModel->getAllPengajarData();
+            $resP = $this->PembelajaranModel->getAllPembelajaran();
+            // print_r($resS);
+
+            $i = 0;
+            foreach ($resP as $row) {
+                $id_pelajar = $row['id_pelajar'];
+                $resP[$i]['nama_pelajar'] = $this->PelajarModel->getPelajar($id_pelajar)[0]['nama_lengkap'];
+                $i++;
+            }
+
+            $data = [
+                'title' => 'Dashboard Admin',
+                'content' => 'Admin/v-dashboard',
+                'page' => 'dashboard',
+                'session' => $session,
+                'DataPelajar' => $resS,
+                'DataPengajar' => $resT,
+                'DataPembelajaran' => $resP,
+            ];
+            return view('layout/v-wrapper', $data);
+        }
+        else{
+            return redirect()->to(base_url('admin/login'));
+        }
     }
 }
 

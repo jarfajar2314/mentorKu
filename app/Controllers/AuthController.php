@@ -5,6 +5,7 @@ namespace App\Controllers;
 use App\Models\UserModel;
 use App\Models\PengajarModel;
 use App\Models\PelajarModel;
+use App\Models\AdminModel;
 
 class AuthController extends BaseController
 {
@@ -13,11 +14,16 @@ class AuthController extends BaseController
         $this->user = new UserModel();
         $this->pengajar = new PengajarModel();
         $this->pelajar = new PelajarModel();
+        $this->admin = new AdminModel();
     }
 
     public function login()
     {
         $session = \Config\Services::session();
+
+        if($session->has('id_user')){
+            $this->logout();
+        }
 
         // Get email and password
         $email = $this->request->getVar('email');
@@ -67,6 +73,39 @@ class AuthController extends BaseController
             // If not, redirect back with auth=fail
             $session->setFlashData('auth', 'fail');
             return redirect()->to($_SERVER['HTTP_REFERER']);
+        }
+    }
+
+    public function loginAdmin()
+    {
+        $session = \Config\Services::session();
+
+        
+        // Get email and password
+        $email = $this->request->getVar('email');
+        $password = $this->request->getVar('password');
+        
+        // Authentication
+        $res = $this->admin->authLogin($email, $password);
+        
+        if ($res) {
+            if($session->has('id_user')){
+                $this->logout();
+            }
+            // If authenticated
+            foreach ($res as $row) {
+                // Set session id and email
+                $session->set('id_admin', $row['id']);
+                $session->set('email', $row['email']);
+                $session->set('nama_lengkap', $row['nama_lengkap']);
+                // $session->set('nama', explode(' ',trim($row['nama_lengkap']))[0]);
+                
+                return redirect()->to(base_url('/admin/dashboard'));
+            }
+        } else {
+            // If not, redirect back with auth=fail
+            $session->setFlashData('auth', 'fail');
+            return redirect()->to(base_url('admin/login'));
         }
     }
 

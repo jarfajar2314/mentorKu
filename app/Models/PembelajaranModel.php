@@ -19,6 +19,13 @@ class PembelajaranModel extends Model
             ->getResultArray();
     }
 
+    public function getAllPembelajaran()
+    {
+        return $this->db->table('tbl_pembelajaran')
+            ->get()
+            ->getResultArray();
+    }
+
     public function getPembelajaranByPengajar($id)
     {
         return $this->db->table('tbl_pembelajaran')

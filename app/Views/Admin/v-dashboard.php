@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="admin-dash">
         <div class="admin-profile">
-            <h1>Halo Admin</h1>
+            <h1>Halo <?php echo($session->get('nama_lengkap')) ?></h1>
         </div>
         <div class="row">
             <div class="col">
@@ -18,22 +18,23 @@
                         <div class="tab-pane show active" id="nav-pelajar" role="tabpanel" aria-labelledby="nav-pelajar-tab">
                             <!-- Table -->
                             <div class="table-t">
-
+                                <?php foreach($DataPelajar as $row){ ?>
                                 <div class="row-t">
                                     <div class="cell-t" data-title="Nama">
-                                        Margareth
+                                        <?php echo($row['nama_lengkap']); ?>
                                     </div>
                                     <div class="cell-t" data-title="Email">
-                                        margareth@gmail.com
+                                        <?php echo($row['email']); ?>
                                     </div>
                                     <div class="cell-t" data-title="Pasword">
-                                        *********
+                                        <?php echo($row['password']); ?>
                                     </div>
                                     <div class="cell-t" data-title="">
                                         <a class="btn btn-sm btn-green" href="#" role="button">Edit</a>
                                         <a class="btn btn-sm btn-danger" href="#" role="button">Delete</a>
                                     </div>
                                 </div>
+                                <?php } ?>
                             </div>
                             <!-- /.table -->
                         </div>
@@ -105,37 +106,52 @@
   // Untuk Tabs di Dashboard
   $(document).ready(function(){
     $("#nav-pengajar-tab").click(function(){
-      $("#nav-pengajar-tab").attr("class", "nav-item nav-link link-green active");
-      $("#nav-pelajar-tab").attr("class", "nav-item nav-link link-green");
-      $("#nav-pembayaran-tab").attr("class", "nav-item nav-link link-green");
-      $("#nav-pengajar").attr("class", "tab-pane fade show active");
-      $("#nav-pelajar").attr("class", "tab-pane fade");
-      $("#nav-pembayaran").attr("class", "tab-pane fade");
-      $("#nav-pengajar").removeClass("fadeIn");
-      $("#nav-pengajar").addClass("fadeIn");
-      return false;
+        // Show
+        $("#nav-pengajar-tab").attr("class", "nav-item nav-link link-green active");
+        // Hide
+        $("#nav-pelajar-tab").attr("class", "nav-item nav-link link-green");
+        $("#nav-pembayaran-tab").attr("class", "nav-item nav-link link-green");
+        // Show
+        $("#nav-pengajar").attr("class", "tab-pane fade show active");
+        // Hide
+        $("#nav-pelajar").attr("class", "tab-pane fade");
+        $("#nav-pembayaran").attr("class", "tab-pane fade");
+        // Animate
+        $("#nav-pengajar").removeClass("fadeIn");
+        $("#nav-pengajar").addClass("fadeIn");
+        return false;
     });
     $("#nav-pelajar-tab").click(function(){
-      $("#nav-pelajar-tab").attr("class", "nav-item nav-link link-green active");
-      $("#nav-pengajar-tab").attr("class", "nav-item nav-link link-green");
-      $("#nav-pembayaran-tab").attr("class", "nav-item nav-link link-green");
-      $("#nav-pelajar").attr("class", "tab-pane fade show active");
-      $("#nav-pengajar").attr("class", "tab-pane fade");
-      $("#nav-pembayaran").attr("class", "tab-pane fade");
-      $("#nav-pelajar").removeClass("fadeIn");
-      $("#nav-pelajar").addClass("fadeIn");
-      return false;
+        // Show
+        $("#nav-pelajar-tab").attr("class", "nav-item nav-link link-green active");
+        // Hide
+        $("#nav-pengajar-tab").attr("class", "nav-item nav-link link-green");
+        $("#nav-pembayaran-tab").attr("class", "nav-item nav-link link-green");
+        // Show
+        $("#nav-pelajar").attr("class", "tab-pane fade show active");
+        // Hide
+        $("#nav-pengajar").attr("class", "tab-pane fade");
+        $("#nav-pembayaran").attr("class", "tab-pane fade");
+        // Animate
+        $("#nav-pelajar").removeClass("fadeIn");
+        $("#nav-pelajar").addClass("fadeIn");
+        return false;
     });
     $("#nav-pembayaran-tab").click(function(){
-      $("#nav-pembayaran-tab").attr("class", "nav-item nav-link link-green active");
-      $("#nav-pengajar-tab").attr("class", "nav-item nav-link link-green");
-      $("#nav-pelajar-tab").attr("class", "nav-item nav-link link-green");
-      $("#nav-pembayaran").attr("class", "tab-pane fade show active");
-      $("#nav-pengajar").attr("class", "tab-pane fade");
-      $("#nav-pelajar").attr("class", "tab-pane fade");
-      $("#nav-pembayaran").removeClass("fadeIn");
-      $("#nav-pembayaran").addClass("fadeIn");
-      return false;
+        // Show
+        $("#nav-pembayaran-tab").attr("class", "nav-item nav-link link-green active");
+        // Hide
+        $("#nav-pengajar-tab").attr("class", "nav-item nav-link link-green");
+        $("#nav-pelajar-tab").attr("class", "nav-item nav-link link-green");
+        // Show
+        $("#nav-pembayaran").attr("class", "tab-pane fade show active");
+        // Hide
+        $("#nav-pengajar").attr("class", "tab-pane fade");
+        $("#nav-pelajar").attr("class", "tab-pane fade");
+        // Animate
+        $("#nav-pembayaran").removeClass("fadeIn");
+        $("#nav-pembayaran").addClass("fadeIn");
+        return false;
     });
   });
 </script>
