@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 23, 2021 at 05:44 AM
+-- Generation Time: May 24, 2021 at 03:19 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.4.18
 
@@ -20,6 +20,26 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_mentorku`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_admin`
+--
+
+CREATE TABLE `tbl_admin` (
+  `id` int(11) NOT NULL,
+  `nama_lengkap` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `password` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_admin`
+--
+
+INSERT INTO `tbl_admin` (`id`, `nama_lengkap`, `email`, `password`) VALUES
+(1, 'Admin 1', 'admin@gmail.com', '123');
 
 -- --------------------------------------------------------
 
@@ -63,17 +83,16 @@ CREATE TABLE `tbl_pembelajaran` (
   `biaya` bigint(20) NOT NULL,
   `bukti_pembayaran` varchar(255) NOT NULL,
   `status` int(11) NOT NULL DEFAULT 0,
-  `waktu_permintaan` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
-  `waktu_diterima` timestamp NULL DEFAULT NULL
+  `waktu_permintaan` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `tbl_pembelajaran`
 --
 
-INSERT INTO `tbl_pembelajaran` (`id`, `id_pelajar`, `id_pengajar`, `subjek`, `tanggal`, `waktu_mulai`, `waktu_selesai`, `sesi`, `tempat`, `biaya`, `bukti_pembayaran`, `status`, `waktu_permintaan`, `waktu_diterima`) VALUES
-(1, 31, 32, 'Matematika', '2021-04-19', '12:30:00', '15:00:00', 2, '', 0, '', 0, '2021-05-19 15:18:34', '2021-04-18 16:11:34'),
-(4, 31, 32, 'Matematika', '2021-05-01', '09:00:00', '11:00:00', 2, '', 100000, '', 0, '2021-04-30 15:18:50', '2021-04-30 16:18:50');
+INSERT INTO `tbl_pembelajaran` (`id`, `id_pelajar`, `id_pengajar`, `subjek`, `tanggal`, `waktu_mulai`, `waktu_selesai`, `sesi`, `tempat`, `biaya`, `bukti_pembayaran`, `status`, `waktu_permintaan`) VALUES
+(1, 31, 32, 'Matematika', '2021-04-19', '12:30:00', '15:00:00', 2, '', 50000, '', 0, '2021-05-24 12:21:18'),
+(4, 31, 32, 'Matematika', '2021-05-01', '09:00:00', '11:00:00', 2, '', 100000, 'struk.png', 0, '2021-05-24 10:19:23');
 
 -- --------------------------------------------------------
 
@@ -158,6 +177,12 @@ INSERT INTO `tbl_user` (`id`, `email`, `password`, `status_verifikasi`) VALUES
 --
 
 --
+-- Indexes for table `tbl_admin`
+--
+ALTER TABLE `tbl_admin`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `tbl_pelajar`
 --
 ALTER TABLE `tbl_pelajar`
@@ -194,6 +219,12 @@ ALTER TABLE `tbl_user`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `tbl_admin`
+--
+ALTER TABLE `tbl_admin`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `tbl_pembelajaran`
