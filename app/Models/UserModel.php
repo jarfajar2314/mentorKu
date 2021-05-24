@@ -42,4 +42,9 @@ class UserModel extends Model
             ->getResultArray();
     }
 
+    public function updateData($id, $data)
+    {
+        return $this->db->table('tbl_user')->where('id', $id)->update($data);
+    }
+
 }

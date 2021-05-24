@@ -62,22 +62,52 @@ class StudentController extends BaseController
 
     public function dashboard()
     {
-        $data = [
-            'title' => 'Dashboard',
-            'content' => 'Student/v-dashboard',
-            'page' => 'dashboard',
-        ];
-        return view('layout/v-wrapper', $data);
+        $session = session();
+        if($session->has('id_user')){
+            $data = [
+                'title' => 'Dashboard',
+                'content' => 'Student/v-dashboard',
+                'page' => 'dashboard',
+                'session' => $session,
+            ];
+            // if active, retrieve data
+            $pelajarData = $this->PelajarModel->getPelajar($session->get('id_user'))[0];
+            $pembelajaranData = $this->PembelajaranModel->getPembelajaranByPelajar($session->get('id_user'));
+            $i = 0; $n = 0;
+            for($i = 0; $i < count($pembelajaranData); $i++){
+                $nama_pengajar = $this->PengajarModel->getPengajar($pembelajaranData[$i]['id_pengajar'])[0]['nama_lengkap'];
+                $pembelajaranData[$i]['nama_pengajar'] = $nama_pengajar;
+                if($pembelajaranData[$i]['status'] == '2' || $pembelajaranData[$i]['status'] == '4'){
+                    $n++;
+                }
+            }
+            $data['data'] = $pelajarData;
+            $data['pembelajaran'] = $pembelajaranData;
+            $data['riwayat_count'] = $n;
+            return view('layout/v-wrapper', $data);
+        }
+        else{
+            return redirect()->to(base_url('pelajar/login'));
+        }
     }
-
+    
     public function edit()
     {
-        $data = [
-            'title' => 'Ubah Profil Pelajar',
-            'content' => 'Student/v-edit',
-            'page' => 'edit',
-        ];
-        return view('layout/v-wrapper', $data);
+        $session = session();
+        if($session->has('id_user')){
+            $data = [
+                'title' => 'Ubah Profil Pelajar',
+                'content' => 'Student/v-edit',
+                'page' => 'edit',
+            ];
+            $pelajarData = $this->PelajarModel->getPelajar($session->get('id_user'))[0];
+            $pelajarData['password'] = $this->UserModel->getUserById($session->get('id_user'))[0]['password'];
+            $data['data'] = $pelajarData;
+            return view('layout/v-wrapper', $data);
+        }
+        else{
+            return redirect()->to(base_url('pelajar/login'));
+        }
     }
 
     public function save()
@@ -130,5 +160,71 @@ class StudentController extends BaseController
             $session->setFlashData('msg', 'fail');
         }
         return redirect()->to(base_url('pelajar/register'));
+    }
+
+    public function update()
+    {
+        $dataP = [
+            'nama_lengkap' => $this->request->getPost('nama_lengkap'),
+            'kota' => $this->request->getPost('kota'),
+            'tanggal_lahir' => $this->request->getPost('tanggal_lahir'),
+        ];
+
+        $dataU = [
+            'email' => $this->request->getPost('email'),
+            'password' => $this->request->getPost('password'),
+        ];
+        
+        $session = session();
+        $oldName = $this->PelajarModel->getPelajar($session->get('id_user'))[0]['nama_lengkap'];
+        $oldEmail = $this->UserModel->getUserById($session->get('id_user'))[0]['email'];
+        $resP = $this->PelajarModel->updateData($session->get('id_user'), $dataP);
+        $resU = $this->UserModel->updateData($session->get('id_user'), $dataU);
+        
+        if($resP && $resU)
+        {
+            if($oldName !=  $dataP['nama_lengkap']){
+                $session->set('nama', explode(' ',trim($dataP['nama_lengkap']))[0]);
+            }
+            if($oldEmail != $dataU['email']){
+                $session->set('email', $row['email']);
+            }
+            $session->setFlashdata('msg', 'success');
+            return redirect()->to(base_url('pelajar/edit'));
+        }
+        else
+        {
+            $session->setFlashdata('msg', 'failed');
+            return redirect()->to(base_url('pelajar/edit'));
+        }
+    }
+
+    public function updatePP()
+    {
+        $session = session();
+
+        $imgFile = $this->request->getFile('profile_pic');
+        $ext_img = $imgFile->getClientExtension();
+        
+        $data['profil_pic'] = $session->get('id_user') . "_" . $session->get('user') . "." . $ext_img;
+
+        
+        $res = $this->PelajarModel->updateData($session->get('id_user'), $data);
+        
+        if($res)
+        {
+            if(file_exists(ROOTPATH . 'public/ProfileImage/' . $data['profil_pic']))
+            {
+                unlink(ROOTPATH . 'public/ProfileImage/' . $data['profil_pic']);
+            }
+            $imgFile->move(ROOTPATH . 'public/ProfileImage', $data['profil_pic']);
+            $session->setFlashdata('msg', 'successPP');
+            return redirect()->to(base_url('pelajar/edit'));
+        }
+        else
+        {
+            $session->setFlashdata('msg', 'failedPP');
+            return redirect()->to(base_url('pelajar/edit'));
+        }
     }
 }

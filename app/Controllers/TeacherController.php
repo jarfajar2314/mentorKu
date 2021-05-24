@@ -48,39 +48,33 @@ class TeacherController extends BaseController
 
     public function dashboard()
     {
-        $data = [
-            'title' => 'Dashboard',
-            'content' => 'Teacher/v-dashboard',
-            'page' => 'dashboard',
-        ];
         // check if session is active
         $session = session();
         if($session->has('id_user')){
+            $data = [
+                'title' => 'Dashboard',
+                'content' => 'Teacher/v-dashboard',
+                'page' => 'dashboard',
+            ];
             // if active, retrieve data
             $pengajarData = $this->PengajarModel->getPengajar($session->get('id_user'))[0];
             $pembelajaranData = $this->PembelajaranModel->getPembelajaranByPengajar($session->get('id_user'));
-            if(count($pembelajaranData) == 0)
-            {
-                $pembelajaranData = NULL;
-            }
-            else
-            {
-                // Getting pelajar name
-                $i = 0;
-                foreach($pembelajaranData as $row)
-                {
-                    $pembelajaranData[$i]['nama_pelajar'] = $this->PelajarModel->getPelajar($row['id_pelajar'])[0]['nama_lengkap'];
-                    $i++;
+            $i = 0; $n = 0;
+            for($i = 0; $i < count($pembelajaranData); $i++){
+                $pembelajaranData[$i]['nama_pelajar'] = $this->PelajarModel->getPelajar($pembelajaranData[$i]['id_pelajar'])[0]['nama_lengkap'];
+                if($pembelajaranData[$i]['status'] != '0'){
+                    $n++;
                 }
             }
+            $data['data'] = $pengajarData;
+            $data['riwayat_pembelajaran'] = $pembelajaranData;
+            $data['pembelajaran_count'] = $n;
+            return view('layout/v-wrapper', $data);
         }
         else{
             // if not, return to home
             return redirect()->to('/pengajar/login');
         }
-        $data['data'] = $pengajarData;
-        $data['riwayat_pembelajaran'] = $pembelajaranData;
-        return view('layout/v-wrapper', $data);
     }
     
     public function detail()
@@ -95,24 +89,24 @@ class TeacherController extends BaseController
 
     public function edit()
     {
-        $data = [
-            'title' => 'Ubah Profil Pengajar',
-            'content' => 'Teacher/v-edit',
-            'page' => 'edit',
-        ];
         // check if session is active
         $session = session();
         if($session->has('id_user')){
+            $data = [
+                'title' => 'Ubah Profil Pengajar',
+                'content' => 'Teacher/v-edit',
+                'page' => 'edit',
+            ];
             // if active, retrieve data
             $pengajarData = $this->PengajarModel->getPengajar($session->get('id_user'))[0];
             $pengajarData['password'] = $this->UserModel->getUserById($session->get('id_user'))[0]['password'];
+            $data['data'] = $pengajarData;
+            return view('layout/v-wrapper', $data);
         }
         else{
             // if not, return to home
             return redirect()->to('/');
         }
-        $data['data'] = $pengajarData;
-        return view('layout/v-wrapper', $data);
     }
 
     public function save()
@@ -188,11 +182,20 @@ class TeacherController extends BaseController
         ];
 
         $session = session();
+        $oldName = $this->PengajarModel->getPengajar($session->get('id_user'))[0]['nama_lengkap'];
+        $oldEmail = $this->UserModel->getUserById($session->get('id_user'))[0]['email'];
         $resP = $this->PengajarModel->updateData($session->get('id_user'), $dataP);
         $resU = $this->UserModel->updateData($session->get('id_user'), $dataU);
 
         if($resP && $resU)
         {
+            if($oldName !=  $dataP['nama_lengkap']){
+                $session->set('nama', explode(' ',trim($dataP['nama_lengkap']))[0]);
+            }
+            if($oldEmail != $dataU['email']){
+                $session->set('email', $row['email']);
+            }
+
             $session->setFlashdata('msg', 'success');
             return redirect()->to(base_url('pengajar/edit'));
         }
@@ -229,6 +232,35 @@ class TeacherController extends BaseController
         {
             $session->setFlashdata('msg', 'failedPP');
             return redirect()->to(base_url('pengajar/edit'));
+        }
+    }
+
+    public function uploadModul()
+    {
+        $session = session();
+
+        $mFile = $this->request->getFile('modul');
+        $ext_file = $mFile->getClientExtension();
+        
+        $data['modul'] = $session->get('id_user') . "_" . $session->get('user') . "." . $ext_file;
+
+        
+        $res = $this->PengajarModel->updateData($session->get('id_user'), $data);
+        
+        if($res)
+        {
+            if(file_exists(ROOTPATH . 'public/ModulPengajar/' . $data['modul']))
+            {
+                unlink(ROOTPATH . 'public/ModulPengajar/' . $data['modul']);
+            }
+            $mFile->move(ROOTPATH . 'public/ModulPengajar', $data['modul']);
+            $session->setFlashdata('msg', 'successModul');
+            return redirect()->to(base_url('pengajar/dashboard'));
+        }
+        else
+        {
+            $session->setFlashdata('msg', 'failedModul');
+            return redirect()->to(base_url('pengajar/dashboard'));
         }
     }
     

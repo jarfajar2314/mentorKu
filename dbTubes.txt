@@ -2,7 +2,7 @@
  -id
  -email
  -password
- -status_verifikasi > 0=belum 1=sudah terverifikasi
+ -status_verifikasi > 0=belum 1=sudah terverifikasi -1=nonaktif
 
 >tbl_pengajar
  -id
@@ -91,3 +91,4 @@ Changelog
 + Update column tbl_pengajar
 + Update view dashboard admin
 + Update column tbl_pembelajaran
++ Add getPembelajaranByPelajar on PembelajaranModel

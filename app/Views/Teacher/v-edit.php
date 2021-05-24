@@ -50,6 +50,10 @@
                     </div>
                 </div>
                 <div class="form-group mb-3">
+                    <label class="form-label">Kontak</label>
+                    <input type="text" class="form-control" id="kontak" name="kontak" value="<?php echo($data['kontak']); ?>">
+                </div>
+                <div class="form-group mb-3">
                     <label class="form-label">Kota</label>
                     <input type="text" class="form-control" id="city" name="kota" value="<?php echo($data['kota']); ?>">
                 </div>
@@ -74,8 +78,20 @@
                     </select>
                 </div>
                 <div class="form-group mb-3">
+                    <label class="form-label">Waktu Respon (dalam jam)</label>
+                    <input type="number" class="form-control" id="waktu_respon" name="waktu_respon" value="<?php echo($data['waktu_respon']); ?>">
+                </div>
+                <div class="form-group mb-3">
                     <label class="form-label">Tanggal Lahir</label>
                     <input type="date" class="form-control" name="tanggal_lahir" id="" value="<?php echo($data['tanggal_lahir']); ?>">
+                </div>
+                <div class="form-group mb-3">
+                    <label class="form-label">Layanan Rekening</label>
+                    <input type="text" class="form-control" id="jenis_rekening" name="jenis_rekening" value="<?php echo($data['jenis_rekening']); ?>">
+                </div>
+                <div class="form-group mb-3">
+                    <label class="form-label">No. Rekening</label>
+                    <input type="text" class="form-control" id="no_rekening" name="no_rekening" value="<?php echo($data['no_rekening']); ?>">
                 </div>
                 <div class="form-group mb-3">
                     <label class="form-label">Tentang</label>
@@ -97,13 +113,11 @@
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
-				<!-- <form action=""> -->
                 <?php echo form_open_multipart('TeacherController/updatePP');?>
-                <!-- <form action="TeacherController/updatePP" method="post" enctype="multipart/form-data"> -->
-					<div class="mb-3">
-                        <label for="formFile" class="form-label">Upload Foto Profil</label>
-                        <input class="form-control" type="file" id="formFile" name="profile_pic">
-                    </div>
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">Upload Foto Profil</label>
+                    <input class="form-control" type="file" id="formFile" name="profile_pic">
+                </div>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>

@@ -35,4 +35,13 @@ class PembelajaranModel extends Model
             ->getResultArray();
     }
 
+    public function getPembelajaranByPelajar($id)
+    {
+        return $this->db->table('tbl_pembelajaran')
+            ->where('id_pelajar', $id)
+            ->orderBy('waktu_permintaan DESC')
+            ->get()
+            ->getResultArray();
+    }
+
 }

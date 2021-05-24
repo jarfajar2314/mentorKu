@@ -21,10 +21,6 @@ class AuthController extends BaseController
     {
         $session = \Config\Services::session();
 
-        if($session->has('id_user')){
-            $this->logout();
-        }
-
         // Get email and password
         $email = $this->request->getVar('email');
         $password = $this->request->getVar('password');

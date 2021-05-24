@@ -1,8 +1,29 @@
 <div class="container-fluid">
+     <?php if(isset($_SESSION['msg'])){ ?>
+        <div class="row px-5 pt-5">
+            <?php if($_SESSION['msg'] == 'success'){ ?>
+                <div class="alert alert-success" role="alert">
+                    Data berhasil diperbarui.
+                </div>
+            <?php } else if($_SESSION['msg'] == 'failed'){ ?>
+                <div class="alert alert-danger" role="alert">
+                    Data gagal diperbarui.
+                </div>
+            <?php } else if($_SESSION['msg'] == 'successPP'){ ?>
+                <div class="alert alert-success" role="alert">
+                    Foto Profil berhasil diperbarui.
+                </div>
+            <?php } else if($_SESSION['msg'] == 'failedPP'){ ?>
+                <div class="alert alert-danger" role="alert">
+                    Foto Profil gagal diperbarui.
+                </div>
+            <?php } ?>
+        </div>
+    <?php } ?>
     <div class="row px-lg-5 mx-lg-5 mt-5">
         <div class="col-lg col-lg-3 mb-3 text-center">
             <div class="text-center mb-3">
-				<img src="<?= base_url() ?>/ProfileImage/user-default.png" class="profile-user-img img-fluid img-circle" alt="Profil Image">
+				<img src="<?= base_url() ?>/ProfileImage/<?php echo($data['profil_pic']); ?>" class="profile-user-img img-fluid img-circle" alt="Profil Image">
 			</div>
             <button type="button" class="btn btn-green" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
                 Ubah Foto Profil
@@ -10,19 +31,19 @@
         </div>
         <div class="col">
             <h2 class="mb-3">Ubah Profil</h2>
-            <form action="">
+            <form action="/StudentController/update" method="POST">
                 <div class="form-group mb-3">
                     <label class="form-label">Nama Lengkap</label>
-                    <input type="text" class="form-control" id="name" name="name">
+                    <input type="text" class="form-control" id="name" name="nama_lengkap" value="<?php echo($data['nama_lengkap']); ?>">
                 </div>
                 <div class="form-group mb-3">
                     <label class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" name="email">
+                    <input type="email" class="form-control" id="email" name="email" value="<?php echo($_SESSION['email']); ?>">
                 </div>
                 <div class="form-group mb-3">
                     <label class="form-label">Password</label>
                     <div class="input-group" id="show_hide_password">
-                        <input type="password" class="form-control" aria-label="Password" aria-describedby="password">
+                        <input type="password" class="form-control" aria-label="Password" aria-describedby="password" name="password" value="<?php echo($data['password']); ?>">
                         <span class="input-group-text" id="password">
                             <a href=""><i class="fa fa-eye-slash green" aria-hidden="true"></i></a>
                         </span>
@@ -30,13 +51,13 @@
                 </div>
                 <div class="form-group mb-3">
                     <label class="form-label">Kota</label>
-                    <input type="text" class="form-control" id="city" name="city">
+                    <input type="text" class="form-control" id="city" name="kota" value="<?php echo($data['kota']); ?>">
                 </div>
                 <div class="form-group mb-3">
                     <label class="form-label">Tanggal Lahir</label>
-                    <input type="date" class="form-control" name="birthdate" id="">
+                    <input type="date" class="form-control" name="tanggal_lahir" value="<?php echo($data['tanggal_lahir']); ?>">
                 </div>
-                <a href="#" class="btn btn-outline-green">Kembali</a>
+                <a href="/pelajar/dashboard" class="btn btn-outline-green">Kembali</a>
                 <button class="btn btn-green ms-2" type="submit">Simpan</button>
             </form>
         </div>
@@ -52,16 +73,16 @@
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
-				<form action="">
-					<div class="mb-3">
-                        <label for="formFile" class="form-label">Upload Foto Profil</label>
-                        <input class="form-control" type="file" id="formFile">
-                    </div>
-				</form>
+				<?php echo form_open_multipart('StudentController/updatePP');?>
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">Upload Foto Profil</label>
+                    <input class="form-control" type="file" id="formFile" name="profile_pic">
+                </div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-				<button type="button" class="btn btn-green">Simpan</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+				<button type="submit" class="btn btn-green">Simpan</button>
+                </form>
 			</div>
 		</div>
 	</div>

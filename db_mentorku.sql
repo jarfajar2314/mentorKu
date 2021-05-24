@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 24, 2021 at 03:19 PM
+-- Generation Time: May 24, 2021 at 06:28 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.4.18
 
@@ -60,8 +60,8 @@ CREATE TABLE `tbl_pelajar` (
 --
 
 INSERT INTO `tbl_pelajar` (`id`, `nama_lengkap`, `kota`, `tanggal_lahir`, `profil_pic`) VALUES
-(31, 'May Parker', 'Lamongan', NULL, 'user-default.png'),
-(34, 'Karel Marx', '', NULL, 'user-default.png'),
+(31, 'May Parker', 'Lamongan', '0000-00-00', 'user-default.png'),
+(34, 'Karl Marx', 'Pekalongan', '1918-05-05', '34_pelajar.png'),
 (36, 'Katyusha', '', NULL, 'user-default.png');
 
 -- --------------------------------------------------------
@@ -83,7 +83,7 @@ CREATE TABLE `tbl_pembelajaran` (
   `biaya` bigint(20) NOT NULL,
   `bukti_pembayaran` varchar(255) NOT NULL,
   `status` int(11) NOT NULL DEFAULT 0,
-  `waktu_permintaan` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+  `waktu_permintaan` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -91,8 +91,8 @@ CREATE TABLE `tbl_pembelajaran` (
 --
 
 INSERT INTO `tbl_pembelajaran` (`id`, `id_pelajar`, `id_pengajar`, `subjek`, `tanggal`, `waktu_mulai`, `waktu_selesai`, `sesi`, `tempat`, `biaya`, `bukti_pembayaran`, `status`, `waktu_permintaan`) VALUES
-(1, 31, 32, 'Matematika', '2021-04-19', '12:30:00', '15:00:00', 2, '', 50000, '', 0, '2021-05-24 12:21:18'),
-(4, 31, 32, 'Matematika', '2021-05-01', '09:00:00', '11:00:00', 2, '', 100000, 'struk.png', 0, '2021-05-24 10:19:23');
+(1, 31, 32, 'Matematika', '2021-05-19', NULL, NULL, 2, '', 50000, '', 0, '2021-04-26 14:14:25'),
+(4, 31, 32, 'Matematika', '2021-05-01', '09:00:00', '11:00:00', 2, '', 100000, 'struk.png', 3, '2021-04-24 14:44:24');
 
 -- --------------------------------------------------------
 
@@ -126,7 +126,7 @@ CREATE TABLE `tbl_pengajar` (
 
 INSERT INTO `tbl_pengajar` (`id`, `nama_lengkap`, `kota`, `tarif`, `keahlian`, `tingkatan`, `tanggal_lahir`, `tentang`, `rating`, `ijazah`, `profil_pic`, `no_rekening`, `jenis_rekening`, `modul`, `kontak`, `waktu_respon`, `jadwal`) VALUES
 (32, 'Albert Wicked', 'Bandung', 100000, 'Matematika', 'Perguruan Tinggi', '1999-02-02', 'Ini adalah kolom tentang.', NULL, '', '32_pengajar.jpg', NULL, '', '', '', 0, ''),
-(33, 'Carl Johnson', 'Los Santos', 0, 'Kimia', 'Perguruan Tinggi', '0000-00-00', '', NULL, '', '33_pengajar.png', NULL, '', '', '', 0, ''),
+(33, 'Carl Johnson', 'Los Santos', 0, 'Kimia', 'Perguruan Tinggi', NULL, '', NULL, '', '33_pengajar.png', NULL, '', '', '', 0, ''),
 (37, 'Lenin', 'Gulag', 0, 'Sejarah', 'SD', NULL, '', NULL, '', 'user-default.png', NULL, '', '', '', 0, ''),
 (39, 'Telon Must', 'California', 0, 'Ekonomi', 'SD', NULL, '', NULL, '', 'user-default.png', NULL, '', '', '', 0, '');
 
@@ -167,7 +167,6 @@ INSERT INTO `tbl_user` (`id`, `email`, `password`, `status_verifikasi`) VALUES
 (32, 'albert@gmail.com', '1234', 0),
 (33, 'cj@gmail.com', 'carl', 0),
 (34, 'marx@gmail.com', '123', 1),
-(35, 'marx@gmail.com', '123', 1),
 (36, 'katyusha@gmail.com', '123', 1),
 (37, 'lenin@gmail.com', '123', 0),
 (39, 'tmust@gmail.com', '123', 0);
