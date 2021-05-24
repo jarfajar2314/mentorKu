@@ -16,80 +16,100 @@
                     <div class="card-body tab-content" id="nav-tabContent">
                         <!-- Tab Pelajar -->
                         <div class="tab-pane show active" id="nav-pelajar" role="tabpanel" aria-labelledby="nav-pelajar-tab">
-                            <!-- Table -->
-                            <div class="table-t">
-                                <?php foreach($DataPelajar as $row){ ?>
-                                <div class="row-t">
-                                    <div class="cell-t" data-title="Nama">
-                                        <?php echo($row['nama_lengkap']); ?>
-                                    </div>
-                                    <div class="cell-t" data-title="Email">
-                                        <?php echo($row['email']); ?>
-                                    </div>
-                                    <div class="cell-t" data-title="Pasword">
-                                        <?php echo($row['password']); ?>
-                                    </div>
-                                    <div class="cell-t" data-title="">
-                                        <a class="btn btn-sm btn-green" href="#" role="button">Edit</a>
-                                        <a class="btn btn-sm btn-danger" href="#" role="button">Delete</a>
-                                    </div>
-                                </div>
-                                <?php } ?>
-                            </div>
-                            <!-- /.table -->
+                            <table id="table-pelajar" class="table text-gray" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Nama</th>
+                                        <th>Email</th>
+                                        <th>Password</th>
+                                        <th>Opsi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach($DataPelajar as $row){ ?>
+                                    <tr>
+                                        <td><?php echo($row['nama_lengkap']); ?></td>
+                                        <td><?php echo($row['email']); ?></td>
+                                        <td><?php echo($row['password']); ?></td>
+                                        <td>
+                                            <a class="btn btn-sm btn-green" href="#" role="button">Edit</a>
+                                            <a class="btn btn-sm btn-danger" href="#" role="button">Delete</a>
+                                        </td>
+                                    </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
                         </div>
                         <!-- / Tab Pelajar -->
 
                         <!-- Tab Pengajar -->
                         <div class="tab-pane" id="nav-pengajar" role="tabpanel" aria-labelledby="nav-pengajar-tab">
-                            <!-- Table -->
-                            <div class="table-reponsive">
-                                <div class="table-t">
-                                    <div class="row-t">
-                                        <div class="cell-t" data-title="Nama">
-                                            Alfred Roger
-                                        </div>
-                                        <div class="cell-t" data-title="Email">
-                                            Alfred@gmail.com
-                                        </div>
-                                        <div class="cell-t" data-title="Kota">
-                                            Bandung
-                                        </div>
-                                        <div class="cell-t" data-title="Keahlian">
-                                            Matematika
-                                        </div>
-                                        <div class="cell-t" data-title="Ijazah">
-                                            Ijazah.png
-                                        </div>
-                                        <div class="cell-t" data-title="">
+                            <table id="table-pengajar" class="table text-gray" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Nama</th>
+                                        <th>Email</th>
+                                        <th>Kota</th>
+                                        <th>Keahlian</th>
+                                        <th>Ijazah</th>
+                                        <th>Opsi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach($DataPengajar as $row){ ?>
+                                    <tr>
+                                        <td><?php echo($row['nama_lengkap']); ?></td>
+                                        <td><?php echo($row['email']); ?></td>
+                                        <td><?php echo($row['kota']); ?></td>
+                                        <td><?php echo($row['keahlian']); ?></td>
+                                        <td><?php echo($row['ijazah']); ?></td>
+                                        <td>
                                             <a class="btn btn-sm btn-green" href="#" role="button">Edit</a>
                                             <a class="btn btn-sm btn-danger" href="#" role="button">Delete</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- /.table -->
+                                        </td>
+                                    </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
                         </div>
                         <!-- / Tab Pengajar -->
 
                         <!-- Tab Pembayaran -->
                         <div class="tab-pane" id="nav-pembayaran" role="tabpanel" aria-labelledby="nav-pembayaran-tab">
-                            <!-- Table -->
-                            <div class="table-t">
-                                <div class="row-t">
-                                    <div class="cell-t" data-title="Bukti Pembayaran">
-                                        struk.png
-                                    </div>
-                                    <div class="cell-t" data-title="Nama">
-                                        Alfred Roger
-                                    </div>
-                                    <div class="cell-t" data-title="Action">
-                                        <a class="btn btn-sm btn-green" href="#" role="button">Validasi</a>
-                                    </div>
-                                </div>
-                                <!-- /.row-t -->
-                            </div>
-                            <!-- /.table -->
+                            <table id="table-pembayaran" class="table text-gray" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>Nama</th>
+                                        <th>Tanggal</th>
+                                        <th>Biaya</th>
+                                        <th>Bukti Pembayaran</th>
+                                        <th>Opsi</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach($DataPembelajaran as $row){ ?>
+                                    <tr>
+                                        <td><?php echo($row['nama_pelajar']); ?></td>
+                                        <td><?php echo($row['waktu_permintaan']); ?></td>
+                                        <td><?php echo($row['biaya']); ?></td>
+                                        <td>
+                                            <?php echo($row['bukti_pembayaran']); ?>
+                                            <?php if($row['bukti_pembayaran'] != ''){ ?>
+                                                <a class="btn btn-sm btn-green" href="#" role="button">Lihat</a>
+                                            <?php } ?>
+                                        </td>
+                                        <td>
+                                            <?php if($row['bukti_pembayaran'] == ''){ ?>
+                                                Belum dibayar
+                                            <?php } else{ ?>
+                                            <a class="btn btn-sm btn-green" href="#" role="button">Validasi</a>
+                                            <a class="btn btn-sm btn-danger" href="#" role="button">Tolak</a>
+                                            <?php } ?>
+                                        </td>
+                                    </tr>
+                                    <?php } ?>
+                                </tbody>
+                            </table>
                         </div>
                         <!-- / Tab Pembayaran -->
                     </div>
@@ -105,6 +125,18 @@
 <script>
   // Untuk Tabs di Dashboard
   $(document).ready(function(){
+
+    $('#table-pengajar').DataTable({
+        "responsive": true,
+    });
+    $('#table-pelajar').DataTable({
+        "responsive": true,
+    });
+    $('#table-pembayaran').DataTable({
+        "responsive": true,
+        "order": [[ 1, "desc" ]],
+    });
+
     $("#nav-pengajar-tab").click(function(){
         // Show
         $("#nav-pengajar-tab").attr("class", "nav-item nav-link link-green active");
