@@ -184,8 +184,6 @@ class TeacherController extends BaseController
         $temp = $this->request->getPost('pickDay');
         if($temp) $dataP['jadwal'] = implode(" ", $this->request->getPost('pickDay'));
         else $dataP['jadwal'] = NULL;
-        // print_r($_POST['pickDay']);
-        // print_r($dataP);
 
         $dataU = [
             'email' => $this->request->getPost('email'),
@@ -272,6 +270,35 @@ class TeacherController extends BaseController
         {
             $session->setFlashdata('msg', 'failedModul');
             return redirect()->to(base_url('pengajar/dashboard'));
+        }
+    }
+
+    public function uploadIjazah()
+    {
+        $session = session();
+
+        $mFile = $this->request->getFile('ijazah');
+        $ext_file = $mFile->getClientExtension();
+        
+        $data['ijazah'] = $session->get('id_user') . "_" . $session->get('user') . "." . $ext_file;
+
+        
+        $res = $this->PengajarModel->updateData($session->get('id_user'), $data);
+        
+        if($res)
+        {
+            if(file_exists(ROOTPATH . 'public/IjazahPengajar/' . $data['ijazah']))
+            {
+                unlink(ROOTPATH . 'public/IjazahPengajar/' . $data['ijazah']);
+            }
+            $mFile->move(ROOTPATH . 'public/IjazahPengajar', $data['ijazah']);
+            $session->setFlashdata('msg', 'successIjazah');
+            return redirect()->to(base_url('pengajar/edit'));
+        }
+        else
+        {
+            $session->setFlashdata('msg', 'failedIjazah');
+            return redirect()->to(base_url('pengajar/edit'));
         }
     }
     

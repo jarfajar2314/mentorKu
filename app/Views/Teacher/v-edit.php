@@ -17,6 +17,14 @@
                 <div class="alert alert-danger" role="alert">
                     Foto Profil gagal diperbarui.
                 </div>
+            <?php } else if($_SESSION['msg'] == 'successIjazah'){ ?>
+                <div class="alert alert-success" role="alert">
+                    Ijazah berhasil diperbarui.
+                </div>
+            <?php } else if($_SESSION['msg'] == 'failedIjazah'){ ?>
+                <div class="alert alert-danger" role="alert">
+                    Ijazah gagal diperbarui.
+                </div>
             <?php } ?>
         </div>
     <?php } ?>
@@ -63,6 +71,20 @@
                 <div class="form-group mb-3">
                     <label class="form-label">Tanggal Lahir</label>
                     <input type="date" class="form-control" name="tanggal_lahir" id="" value="<?php echo($data['tanggal_lahir']); ?>">
+                </div>
+
+                <div class="form-group mb-3">
+                    <label for="formFile" class="form-label">Upload Ijazah</label>
+                    <div class="d-flex">
+                        <button type="button" class="btn btn-sm btn-green" data-bs-toggle="modal" data-bs-target="#uploadIjazah">
+                            Upload Ijazah
+                        </button>
+                        <?php if($data['ijazah'] == ""){ ?>
+                            <p class="ms-3 mb-0">Ijazah belum diupload.</p>
+                        <?php } else { ?>
+                            <p class="ms-3 mb-0">Ijazah sudah diupload.</p>
+                        <?php } ?>
+                    </div>
                 </div>
 
                 <!-- Pembelajaran ================================================= -->
@@ -163,6 +185,30 @@
                 <div class="mb-3">
                     <label for="formFile" class="form-label">Upload Foto Profil</label>
                     <input class="form-control" type="file" id="formFile" name="profile_pic">
+                </div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+				<button type="Submit" class="btn btn-green">Simpan</button>
+                </form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Upload Ijazah -->
+<div class="modal fade" id="uploadIjazah" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="staticBackdropLabel">Upload Ijazah</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+                <?php echo form_open_multipart('TeacherController/uploadIjazah');?>
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">Upload Dokumen Ijazah</label>
+                    <input class="form-control" type="file" id="formFile" name="ijazah">
                 </div>
 			</div>
 			<div class="modal-footer">

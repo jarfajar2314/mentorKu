@@ -51,6 +51,7 @@ class AuthController extends BaseController
                         $first_name = explode(' ',trim($row2['nama_lengkap']))[0];
                         $session->set('nama', $first_name);
                         $session->set('user', 'pengajar');
+                        $session->set('status_v', $row['status_verifikasi']);
                     }
                 }
                 else{

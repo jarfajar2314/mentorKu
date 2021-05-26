@@ -12,6 +12,14 @@
             <?php } ?>
         </div>
     <?php } ?>
+    <?php if($_SESSION['status_v'] == 0){ ?>
+        <div class="row px-5 pt-5">
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <i class="fas fa-exclamation-triangle"></i> <strong>Akun Belum Terverifikasi.</strong> Mohon lengkapi <a href="/pengajar/edit" class="alert-link">profil</a> terlebih dahulu.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        </div>
+    <?php } ?>
     <div class="wrapper">    
         <div class="row px-lg-5 mx-lg-5 py-3 mt-3">
             <!-- Profile Image -->
