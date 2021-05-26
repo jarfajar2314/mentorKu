@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 24, 2021 at 06:28 PM
+-- Generation Time: May 26, 2021 at 07:36 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.4.18
 
@@ -109,10 +109,10 @@ CREATE TABLE `tbl_pengajar` (
   `tingkatan` varchar(255) NOT NULL,
   `tanggal_lahir` date DEFAULT NULL,
   `tentang` text NOT NULL,
-  `rating` double DEFAULT NULL,
+  `rating` float DEFAULT NULL,
   `ijazah` varchar(255) NOT NULL,
   `profil_pic` varchar(255) NOT NULL DEFAULT 'user-default.png',
-  `no_rekening` bigint(20) DEFAULT NULL,
+  `no_rekening` varchar(255) DEFAULT NULL,
   `jenis_rekening` varchar(255) NOT NULL,
   `modul` varchar(255) NOT NULL,
   `kontak` varchar(255) NOT NULL,
@@ -125,10 +125,18 @@ CREATE TABLE `tbl_pengajar` (
 --
 
 INSERT INTO `tbl_pengajar` (`id`, `nama_lengkap`, `kota`, `tarif`, `keahlian`, `tingkatan`, `tanggal_lahir`, `tentang`, `rating`, `ijazah`, `profil_pic`, `no_rekening`, `jenis_rekening`, `modul`, `kontak`, `waktu_respon`, `jadwal`) VALUES
-(32, 'Albert Wicked', 'Bandung', 100000, 'Matematika', 'Perguruan Tinggi', '1999-02-02', 'Ini adalah kolom tentang.', NULL, '', '32_pengajar.jpg', NULL, '', '', '', 0, ''),
-(33, 'Carl Johnson', 'Los Santos', 0, 'Kimia', 'Perguruan Tinggi', NULL, '', NULL, '', '33_pengajar.png', NULL, '', '', '', 0, ''),
-(37, 'Lenin', 'Gulag', 0, 'Sejarah', 'SD', NULL, '', NULL, '', 'user-default.png', NULL, '', '', '', 0, ''),
-(39, 'Telon Must', 'California', 0, 'Ekonomi', 'SD', NULL, '', NULL, '', 'user-default.png', NULL, '', '', '', 0, '');
+(32, 'Albert Wicked', 'Bandung', 100000, 'Matematika', 'Perguruan Tinggi', '1999-02-02', 'Ini adalah kolom tentang.', 5, '32_pengajar.png', '32_pengajar.jpg', '0812345', 'OVO', '', '0812345', 1, '0 2 4 6'),
+(33, 'Carl Johnson', 'Los Santos', 50000, 'Kimia', 'Perguruan Tinggi', '1999-11-11', 'All you have to do was just follow that damn train kids.', 4.7, '33_pengajar.png', '33_pengajar.png', '0812345', 'BIN', '', '0812345', 1, '0 1 2'),
+(37, 'Lenin', 'Gulag', 1000000, 'Sejarah', 'SD', '1999-02-11', 'This is OUR lessons.', NULL, '37_pengajar.png', 'user-default.png', '0812345', 'DANA', '', '0812345', 1, '0 1 2 3 4 5 6'),
+(39, 'Telon Must', 'California', 100000, 'Ekonomi', 'SD', '1999-11-11', 'Hi.', NULL, '39_pengajar.png', 'user-default.png', '0812345', 'OVO', '', '0812345', 1, '5 6'),
+(40, 'Howard Baker', 'Depok', 100000, 'Biologi', 'Perguruan Tinggi', '1999-11-11', 'Hi.', NULL, '40_pengajar.png', 'user-default.png', NULL, 'OVO', '', '0812345', 1, '0 1 2'),
+(41, 'Boris Rushkiy', 'Depok', 100000, 'Bahasa Rusia', 'Perguruan Tinggi', '1999-11-11', 'Hi.', NULL, '41_pengajar.png', 'user-default.png', NULL, 'OVO', '', '0812345', 1, '0 1 2'),
+(42, 'Allen Sumner', 'New Jersey', 100000, 'Geografi', 'SMP', '1999-11-11', 'Hi.', NULL, '42_pengajar.png', 'user-default.png', NULL, 'OVO', '', '0812345', 1, '0 1 2'),
+(43, 'William Halsey', 'New Jersey', 100000, 'Oseanografi', 'Perguruan Tinggi', '1999-11-11', 'Hi.', NULL, '43_pengajar.png', 'user-default.png', NULL, 'OVO', '', '0812345', 1, '0 1 2'),
+(44, 'Chester Nimitz', 'Texas', 100000, 'Matematika', 'SMA', '1999-11-11', 'Hi.', NULL, '44_pengajar.png', 'user-default.png', NULL, 'OVO', '', '0812345', 1, '0 1 2'),
+(45, 'Raymond Spruance', 'Maryland', 100000, 'Kimia', 'Perguruan Tinggi', '1999-11-11', 'Hi.', NULL, '45_pengajar.png', 'user-default.png', NULL, 'OVO', '', '0812345', 1, '0 1 2'),
+(46, 'Frank J. Fletcher', 'Iowa', 100000, 'Fisika', 'Perguruan Tinggi', '1999-11-11', 'Hi.', NULL, '46_pengajar.png', 'user-default.png', NULL, 'OVO', '', '0812345', 1, '0 1 2'),
+(47, 'Edward O\'hare', 'Missouri', 100000, 'Fisika', 'SD', '1999-11-11', 'Hi.', NULL, '47_pengajar.png', 'user-default.png', NULL, 'OVO', '', '0812345', 1, '0 1 2');
 
 -- --------------------------------------------------------
 
@@ -163,13 +171,21 @@ CREATE TABLE `tbl_user` (
 --
 
 INSERT INTO `tbl_user` (`id`, `email`, `password`, `status_verifikasi`) VALUES
-(31, 'parker@gmail.com', '123', 0),
-(32, 'albert@gmail.com', '1234', 0),
-(33, 'cj@gmail.com', 'carl', 0),
+(31, 'parker@gmail.com', '123', 1),
+(32, 'albert@gmail.com', '1234', 1),
+(33, 'cj@gmail.com', 'carl', 1),
 (34, 'marx@gmail.com', '123', 1),
 (36, 'katyusha@gmail.com', '123', 1),
-(37, 'lenin@gmail.com', '123', 0),
-(39, 'tmust@gmail.com', '123', 0);
+(37, 'lenin@gmail.com', '123', 1),
+(39, 'tmust@gmail.com', '123', 1),
+(40, 'howard@gmail.com', '123', 1),
+(41, 'boris@gmail.com', '123', 1),
+(42, 'allen@gmail.com', '123', 1),
+(43, 'whbull@gmail.com', '123', 1),
+(44, 'nimitz@gmail.com', '123', 1),
+(45, 'raymond@gmail.com', '123', 1),
+(46, 'fletcher@gmail.com', '123', 1),
+(47, 'ohare@gmail.com', '123', 1);
 
 --
 -- Indexes for dumped tables
@@ -235,7 +251,7 @@ ALTER TABLE `tbl_pembelajaran`
 -- AUTO_INCREMENT for table `tbl_user`
 --
 ALTER TABLE `tbl_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- Constraints for dumped tables
