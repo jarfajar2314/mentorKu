@@ -30,7 +30,8 @@
       </ul>
       <!-- Right button -->
       <?php $session = session(); ?>
-      <?php if(!$session->has('id_admin')){ ?>
+      <!-- Link" pada navbar hanya muncul pada bukan halaman admin -->
+      <?php if(!$session->has('id_admin') && current_url(true)->getSegment(1) != 'admin'){ ?>
         <!-- Berikan kursus hanya muncul ketika belum login dan user bukan pengajar -->
         <?php if(!isset($_SESSION['id_user']) || (isset($_SESSION['user']) && $_SESSION['user'] != 'pengajar' )) {?>
           <a href="/pengajar/login" class="btn px-3 me-2 fw-light">Berikan Kursus</a>
@@ -58,7 +59,9 @@
         </div>
         <?php } ?>
       <?php } else { ?>
-        <a href="/logout" class="btn btn-green">Logout</a>
+        <?php if($session->has('id_admin')){ ?>
+          <a href="/logout" class="btn btn-green">Logout</a>
+        <?php } ?>
       <?php } ?>
 
       
