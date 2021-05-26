@@ -2,19 +2,24 @@
 	<div class="row px-lg-5 ms-lg-5 mt-5">
 		<div class="col-lg col-lg-3 mb-3">
 			<div class="text-center">
-				<img src="<?= base_url() ?>/ProfileImage/user-default.png" class="profile-user-img img-fluid img-circle" alt="Profil Image">
+				<img src="<?= base_url() ?>/ProfileImage/<?php echo($data['profil_pic']); ?>" class="profile-user-img img-fluid img-circle" alt="Profil Image">
 			</div>
 			<br>
 			<div class="ps-lg-0 ps-2">
-				<h2 class="text-gray">Alfred Roger</h2>
+				<h2 class="text-gray"><?php echo($data['nama_lengkap']); ?></h2>
 				<div class="d-flex">
 					<p class="me-2 text-warning"><i class="fas fa-star"></i></p>
-					<p class="me-2 text-warning"><i class="fas fa-star"></i></p>
-					<p class="me-2 text-warning"><i class="fas fa-star"></i></p>
-					<p class="me-2 text-warning"><i class="fas fa-star"></i></p>
-					<p class="me-2 text-warning"><i class="fas fa-star"></i></p>
+					<?php if($data['rating'] == null){ ?>
+						<p class="exp-ment-desc card-text">
+						-
+						</p>
+					<?php } else { ?>
+						<p class="exp-ment-desc card-text">
+						<?php echo number_format((float)$data['rating'], 1, '.', ''); ?> / 5
+						</p>
+					<?php } ?>
 				</div>
-				<p class="text-gray">Rp 100.000/Sesi</p>
+				<p class="text-gray">Rp <?php echo number_format($data['tarif']); ?> / Sesi</p>
 				<!-- Button trigger modal -->
 				<button type="button" class="btn btn-green" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
 					Atur Pertemuan
@@ -29,7 +34,7 @@
 						<div class="card-body text-gray">
 							<h4 class="card-title">Tentang Mentor</h4>
 							<p>
-								Saya adalah seorang profesor yang menawarkan kursus privat dalam bidang matematika, metode belajar yang saya gunakan adalah metode diskusi dua arah dengan pejara yang saya ajarkan, saya memposisikan diri sebagai teman disaat saya mengajar, saya juga sering memberikan modul-modul pembelajaran kepada siswa yang saya ajarkan.
+								<?php echo($data['tentang']); ?>
 							</p>
 						</div>
 					</div>
@@ -45,16 +50,16 @@
 							<div class="row">
 								<div class="col-sm text-center border-end">
 									<h1><i class="fas fa-book green"></i></h1>
-									<h4 class="text-gray">Matematika</h4>
+									<h4 class="text-gray"><?php echo($data['keahlian']); ?></h4>
 								</div>
 								<div class="col-sm text-center border-end">
 									<h1><i class="fas fa-clock green"></i></h1>
 									<p class="text-gray m-0">Waktu Respon</p>
-									<h4 class="text-gray">1 Jam</h4>
+									<h4 class="text-gray"><?php echo($data['waktu_respon']); ?> Jam</h4>
 								</div>
 								<div class="col-sm text-center">
 									<h1><i class="fas fa-graduation-cap green"></i></h1>
-									<h4 class="text-gray">Perguruan Tinggi</h4>
+									<h4 class="text-gray"><?php echo($data['tingkatan']); ?></h4>
 								</div>
 							</div>
 						</div>

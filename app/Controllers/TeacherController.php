@@ -79,12 +79,20 @@ class TeacherController extends BaseController
     
     public function detail()
     {
-        $data = [
-            'title' => 'Detail Pengajar',
-            'content' => 'Teacher/v-detail',
-            'page' => 'detail',
-        ];
-        return view('layout/v-wrapper', $data);
+        if(isset($_GET['id']) && $_GET['id'] != ''){
+            $res = $this->PengajarModel->getPengajar($_GET['id'])[0];
+            $data = [
+                'title' => 'Detail Pengajar',
+                'content' => 'Teacher/v-detail',
+                'page' => 'detail',
+                'data' => $res,
+            ];
+            return view('layout/v-wrapper', $data);
+        }
+        else{
+            // if not, return to home
+            return redirect()->to('/explore');
+        }
     }
 
     public function edit()

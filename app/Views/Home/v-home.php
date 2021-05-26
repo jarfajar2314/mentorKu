@@ -13,10 +13,12 @@
         <div class="cont-searchbox">
             <div class="row">
                 <div class="col-10">
-                    <input type="text" class="form-control" placeholder="Pilih subjek" aria-label="pilih subjek">
+                    <form action="/explore" method="get">
+                    <input type="text" class="form-control" placeholder="Pilih subjek" aria-label="pilih subjek" name="search">
                 </div>
                 <div class="col-2">
                     <button type="submit" class="bot-log btn btn-primary">cari</button>
+                    </form> 
                 </div>
             </div>
         </div>

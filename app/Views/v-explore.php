@@ -13,14 +13,23 @@
                 </button>
             </div>
             <div class="col">
-                <button type="button" class="exp-drop-bot exp-drop-bot-cont btn btn-secondary" data-bs-toggle="modal" data-bs-target="#searchTingkat">
+                <button type="button" class="exp-drop-bot exp-drop-bot-cont btn btn-secondary" data-bs-toggle="dropdown" aria-expanded="false">
                     Tingkat
                 </button>
+                <ul class="dropdown-menu dropdown-menu-end">	
+                    <li><a class="dropdown-item" href="/explore?ftingkat=SD">SD</a></li>	
+                    <li><a class="dropdown-item" href="/explore?ftingkat=SMP">SMP</a></li>	
+                    <li><a class="dropdown-item" href="/explore?ftingkat=SMA">SMA</a></li>	
+                    <li><a class="dropdown-item" href="/explore?ftingkat=Perguruan%20Tinggi">Perguruan Tinggi</a></li>	
+                </ul>
             </div>
             <div class="col">
                 <button type="button" class="exp-drop-bot exp-drop-bot-cont btn btn-secondary" data-bs-toggle="modal" data-bs-target="#searchWaktu">
                     Waktu Respon
                 </button>
+            </div>        
+            <div class="col">
+                <a href="/explore" class="exp-drop-bot exp-drop-bot-cont btn btn-secondary"> Reset </a>
             </div>        
         </div>
     </div>
@@ -33,7 +42,7 @@
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
                 <?php foreach($pengajar as $row){ ?>
                 <div class="col">
-                    <a href="#" class="text-decoration-none">
+                    <a href="/pengajar/detail?id=<?php echo($row['id']) ?>" class="text-decoration-none">
                         <div class="card shadow-sm">
                             <img src="<?= base_url() ?>/ProfileImage/<?php echo($row['profil_pic']); ?>" class="bd-placeholder-img img-fluid card-img-top" width="100%" height="225">
                             <div class="card-body">
@@ -89,6 +98,62 @@
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
 				<button type="submit" class="btn btn-green" id="btn-fkota">Cari</button>
+                </form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Tarif Filter -->
+<div class="modal fade" id="searchTarif" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="staticBackdropLabel">Filter</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+                <form action="/explore" method="get">
+                <div class="mb-3">
+                    <label class="form-label">Tarif ter-rendah</label>
+                    <input type="number" class="form-control" name="trendah">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Tarif ter-tinggi</label>
+                    <input type="number" class="form-control" name="ttinggi">
+                </div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
+				<button type="submit" class="btn btn-green">Cari</button>
+                </form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Waktu Respon Filter -->
+<div class="modal fade" id="searchWaktu" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="staticBackdropLabel">Filter</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+                <form action="/explore" method="get">
+                <div class="mb-3">
+                    <label class="form-label">Waktu Respon ter-rendah</label>
+                    <input type="number" class="form-control" name="wrendah">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Waktu Respon ter-tinggi</label>
+                    <input type="number" class="form-control" name="wtinggi">
+                </div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kembali</button>
+				<button type="submit" class="btn btn-green">Cari</button>
                 </form>
 			</div>
 		</div>

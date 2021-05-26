@@ -40,10 +40,34 @@ class Home extends BaseController
         }
 
         if(isset($_GET['search'])){
-            
+            if($_GET['search'] == ''){
+                return redirect()->to('/explore');
+            }
+            else{
+                $res = $this->PengajarModel->getPengajarBySubjek($_GET['search']);
+            }
         }
         else if(isset($_GET['fkota'])){
             $res = $this->PengajarModel->getPengajarByKota($_GET['fkota']);
+        }
+        else if(isset($_GET['trendah'])){
+            $low = $_GET['trendah'];
+            $high = $_GET['ttinggi'];
+            if($low == '') $low = null;
+            if($high == '') $high = null;
+            if($low == null && $high == null) $res = $this->PengajarModel->getAllVerifiedPengajar();
+            else $res = $this->PengajarModel->getPengajarByTarif($low, $high);
+        }
+        else if(isset($_GET['wrendah'])){
+            $low = $_GET['wrendah'];
+            $high = $_GET['wtinggi'];
+            if($low == '') $low = null;
+            if($high == '') $high = null;
+            if($low == null && $high == null) $res = $this->PengajarModel->getAllVerifiedPengajar();
+            else $res = $this->PengajarModel->getPengajarByWaktu($low, $high);
+        }
+        else if(isset($_GET['ftingkat'])){
+            $res = $this->PengajarModel->getPengajarByTingkat($_GET['ftingkat']);
         }
         else{
             // All data pengajar
