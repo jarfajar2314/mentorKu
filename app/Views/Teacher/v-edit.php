@@ -31,6 +31,8 @@
         </div>
         <div class="col">
             <h2 class="mb-3">Ubah Profil</h2>
+            <!-- Data Pengajar ===================================================== -->
+            <h4 class="mb-3 mt-2">Data Pengajar</h4>
             <form action="/TeacherController/update" method="POST">
                 <div class="form-group mb-3">
                     <label class="form-label">Nama Lengkap</label>
@@ -57,12 +59,57 @@
                     <label class="form-label">Kota</label>
                     <input type="text" class="form-control" id="city" name="kota" value="<?php echo($data['kota']); ?>">
                 </div>
+
+                <div class="form-group mb-3">
+                    <label class="form-label">Tanggal Lahir</label>
+                    <input type="date" class="form-control" name="tanggal_lahir" id="" value="<?php echo($data['tanggal_lahir']); ?>">
+                </div>
+
+                <!-- Pembelajaran ================================================= -->
+                <h4 class="mb-3 mt-5">Pembelajaran</h4>
                 <div class="form-group mb-3">
                     <label class="form-label">Tarif</label>
                     <div class="input-group">
                         <p class="m-1 me-2">Rp</p>
                         <input type="number" class="form-control" id="tarif" name="tarif" value="<?php echo($data['tarif']); ?>">
                     </div>
+                </div>
+                <div class="form-group mb-3">
+                    <label class="form-label">Jadwal</label>
+                    <div class="container">
+                        <div class="row">
+                            <?php $arrJadwal = explode(" ",$data['jadwal']); ?>
+                            <div class="col col-auto mb-3 mb-lg-0">
+                                <input class="form-check-input" id="pick-0" type="checkbox" value="0" name="pickDay[]" hidden <?php echo(strpos($data['jadwal'], "0")!== false ? "checked" : "" ); ?>>
+                                <button class="btn btn-sm btn-outline-green" id="pick-0-btn" type="button">Senin</button>
+                            </div>
+                            <div class="col col-auto mb-3 mb-lg-0">
+                                <input class="form-check-input" id="pick-1" type="checkbox" value="1" name="pickDay[]" hidden <?php echo(strpos($data['jadwal'], "1")!== false ? "checked" : "" ); ?>>
+                                <button class="btn btn-sm btn-outline-green" id="pick-1-btn" type="button">Selasa</button>
+                            </div>
+                            <div class="col col-auto mb-3 mb-lg-0">
+                                <input class="form-check-input" id="pick-2" type="checkbox" value="2" name="pickDay[]" hidden <?php echo(strpos($data['jadwal'], "2")!== false ? "checked" : "" ); ?>>
+                                <button class="btn btn-sm btn-outline-green" id="pick-2-btn" type="button">Rabu</button>
+                            </div>
+                            <div class="col col-auto mb-3 mb-lg-0">
+                                <input class="form-check-input" id="pick-3" type="checkbox" value="3" name="pickDay[]" hidden <?php echo(strpos($data['jadwal'], "3")!== false ? "checked" : "" ); ?>>
+                                <button class="btn btn-sm btn-outline-green" id="pick-3-btn" type="button">Kamis</button>
+                            </div>
+                            <div class="col col-auto mb-3 mb-lg-0">
+                                <input class="form-check-input" id="pick-4" type="checkbox" value="4" name="pickDay[]" hidden <?php echo(strpos($data['jadwal'], "4")!== false ? "checked" : "" ); ?>>
+                                <button class="btn btn-sm btn-outline-green" id="pick-4-btn" type="button">Jumat</button>
+                            </div>
+                            <div class="col col-auto mb-3 mb-lg-0">
+                                <input class="form-check-input" id="pick-5" type="checkbox" value="5" name="pickDay[]" hidden <?php echo(strpos($data['jadwal'], "5")!== false ? "checked" : "" ); ?>>
+                                <button class="btn btn-sm btn-outline-green" id="pick-5-btn" type="button">Sabtu</button>
+                            </div>
+                            <div class="col col-auto mb-3 mb-lg-0">
+                                <input class="form-check-input" id="pick-6" type="checkbox" value="6" name="pickDay[]" hidden <?php echo(strpos($data['jadwal'], "6")!== false ? "checked" : "" ); ?>>
+                                <button class="btn btn-sm btn-outline-green" id="pick-6-btn" type="button">Minggu</button>
+                            </div>
+                        </div>
+                    </div>
+                    
                 </div>
                 <div class="form-group mb-3">
                     <label class="form-label">Keahlian</label>
@@ -82,9 +129,12 @@
                     <input type="number" class="form-control" id="waktu_respon" name="waktu_respon" value="<?php echo($data['waktu_respon']); ?>">
                 </div>
                 <div class="form-group mb-3">
-                    <label class="form-label">Tanggal Lahir</label>
-                    <input type="date" class="form-control" name="tanggal_lahir" id="" value="<?php echo($data['tanggal_lahir']); ?>">
+                    <label class="form-label">Tentang</label>
+                    <textarea class="form-control" id="about" rows="3" name="tentang"><?php echo($data['tentang']); ?></textarea>
                 </div>
+
+                <!-- Pembayaran ============================================= -->
+                <h4 class="mb-3 mt-5">Pembayaran</h4>
                 <div class="form-group mb-3">
                     <label class="form-label">Layanan Rekening</label>
                     <input type="text" class="form-control" id="jenis_rekening" name="jenis_rekening" value="<?php echo($data['jenis_rekening']); ?>">
@@ -92,10 +142,6 @@
                 <div class="form-group mb-3">
                     <label class="form-label">No. Rekening</label>
                     <input type="text" class="form-control" id="no_rekening" name="no_rekening" value="<?php echo($data['no_rekening']); ?>">
-                </div>
-                <div class="form-group mb-3">
-                    <label class="form-label">Tentang</label>
-                    <textarea class="form-control" id="about" rows="3" name="tentang"><?php echo($data['tentang']); ?></textarea>
                 </div>
                 <a href="/pengajar/dashboard" class="btn btn-outline-green">Kembali</a>
                 <button class="btn btn-green ms-2" type="submit">Simpan</button>
@@ -142,5 +188,150 @@
                 $('#show_hide_password i').addClass( "fa-eye" );
             }
         });
+
+        // Buat pilih hari =============================
+        if($("#pick-0").attr("checked") != undefined){
+            // $("#pick-0-btn").attr("class", "btn-outline-green");
+            $("#pick-0-btn").removeClass("btn-outline-green");
+            $("#pick-0-btn").addClass("bg-green text-white");
+        }
+
+        if($("#pick-1").attr("checked") != undefined){
+            $("#pick-1-btn").removeClass("btn-outline-green");
+            $("#pick-1-btn").addClass("bg-green text-white");
+        }
+
+        if($("#pick-2").attr("checked") != undefined){
+            $("#pick-2-btn").removeClass("btn-outline-green");
+            $("#pick-2-btn").addClass("bg-green text-white");
+        }
+
+        if($("#pick-3").attr("checked") != undefined){
+            $("#pick-3-btn").removeClass("btn-outline-green");
+            $("#pick-3-btn").addClass("bg-green text-white");
+        }
+
+        if($("#pick-4").attr("checked") != undefined){
+            $("#pick-4-btn").removeClass("btn-outline-green");
+            $("#pick-4-btn").addClass("bg-green text-white");
+        }
+
+        if($("#pick-5").attr("checked") != undefined){
+            $("#pick-5-btn").removeClass("btn-outline-green");
+            $("#pick-5-btn").addClass("bg-green text-white");
+        }
+
+        if($("#pick-6").attr("checked") != undefined){
+            $("#pick-6-btn").removeClass("btn-outline-green");
+            $("#pick-6-btn").addClass("bg-green text-white");
+        }
+
+
+        $("#pick-0-btn").click(function(){
+            console.log($("#pick-0").attr("checked"));
+            if($("#pick-0").attr("checked") == undefined){
+                $("#pick-0-btn").removeClass("btn-outline-green");
+                $("#pick-0-btn").addClass("bg-green text-white");
+                $("#pick-0").attr("checked", true);
+            }
+            else{
+                $("#pick-0-btn").removeClass("bg-green text-white");
+                $("#pick-0-btn").addClass("btn-outline-green");
+                $("#pick-0").removeAttr("checked");
+            }
+            return false;
+        });
+
+        $("#pick-1-btn").click(function(){
+            console.log($("#pick-1").attr("checked"));
+            if($("#pick-1").attr("checked") == undefined){
+                $("#pick-1-btn").removeClass("btn-outline-green");
+                $("#pick-1-btn").addClass("bg-green text-white");
+                $("#pick-1").attr("checked", true);
+            }
+            else{
+                $("#pick-1-btn").removeClass("bg-green text-white");
+                $("#pick-1-btn").addClass("btn-outline-green");
+                $("#pick-1").removeAttr("checked");
+            }
+            return false;
+        });
+
+        $("#pick-2-btn").click(function(){
+            console.log($("#pick-2").attr("checked"));
+            if($("#pick-2").attr("checked") == undefined){
+                $("#pick-2-btn").removeClass("btn-outline-green");
+                $("#pick-2-btn").addClass("bg-green text-white");
+                $("#pick-2").attr("checked", true);
+            }
+            else{
+                $("#pick-2-btn").removeClass("bg-green text-white");
+                $("#pick-2-btn").addClass("btn-outline-green");
+                $("#pick-2").removeAttr("checked");
+            }
+            return false;
+        });
+
+        $("#pick-3-btn").click(function(){
+            console.log($("#pick-3").attr("checked"));
+            if($("#pick-3").attr("checked") == undefined){
+                $("#pick-3-btn").removeClass("btn-outline-green");
+                $("#pick-3-btn").addClass("bg-green text-white");
+                $("#pick-3").attr("checked", true);
+            }
+            else{
+                $("#pick-3-btn").removeClass("bg-green text-white");
+                $("#pick-3-btn").addClass("btn-outline-green");
+                $("#pick-3").removeAttr("checked");
+            }
+            return false;
+        });
+
+        $("#pick-4-btn").click(function(){
+            console.log($("#pick-4").attr("checked"));
+            if($("#pick-4").attr("checked") == undefined){
+                $("#pick-4-btn").removeClass("btn-outline-green");
+                $("#pick-4-btn").addClass("bg-green text-white");
+                $("#pick-4").attr("checked", true);
+            }
+            else{
+                $("#pick-4-btn").removeClass("bg-green text-white");
+                $("#pick-4-btn").addClass("btn-outline-green");
+                $("#pick-4").removeAttr("checked");
+            }
+            return false;
+        });
+
+        $("#pick-5-btn").click(function(){
+            console.log($("#pick-5").attr("checked"));
+            if($("#pick-5").attr("checked") == undefined){
+                $("#pick-5-btn").removeClass("btn-outline-green");
+                $("#pick-5-btn").addClass("bg-green text-white");
+                $("#pick-5").attr("checked", true);
+            }
+            else{
+                $("#pick-5-btn").removeClass("bg-green text-white");
+                $("#pick-5-btn").addClass("btn-outline-green");
+                $("#pick-5").removeAttr("checked");
+            }
+            return false;
+        });
+
+        $("#pick-6-btn").click(function(){
+            console.log($("#pick-6").attr("checked"));
+            if($("#pick-6").attr("checked") == undefined){
+                $("#pick-6-btn").removeClass("btn-outline-green");
+                $("#pick-6-btn").addClass("bg-green text-white");
+                $("#pick-6").attr("checked", true);
+            }
+            else{
+                $("#pick-6-btn").removeClass("bg-green text-white");
+                $("#pick-6-btn").addClass("btn-outline-green");
+                $("#pick-6").removeAttr("checked");
+            }
+            return false;
+        });
+        // ===============================
+
     });
 </script>

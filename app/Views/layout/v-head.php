@@ -25,6 +25,10 @@
   <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/plugins/DataTables/datatables.min.css"/>
   <script type="text/javascript" src="<?= base_url() ?>/plugins/DataTables/datatables.min.js"></script>
 
+  <!-- Inline Day Picker -->
+  <script type="text/javascript" src="<?= base_url() ?>/plugins/inline-week-day-picker/src/jquery-weekdays.js"></script>
+  <link href="<?= base_url() ?>/plugins/inline-week-day-picker/src/jquery-weekdays.css" rel="stylesheet" />
+
   <!-- Untuk Dashboard -->
   <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/plugins/animate/animate.css">
   <!--===============================================================================================-->

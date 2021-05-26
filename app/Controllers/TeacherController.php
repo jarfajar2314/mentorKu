@@ -168,13 +168,24 @@ class TeacherController extends BaseController
     {
         $dataP = [
             'nama_lengkap' => $this->request->getPost('nama_lengkap'),
+            'kontak' => $this->request->getPost('kontak'),
             'kota' => $this->request->getPost('kota'),
             'tarif' => $this->request->getPost('tarif'),
+            // 'jadwal' => implode(" ", $this->request->getPost('pickDay')),
             'keahlian' => $this->request->getPost('keahlian'),
             'tingkatan' => $this->request->getPost('tingkatan'),
+            'waktu_respon' => $this->request->getPost('waktu_respon'),
             'tanggal_lahir' => $this->request->getPost('tanggal_lahir'),
+            'jenis_rekening' => $this->request->getPost('jenis_rekening'),
+            'no_rekening' => $this->request->getPost('no_rekening'),
             'tentang' => htmlspecialchars($_POST['tentang']),
         ];
+
+        $temp = $this->request->getPost('pickDay');
+        if($temp) $dataP['jadwal'] = implode(" ", $this->request->getPost('pickDay'));
+        else $dataP['jadwal'] = NULL;
+        // print_r($_POST['pickDay']);
+        // print_r($dataP);
 
         $dataU = [
             'email' => $this->request->getPost('email'),
