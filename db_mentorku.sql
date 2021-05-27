@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 26, 2021 at 07:36 PM
+-- Generation Time: May 27, 2021 at 09:18 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.4.18
 
@@ -91,8 +91,9 @@ CREATE TABLE `tbl_pembelajaran` (
 --
 
 INSERT INTO `tbl_pembelajaran` (`id`, `id_pelajar`, `id_pengajar`, `subjek`, `tanggal`, `waktu_mulai`, `waktu_selesai`, `sesi`, `tempat`, `biaya`, `bukti_pembayaran`, `status`, `waktu_permintaan`) VALUES
-(1, 31, 32, 'Matematika', '2021-05-19', NULL, NULL, 2, '', 50000, '', 0, '2021-04-26 14:14:25'),
-(4, 31, 32, 'Matematika', '2021-05-01', '09:00:00', '11:00:00', 2, '', 100000, 'struk.png', 3, '2021-04-24 14:44:24');
+(1, 31, 32, 'Matematika', '2021-05-19', NULL, NULL, 2, 'Online', 50000, '', 0, '2021-04-26 14:14:25'),
+(4, 31, 32, 'Matematika', '2021-05-01', '09:00:00', '11:00:00', 2, 'Online', 100000, 'struk.png', 3, '2021-04-24 14:44:24'),
+(10, 34, 32, 'Matematika', '2021-05-24', NULL, NULL, 2, 'Online', 200000, '34_pelajar.jpg', 0, '2021-05-27 17:53:51');
 
 -- --------------------------------------------------------
 
@@ -245,7 +246,7 @@ ALTER TABLE `tbl_admin`
 -- AUTO_INCREMENT for table `tbl_pembelajaran`
 --
 ALTER TABLE `tbl_pembelajaran`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `tbl_user`
