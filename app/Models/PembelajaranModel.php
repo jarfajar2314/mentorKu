@@ -18,10 +18,18 @@ class PembelajaranModel extends Model
             ->get()
             ->getResultArray();
     }
-
+    
     public function getAllPembelajaran()
     {
         return $this->db->table('tbl_pembelajaran')
+        ->get()
+        ->getResultArray();
+    }
+    
+    public function getPembelajaranByTimestamp($waktu_permintaan)
+    {
+        return $this->db->table('tbl_pembelajaran')
+            ->where('waktu_permintaan', $waktu_permintaan)
             ->get()
             ->getResultArray();
     }
@@ -42,6 +50,11 @@ class PembelajaranModel extends Model
             ->orderBy('waktu_permintaan DESC')
             ->get()
             ->getResultArray();
+    }
+
+    public function updateData($id, $data)
+    {
+        return $this->db->table('tbl_pembelajaran')->where('id', $id)->update($data);
     }
 
 }

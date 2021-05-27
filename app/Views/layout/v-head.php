@@ -25,9 +25,9 @@
   <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/plugins/DataTables/datatables.min.css"/>
   <script type="text/javascript" src="<?= base_url() ?>/plugins/DataTables/datatables.min.js"></script>
 
-  <!-- Inline Day Picker -->
-  <script type="text/javascript" src="<?= base_url() ?>/plugins/inline-week-day-picker/src/jquery-weekdays.js"></script>
-  <link href="<?= base_url() ?>/plugins/inline-week-day-picker/src/jquery-weekdays.css" rel="stylesheet" />
+  <!-- jQuery validate -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.min.js"></script>
 
   <!-- Untuk Dashboard -->
   <link rel="stylesheet" type="text/css" href="<?= base_url() ?>/plugins/animate/animate.css">

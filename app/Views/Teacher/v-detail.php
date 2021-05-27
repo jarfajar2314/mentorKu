@@ -73,7 +73,7 @@
 		<!-- /.col -->
 	</div>
 	<!-- /.row -->
-	<div class="row px-lg-5 ms-lg-5 me-lg-4">
+	<div class="row px-lg-5 ms-lg-5 me-lg-4 mt-3">
 		<div class="col">
 			<div class="card">
 				<div class="card-body">
@@ -84,15 +84,10 @@
 						</div>
 						<div class="col col-lg-auto">
 							<div class="d-flex">
-								<p class="me-2 text-warning"><i class="fas fa-star"></i></p>
-								<p class="me-2 text-warning"><i class="fas fa-star"></i></p>
-								<p class="me-2 text-warning"><i class="fas fa-star"></i></p>
-								<p class="me-2 text-warning"><i class="fas fa-star"></i></p>
-								<p class="me-2 text-warning"><i class="fas fa-star"></i></p>
+								<p class="text-warning"><i class="fas fa-star"></i>
+									<small class="card-title text-gray"><?php echo number_format((float)$data['rating'], 1, '.', ''); ?> / 5</small>
+								</p>
 							</div>
-						</div>
-						<div class="col">
-							<small class="card-title text-gray">5.0/5.0</small>
 						</div>
 					</div>
 					<!-- /Header -->
@@ -137,43 +132,73 @@
 				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 			</div>
 			<div class="modal-body">
-				<form action="">
+				<form action="/StudentController/requestPembelajaran" method="POST" id="reqForm">
+					<input type="text" value="<?= $_GET['id']?>" name='id_pengajar' hidden>
+					<input type="text" value="<?= $data['keahlian']?>" name='subjek' hidden>
+					<input type="text" value="<?= $data['tarif']?>" name='biaya' hidden>
 					<div class="row mb-3">
 						<div class="col">
-							<label for="timeStart" class="form-label">Mulai</label>
-							<input type="time" class="form-control" name="timeStart" id="">
-						</div>
-						<div class="col">
-							<label for="timeFinish" class="form-label">Selesai</label>
-							<input type="time" class="form-control" name="timeFinish" id="">
+							<?php $days = ['Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu', 'Minggu'];
+								$arr = explode(" ",$data['jadwal']);
+							?>
+							<?php if(count($arr) > 0){ ?>
+								<select class="form-select" name='pilihJadwal'>
+									<option selected value="">Pilih hari</option>
+								<?php foreach($arr as $item){ ?>
+									<option value="<?php echo($item); ?>"><?php echo($days[$item]); ?></option>
+								<?php } ?>
+								</select>
+							<?php } else { ?>
+								<p class="text-danger">Jadwal Pengajar Penuh</p>
+							<?php } ?>
 						</div>
 					</div>
 					<div class="row mb-3">
 						<div class="col">
 							<label for="date" class="form-label">Tanggal</label>
-							<input type="date" class="form-control" name="date" id="">
+							<input type="date" class="form-control" name="tanggal" id="">
 						</div>
 						<div class="col">
 							<label for="session" class="form-label">Sesi</label>
-							<input type="number" class="form-control" name="session" id="">
+							<input type="number" class="form-control" name="sesi" id="">
 						</div>
 					</div>
 					<div class="row">
 						<div class="col">
-							<select class="form-select" aria-label="place" name="place">
-								<option selected>Tempat</option>
-								<option value="1">Online</option>
-								<option value="2">Offline</option>
+							<select class="form-select" aria-label="place" name="tempat">
+								<option selected value="">Tempat</option>
+								<option value="Online">Online</option>
+								<option value="Offline">Offline</option>
 								<!-- <option value="3">Three</option> -->
 							</select>
 						</div>
 					</div>
-				</form>
 			</div>
 			<div class="modal-footer">
 				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
-				<button type="button" class="btn btn-green">Ajukan</button>
+				<button type="submit" class="btn btn-green" <?php if(count($arr) == 0) echo('disabled'); ?>>Ajukan</button>
 			</div>
+				</form>
 		</div>
 	</div>
 </div>
+
+<script>
+	$().ready(function() {
+
+		$("#reqForm").validate({
+			rules:{
+				pilihJadwal: "required",
+				tanggal: "required",
+				sesi: "required",		
+				tempat: "required",		
+			},
+			messages:{
+				pilihJadwal: "Mohon memilih jadwal",
+				tanggal: "Mohon mengisi tanggal",
+				sesi: "Mohon mengisi jumlah sesi",		
+				tempat: "Mohon memilih tempat",		
+			},
+		});
+	});
+</script>

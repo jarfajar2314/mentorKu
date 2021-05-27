@@ -77,7 +77,7 @@
                                     <div class="cell-t" data-title="">
                                         <!-- Belum dibayar -->
                                         <?php if($row['status'] == '0' && $row['bukti_pembayaran'] == ''){ ?>
-                                            <a href="#" class="btn btn-sm btn-green">Submit Bukti Pembayaran</a>
+                                            <a href="/invoice?id=<?= $row['id']?>" class="btn btn-sm btn-green">Submit Bukti Pembayaran</a>
                                         <?php } else if($row['status'] == '0' && $row['bukti_pembayaran'] != ''){ ?>
                                             Menunggu konfirmasi admin
                                         <!-- Sudah dibayar -->

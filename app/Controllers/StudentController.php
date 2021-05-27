@@ -227,4 +227,65 @@ class StudentController extends BaseController
             return redirect()->to(base_url('pelajar/edit'));
         }
     }
+
+    public function requestPembelajaran(){
+        date_default_timezone_set("Asia/Jakarta");
+        $session = session();
+        if(!$session->has('id_user')){
+            // Need to login
+            return redirect()->to(base_url('pelajar/login'));
+        }
+        else{
+            $data = [
+                'id_pelajar' => $session->get('id_user'),
+                'id_pengajar' => $this->request->getPost('id_pengajar'),
+                'subjek' => $this->request->getPost('subjek'),
+                'tanggal' => $this->request->getPost('tanggal'),
+                'sesi' => $this->request->getPost('sesi'),
+                'tempat' => $this->request->getPost('tempat'),
+                'biaya' => (int)$this->request->getPost('biaya') * (int) $this->request->getPost('sesi') ,
+                'waktu_permintaan' => date("Y-m-d H:i:s", $_SERVER['REQUEST_TIME']),
+            ];
+            print_r($data);
+
+            $res = $this->PembelajaranModel->insertTo($data);
+            if($res){
+                $get = $this->PembelajaranModel->getPembelajaranByTimestamp($data['waktu_permintaan'])[0];
+                return redirect()->to(base_url('/invoice?id='.$get['id']));
+            }
+            else{
+                echo("Mengsedih");
+            }
+        }
+    }
+
+    public function uploadBukti()
+    {
+        $session = session();
+
+        $file = $this->request->getFile('bukti_pembayaran');
+        $file_ext = $file->getClientExtension();
+        
+        $data['bukti_pembayaran'] = $session->get('id_user') . "_" . $session->get('user') . "." . $file_ext;
+
+        // echo($this->request->getPost('id'));
+        // $res = false;
+        $res = $this->PembelajaranModel->updateData($this->request->getPost('id'), $data);
+        
+        if($res)
+        {
+            if(file_exists(ROOTPATH . 'public/InvoiceFiles/' . $data['bukti_pembayaran']))
+            {
+                unlink(ROOTPATH . 'public/InvoiceFiles/' . $data['bukti_pembayaran']);
+            }
+            $file->move(ROOTPATH . 'public/InvoiceFiles', $data['bukti_pembayaran']);
+            $session->setFlashdata('msg', 'success');
+            return redirect()->to(base_url('/invoice?id='.$this->request->getPost('id')));
+        }
+        else
+        {
+            $session->setFlashdata('msg', 'failed');
+            return redirect()->to(base_url('/invoice?id='.$this->request->getPost('id')));
+        }
+    }
 }

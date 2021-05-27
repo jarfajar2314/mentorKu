@@ -1,6 +1,7 @@
 <?php namespace App\Controllers;
 
 use App\Models\PengajarModel;
+use App\Models\PembelajaranModel;
 
 class Home extends BaseController
 {
@@ -8,6 +9,7 @@ class Home extends BaseController
     {
         helper('form');
         $this->PengajarModel = new PengajarModel();
+        $this->PembelajaranModel = new PembelajaranModel();
     }
 
 	public function index()
@@ -23,12 +25,20 @@ class Home extends BaseController
 
 	public function invoice()
 	{
-		$data = [
-            'title' => 'Invoice',
-            'content' => 'v-invoice',
-            'page' => 'invoice',
-        ];
-        return view('layout/v-wrapper', $data);
+        $session = session();
+        if($session->has('id_user') && isset($_GET['id'])){
+            $res = $this->PembelajaranModel->getPembelajaran($_GET['id'])[0];
+            $data = [
+                'title' => 'Invoice',
+                'content' => 'v-invoice',
+                'page' => 'invoice',
+                'data' => $res,
+            ];
+            return view('layout/v-wrapper', $data);
+        }
+        else{
+            return redirect()->to(base_url('/'));
+        }
 	}
 
     public function explore()
