@@ -6,6 +6,7 @@ use App\Models\UserModel;
 use App\Models\PengajarModel;
 use App\Models\PelajarModel;
 use App\Models\PembelajaranModel;
+use App\Models\UlasanModel;
 
 class StudentController extends BaseController
 {
@@ -21,6 +22,7 @@ class StudentController extends BaseController
         $this->PengajarModel = new PengajarModel();
         $this->PelajarModel = new PelajarModel();
         $this->PembelajaranModel = new PembelajaranModel();
+        $this->UlasanModel = new UlasanModel();
     }
 
     // Guide 101
@@ -266,7 +268,7 @@ class StudentController extends BaseController
         $file = $this->request->getFile('bukti_pembayaran');
         $file_ext = $file->getClientExtension();
         
-        $data['bukti_pembayaran'] = $session->get('id_user') . "_" . $session->get('user') . "." . $file_ext;
+        $data['bukti_pembayaran'] = $session->get('id_user') . "_" . $session->get('user') . "_" . date("YmdHis", $_SERVER['REQUEST_TIME']) . "." . $file_ext;
 
         // echo($this->request->getPost('id'));
         // $res = false;
@@ -286,6 +288,26 @@ class StudentController extends BaseController
         {
             $session->setFlashdata('msg', 'failed');
             return redirect()->to(base_url('/invoice?id='.$this->request->getPost('id')));
+        }
+    }
+
+    public function insertUlasan()
+    {
+        $session = session();
+        $data = [
+            'id_pelajar' => $this->request->getPost('id_pelajar'),
+            'id_pengajar' => $this->request->getPost('id_pengajar'),
+            'ulasan' => htmlspecialchars($_POST['ulasan']),
+            'rating' => $this->request->getPost('rating'),
+        ];
+        $res = $this->UlasanModel->insertTo($data);
+        if($res){
+            $session->setFlashdata('msg', 'successUlasan');
+            return redirect()->to(base_url('/pengajar/detail?id='.$data['id_pengajar']));
+        }
+        else{
+            $session->setFlashdata('msg', 'failedUlasan');
+            return redirect()->to(base_url('/pengajar/detail?id='.$data['id_pengajar']));
         }
     }
 }

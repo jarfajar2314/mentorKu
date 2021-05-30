@@ -95,15 +95,21 @@
                                         <td>
                                             <?php echo($row['bukti_pembayaran']); ?>
                                             <?php if($row['bukti_pembayaran'] != ''){ ?>
-                                                <a class="btn btn-sm btn-green" href="#" role="button">Lihat</a>
+                                                <a href="InvoiceFiles/<?= $row['bukti_pembayaran'] ?>" class="btn btn-sm btn-green" target="_blank">Lihat</a>
                                             <?php } ?>
                                         </td>
                                         <td>
                                             <?php if($row['bukti_pembayaran'] == ''){ ?>
                                                 Belum dibayar
+                                            <?php } else if($row['status'] == '1'){ ?>
+                                                Sudah dibayar
+                                            <?php } else if($row['status'] == '2'){ ?>
+                                                Ditolak
+                                            <?php } else if($row['status'] == '4'){ ?>
+                                                Selesai
                                             <?php } else{ ?>
-                                            <a class="btn btn-sm btn-green" href="#" role="button">Validasi</a>
-                                            <a class="btn btn-sm btn-danger" href="#" role="button">Tolak</a>
+                                            <a class="btn btn-sm btn-green" href="pembayaran?id=<?= $row['id']?>&status=1" role="button">Validasi</a>
+                                            <a class="btn btn-sm btn-danger" href="pembayaran?id=<?= $row['id']?>&status=2" role="button">Tolak</a>
                                             <?php } ?>
                                         </td>
                                     </tr>
@@ -125,17 +131,6 @@
 <script>
   // Untuk Tabs di Dashboard
   $(document).ready(function(){
-
-    $('#table-pengajar').DataTable({
-        "responsive": true,
-    });
-    $('#table-pelajar').DataTable({
-        "responsive": true,
-    });
-    $('#table-pembayaran').DataTable({
-        "responsive": true,
-        "order": [[ 1, "desc" ]],
-    });
 
     $("#nav-pengajar-tab").click(function(){
         // Show
@@ -185,5 +180,17 @@
         $("#nav-pembayaran").addClass("fadeIn");
         return false;
     });
+
+    $('#table-pengajar').DataTable({
+        "responsive": true,
+    });
+    $('#table-pelajar').DataTable({
+        "responsive": true,
+    });
+    $('#table-pembayaran').DataTable({
+        "responsive": true,
+        "order": [[ 1, "desc" ]],
+    });
+
   });
 </script>

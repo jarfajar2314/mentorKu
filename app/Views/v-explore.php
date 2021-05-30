@@ -1,5 +1,13 @@
 <div class="container-fluid">
     <div class="dropdown-cont">
+        <div class="row mb-3">
+            <div class="col">
+                <form class="d-flex" action="/explore" method="get">
+                    <input class="form-control me-2" type="search" placeholder="Cari Subjek" name="search">
+                    <button class="btn btn-outline-success" type="submit">Search</button>
+                </form>
+            </div>
+        </div>
         <p>Filter</p>
         <div class="row row-cols-2 row-cols-sm-3 row-cols-md-5 g-3">
             <div class="col">

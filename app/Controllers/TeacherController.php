@@ -6,6 +6,7 @@ use App\Models\UserModel;
 use App\Models\PengajarModel;
 use App\Models\PelajarModel;
 use App\Models\PembelajaranModel;
+use App\Models\UlasanModel;
 
 class TeacherController extends BaseController
 {
@@ -21,6 +22,7 @@ class TeacherController extends BaseController
         $this->PengajarModel = new PengajarModel();
         $this->PelajarModel = new PelajarModel();
         $this->PembelajaranModel = new PembelajaranModel();
+        $this->UlasanModel = new UlasanModel();
     }
 
     public function login()
@@ -81,11 +83,13 @@ class TeacherController extends BaseController
     {
         if(isset($_GET['id']) && $_GET['id'] != ''){
             $res = $this->PengajarModel->getPengajar($_GET['id'])[0];
+            $resU = $this->UlasanModel->getUlasanByPengajar($_GET['id']);
             $data = [
                 'title' => 'Detail Pengajar',
                 'content' => 'Teacher/v-detail',
                 'page' => 'detail',
                 'data' => $res,
+                'ulasan' => $resU,
             ];
             return view('layout/v-wrapper', $data);
         }

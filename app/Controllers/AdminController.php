@@ -66,6 +66,28 @@ class AdminController extends BaseController
             return redirect()->to(base_url('admin/login'));
         }
     }
+
+    public function validasiPembayaran()
+    {
+        $id = $_GET['id'];
+        $data = [
+            'status' => $_GET['status'],
+        ];
+        $res = $this->PembelajaranModel->updateData($id, $data);
+        if($res){
+            return redirect()->to(base_url('admin/dashboard'));
+        }
+        else{
+            return redirect()->to(base_url('admin/dashboard'));
+        }
+    }
+
+    public function viewFile($type, $filename)
+    {
+        $url = base_url($type . "/" . $filename);
+        $html = '<iframe src="'.$url.'" style="border:none; width: 100%; height: 100%"></iframe>';
+        return $html;
+    }
 }
 
 ?>

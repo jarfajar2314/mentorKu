@@ -80,43 +80,64 @@
 					<!-- Header -->
 					<div class="row p-lg-3">
 						<div class="col-md-auto">
-							<h4 class="card-title text-gray">20 Ulasan pada pengajar</h4>
+							<h4 class="card-title text-gray"><?= count($ulasan)?> Ulasan pada pengajar</h4>
 						</div>
 						<div class="col col-lg-auto">
 							<div class="d-flex">
 								<p class="text-warning"><i class="fas fa-star"></i>
-									<small class="card-title text-gray"><?php echo number_format((float)$data['rating'], 1, '.', ''); ?> / 5</small>
+									<small class="card-title text-gray"><?php echo $data['rating'] != '' ? number_format((float)$data['rating'], 1, '.', '') . " / 5" : '-'; ?></small>
 								</p>
 							</div>
 						</div>
 					</div>
 					<!-- /Header -->
 					<!-- Content -->
-					<div class="row p-lg-3">
-						<div class="col-3 col-sm-auto border-end">
-							<div class="text-center me-2">
-								<img src="<?= base_url() ?>/ProfileImage/user-default.png" class="profile-user-img-small img-fluid img-circle" alt="Profil Image">
-							</div>
-							<!-- <div class="d-flex align-items-center">
-								
+					<?php if(count($ulasan) > 0){ ?>
+						<?php for($i = 0; $i < count($ulasan); $i++){ ?>
+						<div class="row p-lg-3 ulasan_col <?php if($i > 0) echo("d-none") ?>">
+							<div class="col-3 col-sm-auto border-end">
 								<div class="text-center me-2">
-									<img src="<= base_url() ?>/ProfileImage/user-default.png" class="profile-user-img-small img-fluid img-circle" alt="Profil Image">
+									<img src="<?= base_url() ?>/ProfileImage/<?= $ulasan[$i]['profil_pic'] ?>" class="profile-user-img-small img-fluid img-circle" alt="Profil Image">
 								</div>
-								<h5>Margareth</h5>
-							</div> -->
+							</div>
+							<div class="col">
+								<div class="d-flex align-item-center">
+									<h5 class="my-0"><?= $ulasan[$i]['nama_lengkap'] ?></h5>
+									<div class="d-flex ms-2">
+										<p class="text-warning my-0"><i class="fas fa-star"></i>
+											<small class="card-title text-gray my-0"><?php echo $ulasan[$i]['rating'] ?></small>
+										</p>
+									</div>
+								</div>
+								<p><?= $ulasan[$i]['ulasan'] ?></p>
+							</div>
 						</div>
-						<div class="col">
-							<h5>Margareth</h5>
-							<p>Pengajar memberikan materi dengan sangat baik, penyampaiannya pun mudah dimengerti</p>
+						<?php } ?>
+						<?php if(count($ulasan) > 1){ ?>
+						<!-- Footer Button -->
+						<div class="row">
+							<div class="col text-center mt-2">
+								<button class="btn btn-white text-gray" id="show_more">Tampilkan lebih</button>
+							</div>
 						</div>
-					</div>
+						<?php } ?>
+					<?php } else { ?>
+						<div class="row p-lg-3">
+							<div class="col text-gray">
+								<h5 class="text-center">Belum ada ulasan</h5>
+							</div>
+						</div>
+					<?php } ?>
 					<!-- /Content -->
-					<!-- Footer Button -->
+					<!-- Tulis Ulasan -->
+					<?php if(isset($_SESSION['id_user'])){?>
 					<div class="row">
-						<div class="col text-center mt-2">
-							<a href="#" class="text-gray text-decoration-none">Tampilkan lebih</a>
+						<div class="col mt-2">
+							<button class="btn btn-green w-100" data-bs-toggle="modal" data-bs-target="#tulis_ulasan">Tulis Ulasan</button>
 						</div>
 					</div>
+					<?php } ?>
+					<!-- /tulis ulasan -->
 				</div>
 			</div>
 		</div>
@@ -183,8 +204,137 @@
 	</div>
 </div>
 
+<!-- Modal Tulis Ulasan -->
+<div class="modal fade" id="tulis_ulasan" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="staticBackdropLabel">Tulis Ulasan</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+				<form action="/StudentController/insertUlasan" method="POST" id="tulis_ulasan">
+					<input type="text" value="<?= $_GET['id']?>" name='id_pengajar' hidden>
+					<input type="text" value="<?= $_SESSION['id_user']?>" name='id_pelajar' hidden>
+					<div class="form-group mb-3">
+						<label class="form-label">Ulasan</label>
+						<textarea class="form-control" id="about" rows="3" name="ulasan"></textarea>
+					</div>
+					<div class="row mb-3">
+						<div class="container ps-4">
+							<div class="row">
+								<div class="col col-auto mb-3 mb-lg-0 p-0">
+									<input class="form-check-input m-0" id="star-1" type="radio" value="1" name="rating" hidden>
+									<button class="btn btn-lg btn-white text-warning" id="star-1-btn" type="button"><i class="far fa-star m-0" id="star-1-i"></i></button>
+								</div>
+								<div class="col col-auto mb-3 mb-lg-0 p-0">
+									<input class="form-check-input m-0" id="star-2" type="radio" value="2" name="rating" hidden>
+									<button class="btn btn-lg btn-white text-warning" id="star-2-btn" type="button"><i class="far fa-star m-0" id="star-2-i"></i></button>
+								</div>
+								<div class="col col-auto mb-3 mb-lg-0 p-0">
+									<input class="form-check-input m-0" id="star-3" type="radio" value="3" name="rating" hidden>
+									<button class="btn btn-lg btn-white text-warning" id="star-3-btn" type="button"><i class="far fa-star m-0" id="star-3-i"></i></button>
+								</div>
+								<div class="col col-auto mb-3 mb-lg-0 p-0">
+									<input class="form-check-input m-0" id="star-4" type="radio" value="4" name="rating" hidden>
+									<button class="btn btn-lg btn-white text-warning" id="star-4-btn" type="button"><i class="far fa-star m-0" id="star-4-i"></i></button>
+								</div>
+								<div class="col col-auto mb-3 mb-lg-0 p-0">
+									<input class="form-check-input m-0" id="star-5" type="radio" value="5" name="rating" hidden>
+									<button class="btn btn-lg btn-white text-warning" id="star-5-btn" type="button"><i class="far fa-star m-0" id="star-5-i"></i></button>
+								</div>
+							</div>
+						</div>
+					</div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+				<button type="submit" class="btn btn-green" id="ulasan_submit" disabled>Submit</button>
+			</div>
+				</form>
+		</div>
+	</div>
+</div>
+
 <script>
 	$().ready(function() {
+		$("#show_more").click(function(){
+			$(".ulasan_col").removeClass("d-none");
+			$("#show_more").addClass("d-none");
+		});
+
+		$("#star-1-btn").click(function(){
+			$("#star-1-i").removeClass("far");
+			$("#star-1-i").addClass("fas");
+			$("#star-1").attr("checked", true);
+
+			$("#star-2").attr("checked", false); $("#star-3").attr("checked", false); $("#star-4").attr("checked", false); $("#star-5").attr("checked", false);
+			$("#star-2-i").removeClass("fas"); $("#star-3-i").removeClass("fas"); $("#star-4-i").removeClass("fas"); $("#star-5-i").removeClass("fas");
+			$("#star-2-i").addClass("far"); $("#star-3-i").addClass("far"); $("#star-4-i").addClass("far"); $("#star-5-i").addClass("far");
+            if($("#ulasan_submit").attr("disabled")){
+				$("#ulasan_submit").attr("disabled", false);
+            }
+            return false;
+        });
+
+		$("#star-2-btn").click(function(){
+			$("#star-2").attr("checked", true);
+			$("#star-1-i").removeClass("far"); $("#star-1-i").addClass("fas");
+			$("#star-2-i").removeClass("far"); $("#star-2-i").addClass("fas");
+			// Unselect all
+			$("#star-1").attr("checked", false); $("#star-3").attr("checked", false); $("#star-4").attr("checked", false); $("#star-5").attr("checked", false);
+			$("#star-3-i").removeClass("fas"); $("#star-4-i").removeClass("fas"); $("#star-5-i").removeClass("fas");
+			$("#star-3-i").addClass("far"); $("#star-4-i").addClass("far"); $("#star-5-i").addClass("far");
+            if($("#ulasan_submit").attr("disabled")){
+				$("#ulasan_submit").attr("disabled", false);
+            }
+            return false;
+        });
+
+		$("#star-3-btn").click(function(){
+			$("#star-3").attr("checked", true);
+			$("#star-1-i").removeClass("far"); $("#star-1-i").addClass("fas");
+			$("#star-2-i").removeClass("far"); $("#star-2-i").addClass("fas");
+			$("#star-3-i").removeClass("far"); $("#star-3-i").addClass("fas");
+			// Unselect all
+			$("#star-1").attr("checked", false); $("#star-2").attr("checked", false); $("#star-4").attr("checked", false); $("#star-5").attr("checked", false);
+			$("#star-4-i").removeClass("fas"); $("#star-5-i").removeClass("fas");
+			$("#star-4-i").addClass("far"); $("#star-5-i").addClass("far");
+            if($("#ulasan_submit").attr("disabled")){
+				$("#ulasan_submit").attr("disabled", false);
+            }
+            return false;
+        });
+
+		$("#star-4-btn").click(function(){
+			$("#star-4").attr("checked", true);
+			$("#star-1-i").removeClass("far"); $("#star-1-i").addClass("fas");
+			$("#star-2-i").removeClass("far"); $("#star-2-i").addClass("fas");
+			$("#star-3-i").removeClass("far"); $("#star-3-i").addClass("fas");
+			$("#star-4-i").removeClass("far"); $("#star-4-i").addClass("fas");
+			// Unselect all
+			$("#star-1").attr("checked", false); $("#star-2").attr("checked", false); $("#star-3").attr("checked", false); $("#star-5").attr("checked", false);
+			$("#star-5-i").removeClass("fas");$("#star-5-i").addClass("far");
+            if($("#ulasan_submit").attr("disabled")){
+				$("#ulasan_submit").attr("disabled", false);
+            }
+            return false;
+        });
+
+		$("#star-5-btn").click(function(){
+			$("#star-5").attr("checked", true);
+			$("#star-1-i").removeClass("far"); $("#star-1-i").addClass("fas");
+			$("#star-2-i").removeClass("far"); $("#star-2-i").addClass("fas");
+			$("#star-3-i").removeClass("far"); $("#star-3-i").addClass("fas");
+			$("#star-4-i").removeClass("far"); $("#star-4-i").addClass("fas");
+			$("#star-5-i").removeClass("far"); $("#star-5-i").addClass("fas");
+			// Unselect all
+			$("#star-1").attr("checked", false); $("#star-2").attr("checked", false); $("#star-3").attr("checked", false); $("#star-4").attr("checked", false);
+            if($("#ulasan_submit").attr("disabled")){
+				$("#ulasan_submit").attr("disabled", false);
+            }
+            return false;
+        });
 
 		$("#reqForm").validate({
 			rules:{
