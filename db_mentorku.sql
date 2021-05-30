@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 27, 2021 at 09:18 PM
+-- Generation Time: May 30, 2021 at 09:53 PM
 -- Server version: 10.4.18-MariaDB
 -- PHP Version: 7.4.18
 
@@ -20,6 +20,19 @@ SET time_zone = "+00:00";
 --
 -- Database: `db_mentorku`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbarangmasuk`
+--
+
+CREATE TABLE `tbarangmasuk` (
+  `idbarang` int(20) NOT NULL,
+  `namabarang` varchar(50) NOT NULL,
+  `hargabeli` decimal(15,2) NOT NULL,
+  `hargajual` decimal(15,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -60,9 +73,19 @@ CREATE TABLE `tbl_pelajar` (
 --
 
 INSERT INTO `tbl_pelajar` (`id`, `nama_lengkap`, `kota`, `tanggal_lahir`, `profil_pic`) VALUES
-(31, 'May Parker', 'Lamongan', '0000-00-00', 'user-default.png'),
+(31, 'May Parker', 'Lamongan', '1993-02-01', 'user-default.png'),
 (34, 'Karl Marx', 'Pekalongan', '1918-05-05', '34_pelajar.png'),
-(36, 'Katyusha', '', NULL, 'user-default.png');
+(36, 'Katyusha', 'Moscow', NULL, 'user-default.png'),
+(48, 'Alfred von Tirpitz', 'Kiel', '1993-02-01', 'user-default.png'),
+(49, 'Otto von Bismarck', 'Hamburg', '1993-02-01', 'user-default.png'),
+(50, 'Ernst Lindemann', 'Altenkirchen', '1993-02-01', 'user-default.png'),
+(51, 'Oskar Kummetz', 'Neindenburg', '1993-02-01', 'user-default.png'),
+(52, 'Franz von Hipper', 'Hamburg', '1993-02-01', 'user-default.png'),
+(53, 'Karl Donitz', 'Hannover', '1993-02-01', 'user-default.png'),
+(54, 'Wilhelm Heidkamp', 'Bremen', '1993-02-01', 'user-default.png'),
+(55, 'Georg Thiele', 'Kiel', '1993-02-01', 'user-default.png'),
+(56, 'Friedrich Seydlitz', 'Bremen', '1993-02-01', 'user-default.png'),
+(57, 'Yuuichi Nagumo', 'Nagasaki', '1993-02-01', 'user-default.png');
 
 -- --------------------------------------------------------
 
@@ -91,9 +114,9 @@ CREATE TABLE `tbl_pembelajaran` (
 --
 
 INSERT INTO `tbl_pembelajaran` (`id`, `id_pelajar`, `id_pengajar`, `subjek`, `tanggal`, `waktu_mulai`, `waktu_selesai`, `sesi`, `tempat`, `biaya`, `bukti_pembayaran`, `status`, `waktu_permintaan`) VALUES
-(1, 31, 32, 'Matematika', '2021-05-19', NULL, NULL, 2, 'Online', 50000, '', 0, '2021-04-26 14:14:25'),
+(1, 31, 32, 'Matematika', '2021-05-19', NULL, NULL, 2, 'Online', 50000, '', 1, '2021-04-26 14:14:25'),
 (4, 31, 32, 'Matematika', '2021-05-01', '09:00:00', '11:00:00', 2, 'Online', 100000, 'struk.png', 3, '2021-04-24 14:44:24'),
-(10, 34, 32, 'Matematika', '2021-05-24', NULL, NULL, 2, 'Online', 200000, '34_pelajar.jpg', 0, '2021-05-27 17:53:51');
+(10, 34, 32, 'Matematika', '2021-05-24', '09:30:00', '11:30:00', 2, 'Online', 200000, '34_pelajar.jpg', 3, '2021-05-27 17:53:51');
 
 -- --------------------------------------------------------
 
@@ -126,7 +149,7 @@ CREATE TABLE `tbl_pengajar` (
 --
 
 INSERT INTO `tbl_pengajar` (`id`, `nama_lengkap`, `kota`, `tarif`, `keahlian`, `tingkatan`, `tanggal_lahir`, `tentang`, `rating`, `ijazah`, `profil_pic`, `no_rekening`, `jenis_rekening`, `modul`, `kontak`, `waktu_respon`, `jadwal`) VALUES
-(32, 'Albert Wicked', 'Bandung', 100000, 'Matematika', 'Perguruan Tinggi', '1999-02-02', 'Ini adalah kolom tentang.', 5, '32_pengajar.png', '32_pengajar.jpg', '0812345', 'OVO', '', '0812345', 1, '0 2 4 6'),
+(32, 'Albert Wicked', 'Bandung', 100000, 'Matematika', 'Perguruan Tinggi', '1999-02-02', 'Ini adalah kolom tentang.', 5, '32_pengajar.png', '32_pengajar.jpg', '0812345', 'OVO', '32_pengajar.pdf', '0812345', 1, '0 2 4 6'),
 (33, 'Carl Johnson', 'Los Santos', 50000, 'Kimia', 'Perguruan Tinggi', '1999-11-11', 'All you have to do was just follow that damn train kids.', 4.7, '33_pengajar.png', '33_pengajar.png', '0812345', 'BIN', '', '0812345', 1, '0 1 2'),
 (37, 'Lenin', 'Gulag', 1000000, 'Sejarah', 'SD', '1999-02-11', 'This is OUR lessons.', NULL, '37_pengajar.png', 'user-default.png', '0812345', 'DANA', '', '0812345', 1, '0 1 2 3 4 5 6'),
 (39, 'Telon Must', 'California', 100000, 'Ekonomi', 'SD', '1999-11-11', 'Hi.', NULL, '39_pengajar.png', 'user-default.png', '0812345', 'OVO', '', '0812345', 1, '5 6'),
@@ -153,6 +176,15 @@ CREATE TABLE `tbl_ulasan` (
   `ulasan` text NOT NULL,
   `tanggal` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tbl_ulasan`
+--
+
+INSERT INTO `tbl_ulasan` (`id`, `id_pelajar`, `id_pengajar`, `rating`, `ulasan`, `tanggal`) VALUES
+(1, 34, 32, 5, 'Pengajar memberikan materi dengan sangat baik, penyampaiannya pun mudah dimengerti', '2021-05-30 13:43:39'),
+(2, 49, 32, 5, 'Pengajar memberikan materi dengan sangat baik, penyampaiannya pun mudah dimengerti', '2021-05-30 15:31:17'),
+(3, 48, 32, 5, 'Pengajar memberikan materi dengan sangat baik, penyampaiannya pun mudah dimengerti', '2021-05-30 15:40:34');
 
 -- --------------------------------------------------------
 
@@ -186,11 +218,27 @@ INSERT INTO `tbl_user` (`id`, `email`, `password`, `status_verifikasi`) VALUES
 (44, 'nimitz@gmail.com', '123', 1),
 (45, 'raymond@gmail.com', '123', 1),
 (46, 'fletcher@gmail.com', '123', 1),
-(47, 'ohare@gmail.com', '123', 1);
+(47, 'ohare@gmail.com', '123', 1),
+(48, 'tirpitz@gmail.com', '123', 1),
+(49, 'bismarck@gmail.com', '123', 1),
+(50, 'lindemann@gmail.com', '123', 1),
+(51, 'kummetz@gmail.com', '123', 1),
+(52, 'hipper@gmail.com', '123', 1),
+(53, 'donitz@gmail.com', '123', 1),
+(54, 'heidkamp@gmail.com', '123', 1),
+(55, 'thiele@gmail.com', '123', 1),
+(56, 'seydlitz@gmail.com', '123', 1),
+(57, 'nagumo@gmail.com', '123', 1);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `tbarangmasuk`
+--
+ALTER TABLE `tbarangmasuk`
+  ADD PRIMARY KEY (`idbarang`);
 
 --
 -- Indexes for table `tbl_admin`
@@ -237,6 +285,12 @@ ALTER TABLE `tbl_user`
 --
 
 --
+-- AUTO_INCREMENT for table `tbarangmasuk`
+--
+ALTER TABLE `tbarangmasuk`
+  MODIFY `idbarang` int(20) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `tbl_admin`
 --
 ALTER TABLE `tbl_admin`
@@ -249,10 +303,16 @@ ALTER TABLE `tbl_pembelajaran`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
+-- AUTO_INCREMENT for table `tbl_ulasan`
+--
+ALTER TABLE `tbl_ulasan`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `tbl_user`
 --
 ALTER TABLE `tbl_user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
 -- Constraints for dumped tables
