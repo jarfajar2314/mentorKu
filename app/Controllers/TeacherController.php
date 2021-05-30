@@ -115,6 +115,18 @@ class TeacherController extends BaseController
             $data['data'] = $pengajarData;
             return view('layout/v-wrapper', $data);
         }
+        if($session->has('id_admin')){
+            $data = [
+                'title' => 'Ubah Profil Pengajar',
+                'content' => 'Teacher/v-edit',
+                'page' => 'edit',
+            ];
+            // if active, retrieve data
+            $pengajarData = $this->PengajarModel->getPengajar($_GET['id'])[0];
+            $pengajarData['password'] = $this->UserModel->getUserById($_GET['id'])[0]['password'];
+            $data['data'] = $pengajarData;
+            return view('layout/v-wrapper', $data);
+        }
         else{
             // if not, return to home
             return redirect()->to('/');
@@ -311,6 +323,23 @@ class TeacherController extends BaseController
         {
             $session->setFlashdata('msg', 'failedIjazah');
             return redirect()->to(base_url('pengajar/edit'));
+        }
+    }
+
+    public function updatePertemuan()
+    {
+        $sesi =  $this->request->getPost('sesi');
+        $timestamp = strtotime($this->request->getPost('waktu_mulai')) + 60*60*$sesi;
+        $waktu_selesai = date('H:i', $timestamp);
+        $data = [
+            'waktu_mulai' => $this->request->getPost('waktu_mulai'),
+            'waktu_selesai' => $waktu_selesai,
+            'status' => '3',
+        ];
+        print_r($data);
+        $res = $this->PembelajaranModel->updateData($this->request->getPost('id'), $data);
+        if($res){
+            return redirect()->to(base_url('pengajar/dashboard'));
         }
     }
     

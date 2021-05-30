@@ -165,7 +165,7 @@
                     <label class="form-label">No. Rekening</label>
                     <input type="text" class="form-control" id="no_rekening" name="no_rekening" value="<?php echo($data['no_rekening']); ?>">
                 </div>
-                <a href="/pengajar/dashboard" class="btn btn-outline-green">Kembali</a>
+                <a href="<?php if(isset($_SESSION['id_admin'])){ echo("/admin/dashboard"); } else { echo("/pengajar/dashboard"); }  ?>" class="btn btn-outline-green">Kembali</a>
                 <button class="btn btn-green ms-2" type="submit">Simpan</button>
             </form>
         </div>

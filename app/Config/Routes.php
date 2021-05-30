@@ -52,7 +52,9 @@ $routes->get('/invoice', 'Home::invoice');
 $routes->get('/admin/login', 'AdminController::login');
 $routes->get('/admin/dashboard', 'AdminController::dashboard');
 $routes->get('/admin/pembayaran', 'AdminController::validasiPembayaran');
-$routes->get('/admin/(:any)', 'AdminController::viewFile/$1/$2');
+$routes->get('/admin/edit/pelajar', 'StudentController::edit');
+$routes->get('/admin/edit/pengajar', 'TeacherController::edit');
+$routes->get('/admin/file/(:any)', 'AdminController::viewFile/$1/$2');
 
 // Explore
 $routes->get('/explore', 'Home::Explore');

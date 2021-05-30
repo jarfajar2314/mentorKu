@@ -88,6 +88,22 @@ class AdminController extends BaseController
         $html = '<iframe src="'.$url.'" style="border:none; width: 100%; height: 100%"></iframe>';
         return $html;
     }
+
+    public function changeStatus()
+    {
+        $id = $_GET['id'];
+        $data = [
+            'status_verifikasi' => $_GET['status'],
+        ];
+        $res = $this->UserModel->updateData($id, $data);
+        if($res){
+            return redirect()->to(base_url('admin/dashboard'));
+        }
+        else{
+            return redirect()->to(base_url('admin/dashboard'));
+        }
+    }
+
 }
 
 ?>

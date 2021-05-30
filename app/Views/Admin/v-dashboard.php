@@ -32,8 +32,12 @@
                                         <td><?php echo($row['email']); ?></td>
                                         <td><?php echo($row['password']); ?></td>
                                         <td>
-                                            <a class="btn btn-sm btn-green" href="#" role="button">Edit</a>
-                                            <a class="btn btn-sm btn-danger" href="#" role="button">Delete</a>
+                                            <a class="btn btn-sm btn-green" href="/admin/edit/pelajar?id=<?= $row['id'] ?>" role="button">Edit</a>
+                                            <?php if($row['status_verifikasi'] == '1'){ ?>
+                                            <a class="btn btn-sm btn-danger" href="/AdminController/changeStatus?id=<?= $row['id'] ?>&status=-1" role="button">Delete</a>
+                                            <?php } else{ ?>
+                                            <a class="btn btn-sm btn-primary" href="/AdminController/changeStatus?id=<?= $row['id'] ?>&status=1" role="button">Activate</a>
+                                            <?php } ?>
                                         </td>
                                     </tr>
                                     <?php } ?>
@@ -62,10 +66,16 @@
                                         <td><?php echo($row['email']); ?></td>
                                         <td><?php echo($row['kota']); ?></td>
                                         <td><?php echo($row['keahlian']); ?></td>
-                                        <td><?php echo($row['ijazah']); ?></td>
+                                        <td><?php echo($row['ijazah']); ?><a href="file/IjazahPengajar/<?= $row['ijazah'] ?>" class="btn btn-sm btn-green ms-2" target="_blank">Lihat</a></td>
                                         <td>
-                                            <a class="btn btn-sm btn-green" href="#" role="button">Edit</a>
-                                            <a class="btn btn-sm btn-danger" href="#" role="button">Delete</a>
+                                            <a class="btn btn-sm btn-green mb-lg-2" href="/admin/edit/pengajar?id=<?= $row['id'] ?>" role="button">Edit</a>
+                                            <?php if($row['status_verifikasi'] == '0'){ ?>
+                                            <a class="btn btn-sm btn-success mb-lg-2" href="/AdminController/changeStatus?id=<?= $row['id'] ?>&status=1" role="button">Verifikasi</a>
+                                            <?php } if($row['status_verifikasi'] != '-1') {?>
+                                            <a class="btn btn-sm btn-danger mb-lg-2" href="/AdminController/changeStatus?id=<?= $row['id'] ?>&status=-1" role="button">Delete</a>
+                                            <?php } else { ?>
+                                            <a class="btn btn-sm btn-primary" href="/AdminController/changeStatus?id=<?= $row['id'] ?>&status=0" role="button">Activate</a>
+                                            <?php } ?>
                                         </td>
                                     </tr>
                                     <?php } ?>
@@ -95,7 +105,7 @@
                                         <td>
                                             <?php echo($row['bukti_pembayaran']); ?>
                                             <?php if($row['bukti_pembayaran'] != ''){ ?>
-                                                <a href="InvoiceFiles/<?= $row['bukti_pembayaran'] ?>" class="btn btn-sm btn-green" target="_blank">Lihat</a>
+                                                <a href="file/InvoiceFiles/<?= $row['bukti_pembayaran'] ?>" class="btn btn-sm btn-green" target="_blank">Lihat</a>
                                             <?php } ?>
                                         </td>
                                         <td>

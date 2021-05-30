@@ -77,8 +77,12 @@ class StudentController extends BaseController
             $pembelajaranData = $this->PembelajaranModel->getPembelajaranByPelajar($session->get('id_user'));
             $i = 0; $n = 0;
             for($i = 0; $i < count($pembelajaranData); $i++){
+                $modul = $this->PengajarModel->getPengajar($pembelajaranData[$i]['id_pengajar'])[0]['modul'];
+                $kontak = $this->PengajarModel->getPengajar($pembelajaranData[$i]['id_pengajar'])[0]['kontak'];
                 $nama_pengajar = $this->PengajarModel->getPengajar($pembelajaranData[$i]['id_pengajar'])[0]['nama_lengkap'];
                 $pembelajaranData[$i]['nama_pengajar'] = $nama_pengajar;
+                $pembelajaranData[$i]['kontak'] = $kontak;
+                $pembelajaranData[$i]['modul'] = $modul;
                 if($pembelajaranData[$i]['status'] == '2' || $pembelajaranData[$i]['status'] == '4'){
                     $n++;
                 }
@@ -104,6 +108,17 @@ class StudentController extends BaseController
             ];
             $pelajarData = $this->PelajarModel->getPelajar($session->get('id_user'))[0];
             $pelajarData['password'] = $this->UserModel->getUserById($session->get('id_user'))[0]['password'];
+            $data['data'] = $pelajarData;
+            return view('layout/v-wrapper', $data);
+        }
+        if($session->has('id_admin')){
+            $data = [
+                'title' => 'Ubah Profil Pelajar',
+                'content' => 'Student/v-edit',
+                'page' => 'edit',
+            ];
+            $pelajarData = $this->PelajarModel->getPelajar($_GET['id'])[0];
+            $pelajarData['password'] = $this->UserModel->getUserById($_GET['id'])[0]['password'];
             $data['data'] = $pelajarData;
             return view('layout/v-wrapper', $data);
         }
@@ -310,4 +325,21 @@ class StudentController extends BaseController
             return redirect()->to(base_url('/pengajar/detail?id='.$data['id_pengajar']));
         }
     }
+
+    public function updatePertemuan()
+    {
+        $data = [
+            'status' => $_GET['status'],
+        ];
+        $res = $this->PembelajaranModel->updateData($_GET['id'], $data);
+        if($res){
+            // $session->setFlashdata('msg', 'successUlasan');
+            return redirect()->to(base_url('/pelajar/dashboard'));
+        }
+        else{
+            // $session->setFlashdata('msg', 'failedUlasan');
+            return redirect()->to(base_url('/pelajar/dashboard'));
+        }
+    }
+
 }

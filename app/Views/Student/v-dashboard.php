@@ -85,8 +85,9 @@
                                             Menunggu konfirmasi pengajar
                                         <!-- Sudah diterima - sedang pembelajaran -->
                                         <?php } else if($row['status'] == '3'){ ?>
-                                            <a class="btn btn-sm btn-green" href="#" role="button">Unduh Modul</a>
-                                            <a class="btn btn-sm btn-green" href="#" role="button">Selesai</a>
+                                            <a class="btn btn-sm btn-green mb-2" href="tel:<?= $row['kontak']?>" role="button">Kontak</a>
+                                            <a class="btn btn-sm btn-green mb-2" href="/admin/file/ModulPengajar/<?= $row['modul'] ?>" target="_blank">Lihat Modul</a>
+                                            <a class="btn btn-sm btn-green mb-2" href="/StudentController/updatePertemuan?id=<?= $row['id']?>&status=4">Selesai</a>
                                         <?php } ?>
                                     </div>
                                 </div>

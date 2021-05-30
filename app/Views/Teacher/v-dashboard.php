@@ -20,7 +20,7 @@
             </div>
         </div>
     <?php } ?>
-    <div class="wrapper">    
+    <div class="container-fluid">    
         <div class="row px-lg-5 mx-lg-5 py-3 mt-3">
             <!-- Profile Image -->
             <div class="col-lg-3 ms-lg-5 mb-3 mb-lg-0">
@@ -125,6 +125,17 @@
                                 <div class="cell-t" data-title="Tanggal">
                                     <?php echo($row['tanggal']) ?>
                                 </div>
+                                <div class="cell-t" data-title="Opsi">
+                                    <?php if($row['status'] == '1'){ ?>
+                                        <button type="button" class="btn btn-green" data-bs-toggle="modal" data-bs-target="#aturJadwal"
+                                            data-id="<?php echo($row['id']) ?>"
+                                            data-nama="<?php echo($row['nama_pelajar']) ?>"
+                                            data-tanggal="<?php echo($row['tanggal']) ?>"
+                                            data-sesi="<?php echo($row['sesi']) ?>"
+                                            >Terima</button>
+                                        <a href="#" class="btn btn-danger">Tolak</a>
+                                    <?php } ?>
+                                </div>
                             </div>
                             <?php }} ?>
                         </div>
@@ -165,3 +176,57 @@
 		</div>
 	</div>
 </div>
+
+<!-- Modal Atur Pertemuan -->
+<div class="modal fade" id="aturJadwal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="staticBackdropLabel">Atur Jadwal</h5>
+				<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			</div>
+			<div class="modal-body">
+                <form action="/TeacherController/updatePertemuan" method="post">
+                <p id="fnama">Nama</p>
+                <p id="ftanggal">19/01/21</p>
+                <p id="fsesi">2 Sesi</p>
+                <input id="id_p" type="text" class="form-control" hidden name="id">
+                <input id="sesi_input" type="number" class="form-control" hidden name="sesi">
+                <div class="mb-3">
+                    <label for="formFile" class="form-label">Waktu Mulai</label>
+                    <input type="time" class="form-control" name="waktu_mulai">
+                </div>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Batal</button>
+				<button type="Submit" class="btn btn-green">Simpan</button>
+                </form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+
+    var mdAturJadwal = document.getElementById('aturJadwal')
+    mdAturJadwal.addEventListener('show.bs.modal', function (event) {
+        // Button that triggered the modal
+        var button = event.relatedTarget
+        // Extract info from data-bs-* attributes
+        var id = button.getAttribute('data-id')
+        var nama = button.getAttribute('data-nama')
+        var tanggal = button.getAttribute('data-tanggal')
+        var sesi = button.getAttribute('data-sesi')
+        // If necessary, you could initiate an AJAX request here
+        // and then do the updating in a callback.
+        //
+        // Update the modal's content.
+        $("#fnama").text(nama);
+        $("#ftanggal").text(tanggal);
+        $("#fsesi").text(sesi + " Sesi");
+        $("#id_p").val(id);
+        $("#sesi_input").val(sesi);
+    
+    })
+
+</script>
