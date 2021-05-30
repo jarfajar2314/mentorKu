@@ -28,84 +28,63 @@
     <h4 class="homecontext">Subjek Terpopuler</h4>
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
         <div class="col">
-            <div class="card shadow-sm">
-            <img src="<?= base_url() ?>/imageSource/chris-liverani-rD2dc_2S3i0-unsplash (1).jpg" class="bd-placeholder-img card-img-top" width="100%" height="225">
-            <div class="card-body">
-              <a href="#" class="card-text subjecttext">Matematika</a>
-            </div>
-          </div>
+            <a href="/explore?search=matematika" class="text-decoration-none">
+                <div class="card shadow-sm">
+                <img src="<?= base_url() ?>/imageSource/chris-liverani-rD2dc_2S3i0-unsplash (1).jpg" class="bd-placeholder-img card-img-top" width="100%" height="225">
+                <div class="card-body">
+                <p class="card-text subjecttext">Matematika</p>
+                </div>
+                </div>
+            </a>
         </div>
         <div class="col">
-            <div class="card shadow-sm">
-            <img src="<?= base_url() ?>/imageSource/engin-akyurt-KUeJcc4YUug-unsplash.jpg" class="bd-placeholder-img card-img-top" width="100%" height="225">
-            <div class="card-body">
-              <a href="#" class="card-text subjecttext">Fisika</a>
-            </div>
-          </div>
+            <a href="/explore?search=fisika" class="text-decoration-none">
+                <div class="card shadow-sm">
+                <img src="<?= base_url() ?>/imageSource/engin-akyurt-KUeJcc4YUug-unsplash.jpg" class="bd-placeholder-img card-img-top" width="100%" height="225">
+                <div class="card-body">
+                <p class="card-text subjecttext">Fisika</p>
+                </div>
+                </div>
+            </a>
         </div>
         <div class="col">
-            <div class="card shadow-sm">
-            <img src="<?= base_url() ?>/imageSource/terry-vlisidis-RflgrtzU3Cw-unsplash (1).jpg" class="bd-placeholder-img card-img-top" width="100%" height="225">
-            <div class="card-body">
-              <a href="#" class="card-text subjecttext">Kimia</a>
-            </div>
-          </div>
+            <a href="/explore?search=kimia" class="text-decoration-none">
+                <div class="card shadow-sm">
+                <img src="<?= base_url() ?>/imageSource/terry-vlisidis-RflgrtzU3Cw-unsplash (1).jpg" class="bd-placeholder-img card-img-top" width="100%" height="225">
+                <div class="card-body">
+                <p class="card-text subjecttext">Kimia</p>
+                </div>
+                </div>
+            </a>
         </div>
         <div class="col">
-            <div class="card shadow-sm">
-            <img src="<?= base_url() ?>/imageSource/artiom-vallat-r8_Pzl9XuPc-unsplash (1).jpg" class="bd-placeholder-img card-img-top" width="100%" height="225">
-            <div class="card-body">
-              <a href="#" class="card-text subjecttext">Biologi</a>
-            </div>
-          </div>
+            <a href="/explore?search=biologi" class="text-decoration-none">
+                <div class="card shadow-sm">
+                <img src="<?= base_url() ?>/imageSource/artiom-vallat-r8_Pzl9XuPc-unsplash (1).jpg" class="bd-placeholder-img card-img-top" width="100%" height="225">
+                <div class="card-body">
+                <p class="card-text subjecttext">Biologi</p>
+                </div>
+                </div>
+            </a>
         </div>
     </div>
     <h4 class="homecontext">Mentor Favorit</h4>
     <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4 g-3">
+        <?php for($i = 0; $i < 4; $i++){ ?>
         <div class="col">
+        <a href="/pengajar/detail?id=<?= $pengajar[$i]['id'] ?>">
             <div class="cont-homecontent2">
-            <img src="<?= base_url() ?>/imageSource/default-mentor.png" class="bd-placeholder-img rounded-circle" width="160" height="160" preserveAspectRatio="xMidYMid slice" focusable="false">
+            <img src="<?= base_url() ?>/ProfileImage/<?= $pengajar[$i]['profil_pic']?>" class="bd-placeholder-img rounded-circle" width="160" height="160" preserveAspectRatio="xMidYMid slice" focusable="false">
                 <a href="#" class="card-text subjecttext">
-                    Nama mentor
+                    <?= $pengajar[$i]['nama_lengkap']?>
                 </a>
                 <p href="#" class="card-text subjecttext">
-                    Subject
+                    <?= $pengajar[$i]['keahlian']?>
                 </p>
             </div>
+        </a>
         </div>
-        <div class="col">
-            <div class="cont-homecontent2">
-            <img src="<?= base_url() ?>/imageSource/default-mentor.png" class="bd-placeholder-img rounded-circle" width="160" height="160" preserveAspectRatio="xMidYMid slice" focusable="false">
-                <a href="#" class="card-text subjecttext">
-                    Nama mentor
-                </a>
-                <p href="#" class="card-text subjecttext">
-                    Subject
-                </p>
-            </div>
-        </div>
-        <div class="col">
-            <div class="cont-homecontent2">
-            <img src="<?= base_url() ?>/imageSource/default-mentor.png" class="bd-placeholder-img rounded-circle" width="160" height="160" preserveAspectRatio="xMidYMid slice" focusable="false">
-                <a href="#" class="card-text subjecttext">
-                    Nama mentor
-                </a>
-                <p href="#" class="card-text subjecttext">
-                    Subject
-                </p>
-            </div>
-        </div>
-        <div class="col">
-            <div class="cont-homecontent2">
-            <img src="<?= base_url() ?>/imageSource/default-mentor.png" class="bd-placeholder-img rounded-circle" width="160" height="160" preserveAspectRatio="xMidYMid slice" focusable="false">
-                <a href="#" class="card-text subjecttext">
-                    Nama mentor
-                </a>
-                <p href="#" class="card-text subjecttext">
-                    Subject
-                </p>
-            </div>
-        </div>
+        <?php } ?>
     </div>
 </div>
 <div class="container-fluid about-cont">

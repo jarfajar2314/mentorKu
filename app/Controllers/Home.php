@@ -19,6 +19,7 @@ class Home extends BaseController
             'title' => 'Home',
             'content' => 'Home/v-home',
             'page' => 'Home',
+            'pengajar' => $this->PengajarModel->getAllPengajar(),
         ];
         return view('layout/v-wrapper', $data);
 	}
