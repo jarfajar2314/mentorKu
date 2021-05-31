@@ -215,7 +215,7 @@
 			<div class="modal-body">
 				<form action="/StudentController/insertUlasan" method="POST" id="tulis_ulasan">
 					<input type="text" value="<?= $_GET['id']?>" name='id_pengajar' hidden>
-					<input type="text" value="<?= $_SESSION['id_user']?>" name='id_pelajar' hidden>
+					<input type="text" value="<?= isset($_SESSION['id_user']) ? $_SESSION['id_user'] : ''?>" name='id_pelajar' hidden>
 					<div class="form-group mb-3">
 						<label class="form-label">Ulasan</label>
 						<textarea class="form-control" id="about" rows="3" name="ulasan"></textarea>
